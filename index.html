@@ -1,95 +1,136 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BOLDYASE – Officiële Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOLDYASE - Shop opent binnenkort</title>
   <style>
-    body {
-      margin: 0;
+    * {
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #fdfdfd;
+      color: #111;
+      line-height: 1.6;
     }
     header {
-      background-color: #000;
-      padding: 30px;
+      padding: 1rem 2rem;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
       text-align: center;
     }
-    header img {
-      width: 120px;
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
     }
-    h1, h2 {
+    nav {
+      margin-top: 0.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 2rem;
       text-align: center;
-      margin-bottom: 10px;
+      background: #f6f6f6;
     }
-    section {
-      padding: 40px 20px;
+    .hero h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .content-block {
+      padding: 2rem;
       max-width: 800px;
       margin: auto;
     }
-    .btn {
-      display: inline-block;
-      background-color: #fff;
-      color: #000;
-      padding: 12px 24px;
-      margin-top: 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
+    .content-block h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .gallery img {
+      width: 220px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     footer {
-      background-color: #000;
-      color: #777;
-      padding: 20px;
+      background: #111;
+      color: #fff;
       text-align: center;
-      font-size: 0.9rem;
+      padding: 2rem;
+    }
+    footer input[type=email] {
+      padding: 0.5rem;
+      width: 250px;
+      border: none;
+      border-radius: 4px;
+    }
+    footer button {
+      padding: 0.5rem 1rem;
+      background: #fff;
+      color: #111;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 0.5rem;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>BOLDYASE</h1>
+    <nav>
+      <a href="#over">Over</a>
+      <a href="#missie">Missie</a>
+      <a href="#shop">Shop</a>
+    </nav>
+  </header>
 
-<header>
-  <img src="logo.png" alt="BOLDYASE Logo" />
-</header>
+  <section class="hero">
+    <h2>Shop opent binnenkort!</h2>
+    <p>Schrijf je in om als eerste op de hoogte te zijn van onze lancering.</p>
+  </section>
 
-<section>
-  <h2>Over BOLDYASE</h2>
-  <p>
-    BOLDYASE is meer dan een merk – het is een lifestyle én een platform.
-    Wij brengen diverse merken, stijlen en creaties samen op één plek, zodat iedereen – van jong tot oud,
-    van man tot vrouw en alles daartussenin – iets vindt dat past bij hun unieke identiteit. Geïnspireerd
-    door kracht, elegantie en innerlijke groei, is BOLDYASE een plek waar fashion, energie en zelfexpressie samenkomen.
-  </p>
-</section>
+  <section class="content-block" id="over">
+    <h3>Over BOLDYASE</h3>
+    <p>BOLDYASE is meer dan een merk – het is een lifestyle én een platform. Wij brengen diverse merken, stijlen en creaties samen op één plek, zodat iedereen – van jong tot oud, van man tot vrouw en alles daartussenin – iets vindt dat past bij hun unieke identiteit. Geïnspireerd door kracht, elegantie en innerlijke groei, is BOLDYASE een plek waar fashion, energie en zelfexpressie samenkomen.</p>
+  </section>
 
-<section>
-  <h2>Onze Missie</h2>
-  <p>
-    Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn –
-    fysiek, mentaal én stijlvol. BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang,
-    zelfvertrouwen en uitstraling. Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd
-    of ontworpen om positieve kracht en stijl uit te stralen.
-  </p>
-</section>
+  <section class="content-block" id="missie">
+    <h3>Onze Missie</h3>
+    <p>Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn – fysiek, mentaal én stijlvol. BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang, zelfvertrouwen en uitstraling. Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd of ontworpen om positieve kracht en stijl uit te stralen.</p>
+  </section>
 
-<section>
-  <h2>Shop opent binnenkort</h2>
-  <p>
-    De officiële BOLDYASE webshop is onderweg! Binnenkort ontdek je hier een gevarieerd aanbod van kleding
-    en accessoires van verschillende merken, limited editions en exclusieve pre-orders.
-  </p>
-  <p>
-    Wil jij als eerste op de hoogte zijn van de lancering?<br />
-    Schrijf je in en blijf op de hoogte van de nieuwste collecties, samenwerkingen en meer!
-  </p>
-  <a href="mailto:info@boldyase.com" class="btn">Stuur mij een update</a>
-</section>
+  <section class="gallery" id="shop">
+    <img src="images/man1.jpg" alt="Man BOLDYASE shirt">
+    <img src="images/man2.jpg" alt="Man BOLDYASE shirt">
+    <img src="images/woman1.jpg" alt="Vrouw BOLDYASE top">
+    <img src="images/shoe1.jpg" alt="Schoenen BOLDYASE oranje">
+    <img src="images/shoe2.jpg" alt="Schoenen BOLDYASE grijs">
+  </section>
 
-<footer>
-  &copy; 2025 BOLDYASE. Alle rechten voorbehouden.
-</footer>
-
+  <footer>
+    <h3>Schrijf je nu in</h3>
+    <p>Blijf op de hoogte van de nieuwste collecties, samenwerkingen en lancering!</p>
+    <form>
+      <input type="email" placeholder="Jouw e-mailadres" required />
+      <button type="submit">Inschrijven</button>
+    </form>
+  </footer>
 </body>
 </html>
