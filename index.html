@@ -1,4 +1,5 @@
-
+# Na reset opnieuw de bijgewerkte HTML aanmaken
+updated_html = """
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -57,24 +58,32 @@
 <section>
   <h2>Over BOLDYASE</h2>
   <p>
-    BOLDYASE is meer dan een merk – het is een lifestyle. Geïnspireerd door kracht, elegantie en innerlijke groei,
-    brengt BOLDYASE een unieke combinatie van fashion en energie. We geloven in vooruitgang, zelfvertrouwen en uitstraling.
+    BOLDYASE is meer dan een merk – het is een lifestyle én een platform.
+    Wij brengen diverse merken, stijlen en creaties samen op één plek, zodat iedereen – van jong tot oud,
+    van man tot vrouw en alles daartussenin – iets vindt dat past bij hun unieke identiteit. Geïnspireerd
+    door kracht, elegantie en innerlijke groei, is BOLDYASE een plek waar fashion, energie en zelfexpressie samenkomen.
   </p>
 </section>
 
 <section>
   <h2>Onze Missie</h2>
   <p>
-    Onze missie is om mensen te inspireren hun beste zelf te zijn – fysiek, mentaal én stijlvol.
-    Elk kledingstuk en elke creatie van BOLDYASE is ontworpen met de bedoeling om positieve kracht uit te stralen.
+    Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn –
+    fysiek, mentaal én stijlvol. BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang,
+    zelfvertrouwen en uitstraling. Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd
+    of ontworpen om positieve kracht en stijl uit te stralen.
   </p>
 </section>
 
 <section>
   <h2>Shop opent binnenkort</h2>
   <p>
-    De officiële webshop van BOLDYASE is in de maak. Binnenkort vind je hier onze eerste collecties,
-    limited editions en speciale pre-orders. Wil je als eerste op de hoogte zijn?
+    De officiële BOLDYASE webshop is onderweg! Binnenkort ontdek je hier een gevarieerd aanbod van kleding
+    en accessoires van verschillende merken, limited editions en exclusieve pre-orders.
+  </p>
+  <p>
+    Wil jij als eerste op de hoogte zijn van de lancering?<br />
+    Schrijf je in en blijf op de hoogte van de nieuwste collecties, samenwerkingen en meer!
   </p>
   <a href="mailto:info@boldyase.com" class="btn">Stuur mij een update</a>
 </section>
@@ -85,4 +94,11 @@
 
 </body>
 </html>
-✍️ Nieuwe contentblokken toegevoegd (Over, Missie, Shop)
+"""
+
+# Bestand opslaan
+file_path = "/mnt/data/index.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(updated_html)
+
+file_path
