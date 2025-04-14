@@ -3,91 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOLDYASE - Shop opent binnenkort</title>
+  <title>BOLDYASE | Officiële Webshop</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-    }
-    body {
-      background: #fdfdfd;
-      color: #111;
-      line-height: 1.6;
+      background-color: #fdfdfd;
+      color: #222;
     }
     header {
+      background-color: #fff;
       padding: 1rem 2rem;
-      background: #fff;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header h1 {
-      font-size: 2rem;
-      letter-spacing: 2px;
-    }
-    nav {
-      margin-top: 0.5rem;
+      font-size: 1.5rem;
+      margin: 0;
     }
     nav a {
-      margin: 0 1rem;
+      margin-left: 1rem;
       text-decoration: none;
       color: #333;
       font-weight: bold;
     }
     .hero {
-      padding: 2rem;
       text-align: center;
-      background: #f6f6f6;
+      padding: 3rem 1rem;
     }
-    .hero h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+    .hero img {
+      max-width: 100%;
+      height: auto;
     }
-    .content-block {
-      padding: 2rem;
-      max-width: 800px;
+    section {
+      padding: 2rem 1rem;
+      max-width: 1000px;
       margin: auto;
     }
-    .content-block h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+    h2 {
+      border-left: 5px solid black;
+      padding-left: 1rem;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
-      padding: 2rem;
+      margin-top: 2rem;
     }
-    .gallery img {
-      width: 220px;
-      height: auto;
-      object-fit: cover;
+    .grid img {
+      width: 100%;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    footer {
-      background: #111;
-      color: #fff;
+    form {
+      margin-top: 2rem;
       text-align: center;
-      padding: 2rem;
     }
-    footer input[type=email] {
+    input[type="email"] {
       padding: 0.5rem;
       width: 250px;
-      border: none;
-      border-radius: 4px;
     }
-    footer button {
-      padding: 0.5rem 1rem;
-      background: #fff;
-      color: #111;
+    button {
+      padding: 0.6rem 1.2rem;
+      background-color: #000;
+      color: #fff;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
-      font-weight: bold;
       margin-left: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background: #eee;
     }
   </style>
 </head>
@@ -98,39 +91,53 @@
       <a href="#over">Over</a>
       <a href="#missie">Missie</a>
       <a href="#shop">Shop</a>
+      <a href="#inschrijven">Inschrijven</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h2>Shop opent binnenkort!</h2>
-    <p>Schrijf je in om als eerste op de hoogte te zijn van onze lancering.</p>
+    <h2>Shop opent binnenkort</h2>
+    <p>Een unieke lifestyle store. Klaar om jouw kracht en stijl te laten stralen.</p>
+    <img src="images/man1.jpg" alt="Boldyase Hero" />
   </section>
 
-  <section class="content-block" id="over">
-    <h3>Over BOLDYASE</h3>
-    <p>BOLDYASE is meer dan een merk – het is een lifestyle én een platform. Wij brengen diverse merken, stijlen en creaties samen op één plek, zodat iedereen – van jong tot oud, van man tot vrouw en alles daartussenin – iets vindt dat past bij hun unieke identiteit. Geïnspireerd door kracht, elegantie en innerlijke groei, is BOLDYASE een plek waar fashion, energie en zelfexpressie samenkomen.</p>
+  <section id="over">
+    <h2>Over BOLDYASE</h2>
+    <p>BOLDYASE is meer dan een merk – het is een lifestyle én een platform.
+      Wij brengen diverse merken, stijlen en creaties samen op één plek, zodat iedereen – van jong tot oud, van man tot vrouw en alles daartussenin – iets vindt dat past bij hun unieke identiteit.
+      Geïnspireerd door kracht, elegantie en innerlijke groei, is BOLDYASE een plek waar fashion, energie en zelfexpressie samenkomen.
+    </p>
   </section>
 
-  <section class="content-block" id="missie">
-    <h3>Onze Missie</h3>
-    <p>Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn – fysiek, mentaal én stijlvol. BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang, zelfvertrouwen en uitstraling. Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd of ontworpen om positieve kracht en stijl uit te stralen.</p>
+  <section id="missie">
+    <h2>Onze Missie</h2>
+    <p>Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn – fysiek, mentaal én stijlvol.
+      BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang, zelfvertrouwen en uitstraling.
+      Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd of ontworpen om positieve kracht en stijl uit te stralen.
+    </p>
   </section>
 
-  <section class="gallery" id="shop">
-    <img src="images/man1.jpg" alt="Man BOLDYASE shirt">
-    <img src="images/man2.jpg" alt="Man BOLDYASE shirt">
-    <img src="images/woman1.jpg" alt="Vrouw BOLDYASE top">
-    <img src="images/shoe1.jpg" alt="Schoenen BOLDYASE oranje">
-    <img src="images/shoe2.jpg" alt="Schoenen BOLDYASE grijs">
+  <section id="shop">
+    <h2>Preview Collectie</h2>
+    <div class="grid">
+      <img src="images/man2.jpg" alt="Model Man" />
+      <img src="images/woman.jpg" alt="Model Woman" />
+      <img src="images/shoe1.jpg" alt="Sneaker" />
+      <img src="images/shoe2.jpg" alt="Sneaker" />
+    </div>
   </section>
 
-  <footer>
-    <h3>Schrijf je nu in</h3>
-    <p>Blijf op de hoogte van de nieuwste collecties, samenwerkingen en lancering!</p>
+  <section id="inschrijven">
+    <h2>Schrijf je nu in</h2>
+    <p>Wil jij als eerste op de hoogte zijn van de lancering?</p>
     <form>
       <input type="email" placeholder="Jouw e-mailadres" required />
       <button type="submit">Inschrijven</button>
     </form>
+  </section>
+
+  <footer>
+    &copy; 2025 BOLDYASE. All rights reserved.
   </footer>
 </body>
 </html>
