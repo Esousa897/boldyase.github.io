@@ -64,6 +64,22 @@
       text-align: center;
       font-size: 0.9rem;
     }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      text-align: center;
+      padding: 10px;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 6px;
+    }
   </style>
 </head>
 <body>
@@ -81,14 +97,88 @@
   <a href="#gift-guide">Gift Guide / Sale</a>
 </nav>
 
-<section>
-  <h2>Over BOLDYASE</h2>
-  <p>
-    BOLDYASE is meer dan een merk – het is een lifestyle én een platform.
-    Wij brengen diverse merken, stijlen en creaties samen op één plek, zodat iedereen – van jong tot oud,
-    van man tot vrouw en alles daartussenin – iets vindt dat past bij hun unieke identiteit. Geïnspireerd
-    door kracht, elegantie en innerlijke groei, is BOLDYASE een plek waar fashion, energie en zelfexpressie samenkomen.
-  </p>
+<section id="women">
+  <h2>Vrouwen</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="placeholder1.jpg" alt="Vrouwen Product 1" />
+      <p>Vrouwen Top</p>
+    </div>
+    <div class="product">
+      <img src="placeholder2.jpg" alt="Vrouwen Product 2" />
+      <p>Vrouwen Leggings</p>
+    </div>
+  </div>
+</section>
+
+<section id="men">
+  <h2>Mannen</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="placeholder3.jpg" alt="Mannen Product 1" />
+      <p>Mannen T-shirt</p>
+    </div>
+    <div class="product">
+      <img src="placeholder4.jpg" alt="Mannen Product 2" />
+      <p>Mannen Shorts</p>
+    </div>
+  </div>
+</section>
+
+<section id="accessories">
+  <h2>Accessoires</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="placeholder5.jpg" alt="Accessoire 1" />
+      <p>Tas</p>
+    </div>
+    <div class="product">
+      <img src="placeholder6.jpg" alt="Accessoire 2" />
+      <p>Hoofdband</p>
+    </div>
+  </div>
+</section>
+
+<section id="footwear">
+  <h2>Schoenen</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="placeholder7.jpg" alt="Schoen 1" />
+      <p>Hardloopschoenen</p>
+    </div>
+    <div class="product">
+      <img src="placeholder8.jpg" alt="Schoen 2" />
+      <p>Casual Sneakers</p>
+    </div>
+  </div>
+</section>
+
+<section id="studio">
+  <h2>Studio</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="placeholder9.jpg" alt="Studio Product 1" />
+      <p>Speciale Collectie 1</p>
+    </div>
+    <div class="product">
+      <img src="placeholder10.jpg" alt="Studio Product 2" />
+      <p>Speciale Collectie 2</p>
+    </div>
+  </div>
+</section>
+
+<section id="gift-guide">
+  <h2>Gift Guide / Sale</h2>
+  <div class="product-grid">
+    <div class="product">
+      <img src="placeholder11.jpg" alt="Gift Product 1" />
+      <p>Gift Set 1</p>
+    </div>
+    <div class="product">
+      <img src="placeholder12.jpg" alt="Gift Product 2" />
+      <p>Gift Set 2</p>
+    </div>
+  </div>
 </section>
 
 <section>
