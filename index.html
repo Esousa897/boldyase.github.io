@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -9,30 +8,49 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
+      background-color: #fff; /* Witte achtergrond */
+      color: #333; /* Donkergrijze tekst voor betere leesbaarheid */
     }
     header {
       background-color: #000;
-      padding: 30px;
+      padding: 15px;
       text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
     }
     header img {
       width: 120px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+    }
+    nav a:hover {
+      background-color: #444; /* Hover effect */
     }
     h1, h2 {
       text-align: center;
       margin-bottom: 10px;
     }
     section {
-      padding: 40px 20px;
+      padding: 80px 20px; /* Extra padding voor navigatiebalk */
       max-width: 800px;
       margin: auto;
     }
     .btn {
       display: inline-block;
-      background-color: #fff;
-      color: #000;
+      background-color: #000;
+      color: #fff;
       padding: 12px 24px;
       margin-top: 20px;
       border-radius: 6px;
@@ -53,6 +71,15 @@
 <header>
   <img src="result (11).jpeg" alt="BOLDYASE Logo" />
 </header>
+
+<nav>
+  <a href="#women">Women</a>
+  <a href="#men">Men</a>
+  <a href="#accessories">Accessories</a>
+  <a href="#footwear">Footwear</a>
+  <a href="#studio">Studio</a>
+  <a href="#gift-guide">Gift Guide / Sale</a>
+</nav>
 
 <section>
   <h2>Over BOLDYASE</h2>
