@@ -8,9 +8,10 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #fff; /* Witte achtergrond */
-      color: #333; /* Donkergrijze tekst voor betere leesbaarheid */
+      background-color: #fff;
+      color: #333;
     }
+
     header {
       background-color: #000;
       padding: 15px;
@@ -20,33 +21,19 @@
       top: 0;
       z-index: 1000;
     }
+
     header img {
-      width: 120px;
+      width: 200px;
+      height: auto;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #000;
-      padding: 10px 0;
-    }
-    nav a {
-      color: #fff;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-    }
-    nav a:hover {
-      background-color: #444; /* Hover effect */
-    }
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 10px;
-    }
+
+    /* Extra ruimte voor vaste header + navigatie */
     section {
-      padding: 80px 20px; /* Extra padding voor navigatiebalk */
+      padding: 180px 20px 80px 20px;
       max-width: 800px;
       margin: auto;
     }
+
     .btn {
       display: inline-block;
       background-color: #000;
@@ -57,6 +44,7 @@
       text-decoration: none;
       font-weight: bold;
     }
+
     footer {
       background-color: #000;
       color: #777;
@@ -64,183 +52,264 @@
       text-align: center;
       font-size: 0.9rem;
     }
+
     .product-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       margin-top: 20px;
     }
+
     .product {
       border: 1px solid #ddd;
       border-radius: 6px;
       text-align: center;
       padding: 10px;
     }
+
     .product img {
       width: 100%;
       border-radius: 6px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* Extra Navigatie */
+    .top-info-bar {
+      background-color: #f9f9f9;
+      font-size: 13px;
+      padding: 5px 20px;
+      text-align: right;
+      margin-top: 65px; /* ruimte onder fixed header */
+    }
+
+    .extra-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #e0e0e0;
+      background-color: white;
+      font-family: sans-serif;
+      position: fixed;
+      top: 65px;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .extra-nav nav {
+      display: flex;
+      gap: 20px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .extra-nav nav a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .extra-nav nav a:last-child {
+      color: crimson;
+    }
+
+    .extra-icons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .extra-icons input {
+      border: none;
+      outline: none;
+    }
+
+    .search-box {
+      border: 1px solid #000;
+      border-radius: 5px;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Originele navigatie onder extra nav */
+    nav.original-nav {
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 10px 0;
+      margin-top: 130px;
+    }
+
+    nav.original-nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    nav.original-nav a:hover {
+      background-color: #444;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="Naamloos_Tekengebied 178.svg" alt="BOLDYASE Logo" style="width: 200px; height: auto;" />
-</header>
+  <!-- Zwarte header met logo -->
+  <header>
+    <img src="Naamloos_Tekengebied 178.svg" alt="BOLDYASE Logo" />
+  </header>
 
-  <!-- BOLDYASE Navigation Bar (onder zwarte balk) -->
-<!-- Tip: plak dit direct onder je logo-div of zwarte header -->
+  <!-- Extra info bar -->
+  <div class="top-info-bar">
+    Get 15% off regular-priced items. <a href="#" style="text-decoration: underline;">Sign up</a>
+  </div>
 
-<!-- Top info bar -->
-<div style="background-color: #f9f9f9; font-size: 13px; padding: 5px 20px; text-align: right;">
-  Get 15% off regular-priced items. <a href="#" style="text-decoration: underline;">Sign up</a>
-</div>
+  <!-- Extra navigatiebalk -->
+  <div class="extra-nav">
+    <nav>
+      <a href="#women">Women</a>
+      <a href="#men">Men</a>
+      <a href="#accessories">Bags</a>
+      <a href="#accessories">Accessories</a>
+      <a href="#footwear">Shoes</a>
+      <a href="#gift-guide">Mother's Day</a>
+    </nav>
+    <div class="extra-icons">
+      <div class="search-box">
+        <span style="margin-right: 5px;">🔍</span>
+        <input type="text" placeholder="Search" />
+      </div>
+      <a href="#" title="Account" style="font-size: 18px;">👤</a>
+      <a href="#" title="Wishlist" style="font-size: 18px;">♡</a>
+      <a href="#" title="Cart" style="font-size: 18px;">🛍️<span style="font-size: 12px; color: red;">0</span></a>
+    </div>
+  </div>
 
-<!-- Hoofdmenu -->
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-bottom: 1px solid #e0e0e0; font-family: sans-serif; background-color: white;">
-  <!-- Linkerzijde: Menu -->
-  <nav style="display: flex; gap: 20px; font-size: 16px; font-weight: 600;">
-    <a href="#" style="text-decoration: none; color: black;">Women</a>
-    <a href="#" style="text-decoration: none; color: black;">Men</a>
-    <a href="#" style="text-decoration: none; color: black;">Bags</a>
-    <a href="#" style="text-decoration: none; color: black;">Accessories</a>
-    <a href="#" style="text-decoration: none; color: black;">Shoes</a>
-    <a href="#" style="text-decoration: none; color: crimson;">Mother's Day</a>
+  <!-- Originele navigatie -->
+  <nav class="original-nav">
+    <a href="#women">Women</a>
+    <a href="#men">Men</a>
+    <a href="#accessories">Accessories</a>
+    <a href="#footwear">Footwear</a>
+    <a href="#studio">Studio</a>
+    <a href="#gift-guide">Gift Guide / Sale</a>
   </nav>
 
-  <!-- Rechterzijde: Zoeken en Iconen -->
-  <div style="display: flex; align-items: center; gap: 15px;">
-    <!-- Zoekveld -->
-    <div style="border: 1px solid #000; border-radius: 5px; padding: 5px 10px; display: flex; align-items: center;">
-      <span style="margin-right: 5px;">🔍</span>
-      <input type="text" placeholder="Search" style="border: none; outline: none;">
+  <!-- Pagina inhoud -->
+  <section id="women">
+    <h2>Vrouwen</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="result 59.jpeg" alt="Vrouwen Product 1" />
+        <p>Vrouwen Top</p>
+      </div>
+      <div class="product">
+        <img src="result 71.jpeg" alt="Vrouwen Product 2" />
+        <p>Vrouwen Leggings</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Iconen -->
-    <a href="#" title="Account" style="font-size: 18px;">👤</a>
-    <a href="#" title="Wishlist" style="font-size: 18px;">♡</a>
-    <a href="#" title="Cart" style="font-size: 18px;">🛍️<span style="font-size: 12px; color: red;">0</span></a>
-  </div>
+  <section id="men">
+    <h2>Mannen</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="Gemini_Generated_Image_pt2g6kpt2g6kpt2g.jpg" alt="Mannen Product 1" />
+        <p>Mannen T-shirt</p>
+      </div>
+      <div class="product">
+        <img src="20250312_201645000_iOS.jpg" alt="Mannen Product 2" />
+        <p>Mannen Shorts</p>
+      </div>
+    </div>
+  </section>
 
-<nav>
-  <a href="#women">Women</a>
-  <a href="#men">Men</a>
-  <a href="#accessories">Accessories</a>
-  <a href="#footwear">Footwear</a>
-  <a href="#studio">Studio</a>
-  <a href="#gift-guide">Gift Guide / Sale</a>
-</nav>
+  <section id="accessories">
+    <h2>Accessoires</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="20250312_194036485_iOS.jpg" alt="Accessoire 1" />
+        <p>Tas</p>
+      </div>
+      <div class="product">
+        <img src="result 14.jpeg" alt="Accessoire 2" />
+        <p>Hoofdband</p>
+      </div>
+    </div>
+  </section>
 
-<section id="women">
-  <h2>Vrouwen</h2>
-  <div class="product-grid">
-    <div class="product">
-      <img src="result 59.jpeg" alt="Vrouwen Product 1" />
-      <p>Vrouwen Top</p>
+  <section id="footwear">
+    <h2>Schoenen</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="image (6).png" alt="Schoen 1" />
+        <p>Hardloopschoenen</p>
+      </div>
+      <div class="product">
+        <img src="image (7).png" alt="Schoen 2" />
+        <p>Casual Sneakers</p>
+      </div>
     </div>
-    <div class="product">
-      <img src="result 71.jpeg" alt="Vrouwen Product 2" />
-      <p>Vrouwen Leggings</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="men">
-  <h2>Mannen</h2>
-  <div class="product-grid">
-    <div class="product">
-      <img src="Gemini_Generated_Image_pt2g6kpt2g6kpt2g.jpg" alt="Mannen Product 1" />
-      <p>Mannen T-shirt</p>
+  <section id="studio">
+    <h2>Studio</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="result 68.jpeg" alt="Studio Product 1" />
+        <p>Speciale Collectie 1</p>
+      </div>
+      <div class="product">
+        <img src="result 70.jpeg" alt="Studio Product 2" />
+        <p>Speciale Collectie 2</p>
+      </div>
     </div>
-    <div class="product">
-      <img src="20250312_201645000_iOS.jpg" alt="Mannen Product 2" />
-      <p>Mannen Shorts</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="accessories">
-  <h2>Accessoires</h2>
-  <div class="product-grid">
-    <div class="product">
-      <img src="20250312_194036485_iOS.jpg" alt="Accessoire 1" />
-      <p>Tas</p>
+  <section id="gift-guide">
+    <h2>Gift Guide / Sale</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="result 35.jpeg" alt="Gift Product 1" />
+        <p>Gift Set 1</p>
+      </div>
+      <div class="product">
+        <img src="result 36.jpeg" alt="Gift Product 2" />
+        <p>Gift Set 2</p>
+      </div>
     </div>
-    <div class="product">
-      <img src="result 14.jpeg" alt="Accessoire 2" />
-      <p>Hoofdband</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="footwear">
-  <h2>Schoenen</h2>
-  <div class="product-grid">
-    <div class="product">
-      <img src="image (6).png" alt="Schoen 1" />
-      <p>Hardloopschoenen</p>
-    </div>
-    <div class="product">
-      <img src="image (7).png" alt="Schoen 2" />
-      <p>Casual Sneakers</p>
-    </div>
-  </div>
-</section>
+  <section>
+    <h2>Onze Missie</h2>
+    <p>
+      Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn –
+      fysiek, mentaal én stijlvol. BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang,
+      zelfvertrouwen en uitstraling. Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd
+      of ontworpen om positieve kracht en stijl uit te stralen.
+    </p>
+  </section>
 
-<section id="studio">
-  <h2>Studio</h2>
-  <div class="product-grid">
-    <div class="product">
-      <img src="result 68.jpeg" alt="Studio Product 1" />
-      <p>Speciale Collectie 1</p>
-    </div>
-    <div class="product">
-      <img src="result 70.jpeg" alt="Studio Product 2" />
-      <p>Speciale Collectie 2</p>
-    </div>
-  </div>
-</section>
+  <section>
+    <h2>Shop opent binnenkort</h2>
+    <p>
+      De officiële BOLDYASE webshop is onderweg! Binnenkort ontdek je hier een gevarieerd aanbod van kleding
+      en accessoires van verschillende merken, limited editions en exclusieve pre-orders.
+    </p>
+    <p>
+      Wil jij als eerste op de hoogte zijn van de lancering?<br />
+      Schrijf je in en blijf op de hoogte van de nieuwste collecties, samenwerkingen en meer!
+    </p>
+    <a href="mailto:info@boldyase.com" class="btn">Stuur mij een update</a>
+  </section>
 
-<section id="gift-guide">
-  <h2>Gift Guide / Sale</h2>
-  <div class="product-grid">
-    <div class="product">
-      <img src="result 35.jpeg" alt="Gift Product 1" />
-      <p>Gift Set 1</p>
-    </div>
-    <div class="product">
-      <img src="result 36.jpeg" alt="Gift Product 2" />
-      <p>Gift Set 2</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Onze Missie</h2>
-  <p>
-    Onze missie is om mensen van alle leeftijden en achtergronden te inspireren hun beste zelf te zijn –
-    fysiek, mentaal én stijlvol. BOLDYASE biedt ruimte aan merken en makers die geloven in vooruitgang,
-    zelfvertrouwen en uitstraling. Elk kledingstuk en accessoire op ons platform is zorgvuldig geselecteerd
-    of ontworpen om positieve kracht en stijl uit te stralen.
-  </p>
-</section>
-
-<section>
-  <h2>Shop opent binnenkort</h2>
-  <p>
-    De officiële BOLDYASE webshop is onderweg! Binnenkort ontdek je hier een gevarieerd aanbod van kleding
-    en accessoires van verschillende merken, limited editions en exclusieve pre-orders.
-  </p>
-  <p>
-    Wil jij als eerste op de hoogte zijn van de lancering?<br />
-    Schrijf je in en blijf op de hoogte van de nieuwste collecties, samenwerkingen en meer!
-  </p>
-  <a href="mailto:info@boldyase.com" class="btn">Stuur mij een update</a>
-</section>
-
-<footer>
-  &copy; 2025 BOLDYASE. Alle rechten voorbehouden.
-</footer>
+  <footer>
+    &copy; 2025 BOLDYASE. Alle rechten voorbehouden.
+  </footer>
 
 </body>
 </html>
