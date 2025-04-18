@@ -27,7 +27,33 @@
       height: auto;
     }
 
-    /* Extra ruimte voor vaste header + navigatie */
+    /* Fade-in shop opening message */
+    .shop-opening-message {
+      background-color: white;
+      color: black;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px 0;
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
+      animation-delay: 1s;
+      position: relative;
+      top: 95px; /* zodat het niet achter het header-logo komt */
+      z-index: 900;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     section {
       padding: 180px 20px 80px 20px;
       max-width: 800px;
@@ -77,71 +103,12 @@
       margin-bottom: 10px;
     }
 
-    /* Extra Navigatie */
-    .top-info-bar {
-      background-color: #f9f9f9;
-      font-size: 13px;
-      padding: 5px 20px;
-      text-align: right;
-      margin-top: 65px; /* ruimte onder fixed header */
-    }
-
-    .extra-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      border-bottom: 1px solid #e0e0e0;
-      background-color: white;
-      font-family: sans-serif;
-      position: fixed;
-      top: 65px;
-      width: 100%;
-      z-index: 999;
-    }
-
-    .extra-nav nav {
-      display: flex;
-      gap: 20px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .extra-nav nav a {
-      text-decoration: none;
-      color: black;
-    }
-
-    .extra-nav nav a:last-child {
-      color: crimson;
-    }
-
-    .extra-icons {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .extra-icons input {
-      border: none;
-      outline: none;
-    }
-
-    .search-box {
-      border: 1px solid #000;
-      border-radius: 5px;
-      padding: 5px 10px;
-      display: flex;
-      align-items: center;
-    }
-
-    /* Originele navigatie onder extra nav */
     nav.original-nav {
       display: flex;
       justify-content: center;
       background-color: #000;
       padding: 10px 0;
-      margin-top: 130px;
+      margin-top: 160px;
     }
 
     nav.original-nav a {
@@ -158,38 +125,17 @@
 </head>
 <body>
 
-  <!-- Zwarte header met logo -->
+  <!-- Header logo -->
   <header>
     <img src="Naamloos_Tekengebied 178.svg" alt="BOLDYASE Logo" />
   </header>
 
-  <!-- Extra info bar -->
-  <div class="top-info-bar">
-    Get 15% off regular-priced items. <a href="#" style="text-decoration: underline;">Sign up</a>
+  <!-- Shop opent binnenkort melding met fade-in -->
+  <div class="shop-opening-message">
+    Shop opent binnenkort
   </div>
 
-  <!-- Extra navigatiebalk -->
-  <div class="extra-nav">
-    <nav>
-      <a href="#women">Women</a>
-      <a href="#men">Men</a>
-      <a href="#accessories">Bags</a>
-      <a href="#accessories">Accessories</a>
-      <a href="#footwear">Shoes</a>
-      <a href="#gift-guide">Mother's Day</a>
-    </nav>
-    <div class="extra-icons">
-      <div class="search-box">
-        <span style="margin-right: 5px;">🔍</span>
-        <input type="text" placeholder="Search" />
-      </div>
-      <a href="#" title="Account" style="font-size: 18px;">👤</a>
-      <a href="#" title="Wishlist" style="font-size: 18px;">♡</a>
-      <a href="#" title="Cart" style="font-size: 18px;">🛍️<span style="font-size: 12px; color: red;">0</span></a>
-    </div>
-  </div>
-
-  <!-- Originele navigatie -->
+  <!-- Originele zwarte navigatie -->
   <nav class="original-nav">
     <a href="#women">Women</a>
     <a href="#men">Men</a>
@@ -199,7 +145,7 @@
     <a href="#gift-guide">Gift Guide / Sale</a>
   </nav>
 
-  <!-- Pagina inhoud -->
+  <!-- Content -->
   <section id="women">
     <h2>Vrouwen</h2>
     <div class="product-grid">
