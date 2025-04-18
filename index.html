@@ -52,7 +52,7 @@
     }
 
     section {
-      padding: 80px 20px;
+      padding: 100px 20px 80px 20px;
       max-width: 800px;
       margin: auto;
     }
@@ -150,24 +150,33 @@
       font-size: 1.2em;
     }
 
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      margin-top: 20px;
-      gap: 10px;
-    }
-
-    .carousel-item {
-      flex: 0 0 auto;
-      width: 300px;
+    .testimonial {
+      background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 6px;
+      padding: 20px;
+      margin-top: 20px;
       text-align: center;
     }
 
-    .carousel-item img {
-      width: 100%;
+    .blog-section {
+      margin-top: 40px;
+    }
+
+    .blog-post {
+      padding: 10px;
+      border: 1px solid #ddd;
       border-radius: 6px;
+      margin: 10px 0;
+      transition: transform 0.2s;
+    }
+
+    .blog-post:hover {
+      transform: scale(1.01);
+    }
+
+    .newsletter {
+      text-align: center;
     }
   </style>
 </head>
@@ -181,7 +190,7 @@
     Shop opent binnenkort
   </div>
 
-  <nav>
+  <nav class="original-nav">
     <a href="#women">Women</a>
     <a href="#men">Men</a>
     <a href="#accessories">Accessories</a>
@@ -189,6 +198,41 @@
     <a href="#studio">Studio</a>
     <a href="#gift-guide">Gift Guide / Sale</a>
   </nav>
+
+  <section class="hero">
+    <h1>Welkom bij BOLDYASE</h1>
+    <p>Een lifestyle van kracht, stijl en expressie.</p>
+  </section>
+
+  <section class="testimonial">
+    <h2>Wat klanten zeggen</h2>
+    <p>"BOLDYASE heeft mijn stijl en zelfvertrouwen naar een hoger niveau getild. Superkwaliteit en uitstraling!" – Lisa</p>
+  </section>
+
+  <section class="blog-section">
+    <h2>Laatste blogposts</h2>
+    <div class="blog-post">
+      <h3>5 tips om je dag energiek te starten</h3>
+      <p>Boost je ochtendroutine met onze praktische lifestyle-tips.</p>
+    </div>
+    <div class="blog-post">
+      <h3>Trends voor dit seizoen</h3>
+      <p>Ontdek de nieuwste kleuren en stijlen van de BOLDYASE community.</p>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <h2>Blijf op de hoogte</h2>
+    <p>Ontvang updates, acties en inspiratie rechtstreeks in je inbox.</p>
+    <form>
+      <input type="email" placeholder="Voer je e-mailadres in" style="padding: 10px; width: 250px; border-radius: 6px; border: 1px solid #ccc;" required />
+      <button type="submit" class="btn">Aanmelden</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 BOLDYASE. Alle rechten voorbehouden.
+  </footer>
 
 </body>
 </html>
