@@ -13,198 +13,76 @@
     }
 
     header {
-  display: flex;
-  justify-content: center;  /* centreert horizontaal */
-  align-items: center;      /* centreert verticaal binnen de header */
-  padding: 10px;            /* kleine balk zoals eerder */
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+    }
 
-header img {
-  width: 200px;
-  height: auto;
-  /* margin: 0 auto;  eventueel in plaats van flex gebruiken */
-  display: block;
-}
-    
+    /* logo links */
+    .logo {
+      width: 200px;
+      height: auto;
+      flex: 0 0 auto;
+    }
 
+    /* boodschap precies gecentreerd */
     .shop-opening-message {
-      display: inline-block;
-      background-color: #000;      /* zwarte achtergrond */
-      color: #fff;                 /* witte tekst */
-      font-size: 20px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px 16px;
       font-weight: bold;
-      text-align: center;
-      padding: 8px 20px;           /* ruimte rond de tekst */
-      border: 2px solid #ffd700;   /* gouden rand */
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      font-size: 18px;
       opacity: 0;
       animation: fadeIn 1.5s ease-in-out forwards;
       animation-delay: 0.5s;
-      margin-bottom: 8px;          /* ruimte tussen bericht en logo */
-      font-family: 'Helvetica Neue', Arial, sans-serif;
     }
 
     .shop-opening-message .icon {
-      font-size: 24px;
-      vertical-align: middle;
-      margin-right: 6px;
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      /* voorbeeld: vervang src door jouw realistische SVG/PNG */
     }
 
     @keyframes fadeIn {
       0% {
         opacity: 0;
-        transform: translateY(-5px);
+        transform: translateY(-5px) translateX(-50%);
       }
       100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) translateX(-50%);
       }
     }
 
-    section {
-      padding: 100px 20px 80px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: #ff5733;
-      color: #fff;
-      padding: 12px 24px;
-      margin-top: 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #c94e2a;
-    }
-
-    footer {
-      background-color: #000;
-      color: #777;
-      padding: 20px;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .product {
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      text-align: center;
-      padding: 10px;
-      transition: transform 0.2s;
-    }
-
-    .product:hover {
-      transform: scale(1.05);
-      border-color: #ff5733;
-    }
-
-    .product img {
-      width: 100%;
-      border-radius: 6px;
-    }
-
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #000;
-      padding: 10px 0;
-      margin-top: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    nav a {
-      color: #fff;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #444;
-    }
-
-    .hero {
-      background-color: #ff5733;
-      color: #fff;
-      padding: 50px 0;
-      text-align: center;
-    }
-
-    .hero h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-
-    .hero p {
-      font-size: 1.2em;
-    }
-
-    .testimonial {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 20px;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .blog-section {
-      margin-top: 40px;
-    }
-
-    .blog-post {
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      margin: 10px 0;
-      transition: transform 0.2s;
-    }
-
-    .blog-post:hover {
-      transform: scale(1.01);
-    }
-
-    .newsletter {
-      text-align: center;
-    }
+    /* nav e.d. kun je hieronder nog stylen */
   </style>
 </head>
 <body>
 
   <header>
-    <img src="Naamloos_Tekengebied 178.svg" alt="BOLDYASE Logo" />
-  </header>
+    <!-- 1) Logo links -->
+    <img src="Naamloos_Tekengebied 178.svg" alt="BOLDYASE Logo" class="logo">
 
-  <div class="shop-opening-message">
-    <span class="icon">🛍️</span>
-    <strong>Shop opent binnenkort!</strong>
-  </div>
+    <!-- 2) Gecentreerde opening-message -->
+    <div class="shop-opening-message">
+      <!-- gebruik hier bijv. een realistische winkelzak SVG/PNG -->
+      <img src="shopping-bag-icon.svg" alt="Winkelzak" class="icon">
+      <span>Shop opent binnenkort!</span>
+    </div>
+  </header>
 
   <nav class="original-nav">
     <a href="#women">Women</a>
