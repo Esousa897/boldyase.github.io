@@ -13,21 +13,23 @@
     }
 
     header {
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;              /* smallere balk */
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
+  display: flex;
+  justify-content: center;  /* centreert horizontaal */
+  align-items: center;      /* centreert verticaal binnen de header */
+  padding: 10px;            /* kleine balk zoals eerder */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
 
-    header img {
-      width: 200px;
-      height: auto;
-    }
+header img {
+  width: 200px;
+  height: auto;
+  /* margin: 0 auto;  eventueel in plaats van flex gebruiken */
+  display: block;
+}
+    
 
     .shop-opening-message {
       display: inline-block;
