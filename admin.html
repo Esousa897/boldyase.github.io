@@ -9,10 +9,18 @@
     body { background-color: #f8f9fa; }
     .admin-container { max-width: 600px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     .preview img { max-width: 100%; margin-top: 10px; }
+    #loginForm { max-width: 400px; margin: 80px auto; display: none; }
   </style>
 </head>
 <body>
-  <div class="admin-container">
+  <div id="loginForm">
+    <h3 class="text-center mb-3">Beveiligde toegang</h3>
+    <input type="password" id="passwordInput" class="form-control mb-2" placeholder="Voer wachtwoord in">
+    <button onclick="checkPassword()" class="btn btn-dark w-100">Login</button>
+    <p id="loginError" class="text-danger mt-2 text-center" style="display: none;">Onjuist wachtwoord</p>
+  </div>
+
+  <div class="admin-container" style="display: none;" id="adminSection">
     <h2 class="mb-4 text-center">Voeg nieuw product toe</h2>
     <form id="productForm">
       <div class="mb-3">
@@ -28,7 +36,7 @@
         <input type="url" class="form-control" id="afbeelding" required>
       </div>
       <div class="mb-3 preview" id="preview"></div>
-      <button type="submit" class="btn btn-dark w-100">Product tonen</button>
+      <button type="submit" class="btn btn-dark w-100">Product opslaan</button>
     </form>
 
     <hr class="my-5">
@@ -37,6 +45,24 @@
   </div>
 
   <script>
+    const loginForm = document.getElementById('loginForm');
+    const adminSection = document.getElementById('adminSection');
+    const passwordInput = document.getElementById('passwordInput');
+    const loginError = document.getElementById('loginError');
+
+    function checkPassword() {
+      if (passwordInput.value === 'boldyase@bbold') {
+        loginForm.style.display = 'none';
+        adminSection.style.display = 'block';
+      } else {
+        loginError.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loginForm.style.display = 'block';
+    });
+
     const form = document.getElementById('productForm');
     const preview = document.getElementById('preview');
     const result = document.getElementById('productResult');
@@ -51,6 +77,11 @@
       const naam = document.getElementById('naam').value;
       const prijs = document.getElementById('prijs').value;
       const afbeelding = document.getElementById('afbeelding').value;
+
+      const product = { naam, prijs, afbeelding };
+      let producten = JSON.parse(localStorage.getItem('producten')) || [];
+      producten.push(product);
+      localStorage.setItem('producten', JSON.stringify(producten));
 
       const productHTML = `
         <div class="card mb-3">
