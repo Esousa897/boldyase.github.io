@@ -3,125 +3,675 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOLDYASE | Kleding Webshop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <meta name="description" content="Ontdek de nieuwste mode en trends bij BOLDYASE. Luxe kleding, schoenen en accessoires. Shop nu de nieuwe collectie.">
+  <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, online shoppen">
+
+  <title>BOLDYASE | Luxe Kleding Webshop | Nieuwe Collectie</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafafa; }
-    .navbar-brand { font-weight: bold; letter-spacing: 2px; }
-    .hero { background: #222; color: #fff; padding: 60px 0; text-align: center; }
-    .product-card { border: 1px solid #eee; border-radius: 10px; background: #fff; transition: box-shadow .2s; }
-    .product-card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
-    .footer { background: #222; color: #fff; padding: 30px 0; }
-    .btn-main { background: #222; color: #fff; border: none; }
-    .btn-main:hover { background: #444; }
+    :root {
+      --primary-color: #222;
+      --secondary-color: #f8f9fa; /* Lichter grijs voor achtergronden */
+      --accent-color: #d4af37; /* Goud-achtig accent voor luxe gevoel */
+      --text-color: #333;
+      --light-text: #6c757d;
+      --font-body: 'Montserrat', sans-serif;
+      --font-heading: 'Playfair Display', serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #fff; /* Wit voor main content area */
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6, .navbar-brand {
+      font-family: var(--font-heading);
+      font-weight: 700;
+    }
+
+    .navbar {
+      background-color: #fff !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .navbar-brand {
+      letter-spacing: 1px;
+      font-size: 1.8rem;
+      color: var(--primary-color) !important;
+    }
+
+    .nav-link {
+      color: var(--text-color) !important;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-color) !important;
+    }
+    .navbar-icons .nav-link {
+        font-size: 1.2rem;
+    }
+    .cart-count {
+        background-color: var(--accent-color);
+        color: white;
+        font-size: 0.7rem;
+        padding: 2px 5px;
+        border-radius: 50%;
+        position: relative;
+        top: -8px;
+        left: -3px;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1581044777550-4cfa6ce18c9c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      color: #fff;
+      padding: 120px 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .btn-main {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: 2px solid var(--primary-color);
+      padding: 12px 30px;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 50px; /* Rondere knoppen */
+      transition: all 0.3s ease;
+    }
+    .btn-main:hover {
+      background-color: #fff;
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    .btn-outline-main {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      padding: 10px 25px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+     .btn-outline-main:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+    .btn-secondary-action {
+        background: transparent;
+        border: none;
+        color: var(--light-text);
+        font-size: 1.3rem;
+        padding: 5px;
+        transition: color 0.3s ease;
+    }
+    .btn-secondary-action:hover {
+        color: var(--accent-color);
+    }
+    .btn-secondary-action.active {
+        color: var(--accent-color); /* Kleur voor actieve wishlist */
+    }
+
+    .section-bg {
+        background-color: var(--secondary-color);
+    }
+
+    .product-card {
+      border: none; /* Verwijder standaard rand */
+      border-radius: 15px; /* Meer afgerond */
+      background: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden; /* Zorgt dat badge binnen kaart blijft */
+      position: relative; /* Nodig voor absolute positionering van badge/knoppen */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .product-card img {
+        border-radius: 15px 15px 0 0;
+        transition: transform 0.3s ease;
+    }
+    .product-card:hover img {
+        transform: scale(1.03);
+    }
+    .product-card .card-body {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .product-card h5 {
+        font-family: var(--font-body); /* Gebruik body font voor productnamen */
+        font-weight: 500;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    .product-price {
+        color: var(--primary-color);
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    .product-card .btn-main {
+        width: auto; /* Niet altijd 100% */
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    .product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        border-radius: 5px;
+        font-weight: 500;
+        z-index: 10;
+    }
+    .product-actions {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        z-index: 10;
+        opacity: 0; /* Verberg initieel */
+        transition: opacity 0.3s ease;
+    }
+    .product-card:hover .product-actions {
+        opacity: 1; /* Toon bij hover */
+    }
+    .product-actions .btn-secondary-action {
+        background: rgba(255, 255, 255, 0.8); /* Licht transparante achtergrond */
+        border-radius: 50%;
+        padding: 8px;
+        font-size: 1rem;
+        line-height: 1;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+
+    .category-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+    }
+    .category-card:hover {
+        transform: translateY(-5px);
+    }
+    .category-card img {
+        display: block;
+        width: 100%;
+        transition: transform 0.4s ease;
+    }
+    .category-card:hover img {
+        transform: scale(1.05);
+    }
+    .category-card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        padding: 30px 20px 20px;
+        text-align: center;
+        color: #fff;
+    }
+     .category-card-overlay h5 {
+        font-family: var(--font-heading);
+        margin-bottom: 0;
+        font-size: 1.5rem;
+     }
+
+    .footer {
+      background: var(--primary-color);
+      color: rgba(255, 255, 255, 0.7); /* Iets lichter wit */
+      padding: 60px 0 30px;
+      margin-top: 5rem;
+    }
+    .footer h5 {
+        color: #fff;
+        margin-bottom: 1.5rem;
+        font-family: var(--font-heading);
+    }
+    .footer p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1rem;
+    }
+    .footer a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer a:hover {
+      color: #fff;
+    }
+    .footer .list-unstyled li {
+        margin-bottom: 0.5rem;
+    }
+    .footer .social-icons a {
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .footer .social-icons a:hover {
+      color: #fff;
+    }
+    .footer .bottom-text {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 20px;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        padding: 10px 15px;
+    }
+    .form-control:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25); /* Goud-achtige focus */
+    }
+
+    /* Utility Classes */
+    .text-accent { color: var(--accent-color); }
+    .section-title { margin-bottom: 3rem; font-size: 2.5rem; }
+
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="#">BOLDYASE</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">Over</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#"><span class="bi bi-cart"></span> Winkelwagen</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <h1 class="display-4">Nieuwe collectie 2025</h1>
-      <p class="lead">Ontdek de nieuwste trends bij <b>BOLDYASE</b>. Stijlvolle kleding voor elke gelegenheid.</p>
-      <a href="#shop" class="btn btn-main btn-lg mt-3">Shop nu</a>
-    </div>
-  </section>
-
-  <!-- Product Grid -->
-  <section id="shop" class="py-5">
-    <div class="container">
-      <h2 class="mb-4 text-center">Populaire Producten</h2>
-      <div class="row g-4">
-        <!-- Product 1 -->
-        <div class="col-md-4">
-          <div class="product-card p-3 text-center">
-            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" class="img-fluid mb-3" alt="Jas">
-            <h5>Stijlvolle Jas</h5>
-            <p class="text-muted">€79,95</p>
-            <button class="btn btn-main w-100">In winkelwagen</button>
-          </div>
-        </div>
-        <!-- Product 2 -->
-        <div class="col-md-4">
-          <div class="product-card p-3 text-center">
-            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" class="img-fluid mb-3" alt="T-shirt">
-            <h5>Casual T-shirt</h5>
-            <p class="text-muted">€24,95</p>
-            <button class="btn btn-main w-100">In winkelwagen</button>
-          </div>
-        </div>
-        <!-- Product 3 -->
-        <div class="col-md-4">
-          <div class="product-card p-3 text-center">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" class="img-fluid mb-3" alt="Broek">
-            <h5>Comfortabele Broek</h5>
-            <p class="text-muted">€49,95</p>
-            <button class="btn btn-main w-100">In winkelwagen</button>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">BOLDYASE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#shop" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Shop
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#shop">Alle Producten</a></li>
+                <li><a class="dropdown-item" href="#">Nieuwe Collectie</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Heren</a></li>
+                <li><a class="dropdown-item" href="#">Dames</a></li>
+                <li><a class="dropdown-item" href="#">Accessoires</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#categories">Categorieën</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">Over Ons</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+          <div class="d-flex align-items-center navbar-icons">
+            <form class="d-flex me-3" role="search">
+              <input class="form-control form-control-sm me-2" type="search" placeholder="Zoeken..." aria-label="Search">
+              <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+            <a class="nav-link" href="#" title="Account"><i class="bi bi-person"></i></a>
+            <a class="nav-link" href="#" title="Winkelwagen">
+              <i class="bi bi-cart"></i>
+              <span class="cart-count">3</span> </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </nav>
+  </header>
 
-  <!-- Over Ons -->
-  <section id="about" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="mb-4 text-center">Over BOLDYASE</h2>
-      <p class="text-center mx-auto" style="max-width: 700px;">
-        BOLDYASE staat voor moderne, duurzame mode. Wij geloven in kwaliteit, stijl en comfort. Onze collecties worden met zorg samengesteld, zodat jij altijd het beste draagt.
-      </p>
-    </div>
-  </section>
+  <main style="padding-top: 80px;"> <section class="hero">
+      <div class="container">
+        <h1 class="display-3">Elevate Your Style</h1>
+        <p class="lead">Ontdek de exclusieve <b>BOLDYASE</b> collectie 2025. Premium kwaliteit, tijdloos design.</p>
+        <a href="#shop" class="btn btn-main btn-lg mt-3">Ontdek Collectie</a>
+      </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-5">
-    <div class="container">
-      <h2 class="mb-4 text-center">Contact</h2>
-      <form class="mx-auto" style="max-width: 500px;">
-        <div class="mb-3">
-          <input type="text" class="form-control" placeholder="Naam" required>
+    <section id="categories" class="py-5">
+        <div class="container">
+            <h2 class="text-center section-title">Shop per Categorie</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="#" class="category-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1551803817-de0713f6888a?auto=format&fit=crop&w=600&q=80" alt="Herenmode">
+                        <div class="category-card-overlay">
+                            <h5>Heren</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                     <a href="#" class="category-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Damesmode">
+                         <div class="category-card-overlay">
+                            <h5>Dames</h5>
+                        </div>
+                    </a>
+                </div>
+                 <div class="col-md-4">
+                     <a href="#" class="category-card d-block text-decoration-none">
+                        <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&q=80" alt="Accessoires">
+                         <div class="category-card-overlay">
+                            <h5>Accessoires</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-          <input type="email" class="form-control" placeholder="E-mail" required>
-        </div>
-        <div class="mb-3">
-          <textarea class="form-control" rows="4" placeholder="Bericht" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-main w-100">Verstuur</button>
-      </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer text-center">
+    <section id="shop" class="py-5 section-bg">
+      <div class="container">
+        <h2 class="mb-4 text-center section-title">Populaire Producten</h2>
+
+        <div class="d-flex justify-content-end mb-4">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sorteren op
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Populariteit</a></li>
+                    <li><a class="dropdown-item" href="#">Nieuwste</a></li>
+                    <li><a class="dropdown-item" href="#">Prijs: Laag naar Hoog</a></li>
+                    <li><a class="dropdown-item" href="#">Prijs: Hoog naar Laag</a></li>
+                </ul>
+            </div>
+             <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+                <i class="bi bi-filter"></i> Filters
+            </button>
+            </div>
+
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product-card" data-product-id="101">
+              <span class="product-badge">Nieuw</span>
+              <div class="product-actions">
+                  <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                  <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Leren Jas">
+              <div class="card-body">
+                <h5>Premium Leren Jas</h5>
+                <p class="product-price">€249,95</p>
+                <button class="btn btn-main">In winkelwagen</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product-card" data-product-id="102">
+             <div class="product-actions">
+                  <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                  <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Horloge">
+              <div class="card-body">
+                <h5>Elegant Horloge</h5>
+                <p class="product-price">€189,00</p>
+                <button class="btn btn-main">In winkelwagen</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+             <div class="product-card" data-product-id="103">
+             <span class="product-badge" style="background-color: #dc3545;">Sale</span> <div class="product-actions">
+                  <button class="btn-secondary-action active" title="Verwijder van Wishlist"><i class="bi bi-heart-fill"></i></button> <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Sneakers">
+              <div class="card-body">
+                <h5>Luxe Leren Sneakers</h5>
+                <p class="product-price"><span class="text-decoration-line-through text-muted me-2">€150,00</span> €119,95</p>
+                <button class="btn btn-main">In winkelwagen</button>
+              </div>
+            </div>
+          </div>
+           <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product-card" data-product-id="104">
+             <div class="product-actions">
+                  <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                  <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+              </div>
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Sport Schoen">
+              <div class="card-body">
+                <h5>Performance Sportschoen</h5>
+                <p class="product-price">€99,95</p>
+                <button class="btn btn-main">In winkelwagen</button>
+              </div>
+            </div>
+          </div>
+           <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card p-0 text-center" data-product-id="orig1"> <div class="product-actions">
+                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                        <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Jas"> <div class="card-body"> <h5>Stijlvolle Jas</h5>
+                        <p class="product-price">€79,95</p> <button class="btn btn-main">In winkelwagen</button> </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card p-0 text-center" data-product-id="orig2">
+                     <div class="product-actions">
+                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                        <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="T-shirt">
+                     <div class="card-body">
+                        <h5>Casual T-shirt</h5>
+                        <p class="product-price">€24,95</p>
+                        <button class="btn btn-main">In winkelwagen</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card p-0 text-center" data-product-id="orig3">
+                     <div class="product-actions">
+                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                        <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Broek">
+                    <div class="card-body">
+                        <h5>Comfortabele Broek</h5>
+                        <p class="product-price">€49,95</p>
+                        <button class="btn btn-main">In winkelwagen</button>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card" data-product-id="108">
+                     <div class="product-actions">
+                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                        <button class="btn-secondary-action" title="Snelle weergave"><i class="bi bi-eye"></i></button>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1600804889194-e6fbf08ddb39?auto=format&fit=crop&w=400&q=80" class="card-img-top" alt="Polo Shirt">
+                    <div class="card-body">
+                        <h5>Klassiek Polo Shirt</h5>
+                        <p class="product-price">€59,95</p>
+                        <button class="btn btn-main">In winkelwagen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai-recommendations" class="py-5">
+        <div class="container">
+             <h2 class="mb-4 text-center section-title">Speciaal voor jou aanbevolen</h2>
+             <div class="row g-4">
+                 <div class="col-lg-3 col-md-4 col-sm-6">
+                     <div class="product-card placeholder-glow" aria-hidden="true">
+                         <svg class="bd-placeholder-img card-img-top" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
+                         <div class="card-body text-center">
+                            <span class="placeholder col-8"></span>
+                            <span class="placeholder col-4"></span>
+                            <span class="placeholder col-6 mt-2"></span>
+                         </div>
+                    </div>
+                 </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6 d-none d-md-block"> <div class="product-card placeholder-glow" aria-hidden="true">
+                         <svg class="bd-placeholder-img card-img-top" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
+                         <div class="card-body text-center">
+                            <span class="placeholder col-7"></span>
+                            <span class="placeholder col-5"></span>
+                            <span class="placeholder col-7 mt-2"></span>
+                         </div>
+                    </div>
+                 </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6 d-none d-lg-block"> <div class="product-card placeholder-glow" aria-hidden="true">
+                         <svg class="bd-placeholder-img card-img-top" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
+                         <div class="card-body text-center">
+                            <span class="placeholder col-8"></span>
+                            <span class="placeholder col-3"></span>
+                            <span class="placeholder col-6 mt-2"></span>
+                         </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-3 col-md-4 col-sm-6 d-none d-lg-block"> <div class="product-card placeholder-glow" aria-hidden="true">
+                         <svg class="bd-placeholder-img card-img-top" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
+                         <div class="card-body text-center">
+                            <span class="placeholder col-7"></span>
+                            <span class="placeholder col-4"></span>
+                            <span class="placeholder col-5 mt-2"></span>
+                         </div>
+                    </div>
+                 </div>
+                 </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 section-bg">
+      <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow" alt="Over BOLDYASE">
+            </div>
+            <div class="col-lg-6">
+                 <h2 class="mb-4 section-title text-start">Over BOLDYASE</h2> <p>
+                    BOLDYASE staat voor moderne, duurzame mode met een vleugje luxe. Wij geloven in de kracht van kwaliteit, tijdloze stijl en ultiem comfort. Onze collecties worden met zorg en oog voor detail samengesteld, zodat jij altijd het beste draagt en je zelfverzekerd voelt.
+                 </p>
+                 <p>
+                    We streven naar duurzaamheid in onze materialen en productieprocessen, omdat we geloven dat mode mooi én verantwoord kan zijn. Ontdek de wereld van BOLDYASE en investeer in stukken die lang meegaan.
+                 </p>
+                 <a href="#contact" class="btn btn-outline-main mt-3">Neem Contact Op</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="mb-4 text-center section-title">Neem Contact Op</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                 <p class="text-center mb-5">Heb je een vraag, opmerking of wil je samenwerken? Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met je op.</p>
+                <form id="contactForm"> <div class="row g-3">
+                        <div class="col-md-6 mb-3">
+                            <label for="contactName" class="form-label">Naam</label>
+                            <input type="text" class="form-control" id="contactName" placeholder="Je volledige naam" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="contactEmail" class="form-label">E-mailadres</label>
+                            <input type="email" class="form-control" id="contactEmail" placeholder="jouw@email.com" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                             <label for="contactSubject" class="form-label">Onderwerp</label>
+                            <input type="text" class="form-control" id="contactSubject" placeholder="Waar gaat je bericht over?">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="contactMessage" class="form-label">Bericht</label>
+                            <textarea class="form-control" id="contactMessage" rows="5" placeholder="Typ hier je bericht..." required></textarea>
+                        </div>
+                        <div class="col-12 text-center">
+                             <button type="submit" class="btn btn-main btn-lg">Verstuur Bericht</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+    -->
+
+  </main>
+
+  <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 BOLDYASE. Alle rechten voorbehouden.</p>
-      <div>
-        <a href="#" class="text-white me-3">Instagram</a>
-        <a href="#" class="text-white me-3">Facebook</a>
-        <a href="#" class="text-white">Pinterest</a>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                 <h5 class="text-uppercase">BOLDYASE</h5>
+                 <p>Exclusieve mode voor de moderne man en vrouw. Kwaliteit, stijl en duurzaamheid sinds 2025.</p>
+                 <div class="social-icons mt-4">
+                     <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+                     <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                     <a href="#" title="Pinterest"><i class="bi bi-pinterest"></i></a>
+                     <a href="#" title="TikTok"><i class="bi bi-tiktok"></i></a>
+                 </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                 <h5 class="text-uppercase">Klantenservice</h5>
+                 <ul class="list-unstyled">
+                    <li><a href="#">Veelgestelde Vragen (FAQ)</a></li>
+                    <li><a href="#">Bestelling & Levering</a></li>
+                    <li><a href="#">Retourneren & Ruilen</a></li>
+                    <li><a href="#">Maattabel</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                 </ul>
+            </div>
+             <div class="col-lg-2 col-md-6">
+                  <h5 class="text-uppercase">Informatie</h5>
+                 <ul class="list-unstyled">
+                    <li><a href="#about">Over Ons</a></li>
+                    <li><a href="#">Duurzaamheid</a></li>
+                    <li><a href="#">Vacatures</a></li>
+                    <li><a href="#">Privacybeleid</a></li>
+                    <li><a href="#">Algemene Voorwaarden</a></li>
+                 </ul>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <h5 class="text-uppercase">Blijf op de hoogte</h5>
+                <p>Meld je aan voor onze nieuwsbrief en ontvang €10 korting op je eerste bestelling. Mis geen enkele update over nieuwe collecties en exclusieve aanbiedingen.</p>
+                <form id="newsletterForm" class="d-flex mt-3"> <input type="email" class="form-control me-2" placeholder="E-mailadres" required>
+                    <button type="submit" class="btn btn-outline-light flex-shrink-0">Aanmelden</button> </form>
+            </div>
+        </div>
+      <div class="bottom-text">
+          <p>&copy; 2025 BOLDYASE. Alle rechten voorbehouden.</p>
       </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+
+  </body>
 </html>
