@@ -4,63 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BOLDYASE Shop</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    body { background-color: #f7f7f7; }
-    .product-card {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: all 0.2s;
-    }
-    .product-card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-    .product-img {
-      height: 220px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      width: 100%;
-    }
-    .product-name {
-      font-weight: bold;
-      font-size: 18px;
-    }
-    .product-price {
-      color: #444;
-      font-size: 16px;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; }
+    .container { max-width: 900px; margin-top: 40px; }
+    .product-card { border: 1px solid #ddd; border-radius: 10px; padding: 20px; background: #fff; }
+    .product-image { max-width: 100%; height: auto; border-radius: 10px; }
+    .form-control, .btn { margin-bottom: 10px; }
   </style>
 </head>
 <body>
-  <div class="container py-5">
-    <h2 class="text-center mb-4">BOLDYASE Shop</h2>
-    <div class="row" id="productGrid"></div>
+  <div class="container">
+    <h1 class="text-center mb-4">BOLDYASE Product Toevoegen</h1>
+    <form id="productForm">
+      <input type="text" name="product_name" class="form-control" placeholder="Productnaam" required>
+      <input type="text" name="product_price" class="form-control" placeholder="Prijs (€)" required>
+      <textarea name="product_description" class="form-control" placeholder="Beschrijving" required></textarea>
+      <input type="email" name="email" class="form-control" placeholder="Jouw e-mail" required>
+      <button type="submit" class="btn btn-dark w-100">Verstuur Product</button>
+    </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    const producten = JSON.parse(localStorage.getItem('producten')) || [];
-    const grid = document.getElementById('productGrid');
+    (function() {
+      emailjs.init("PSLV6wPdJ6_kkZ60A");
+    })();
 
-    if (producten.length === 0) {
-      grid.innerHTML = '<p class="text-center">Nog geen producten toegevoegd.</p>';
-    } else {
-      producten.forEach(product => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4 mb-4';
-        col.innerHTML = `
-          <div class="product-card">
-            <img src="${product.afbeelding}" class="product-img" alt="${product.naam}">
-            <div class="product-name">${product.naam}</div>
-            <div class="product-price">€ ${product.prijs}</div>
-          </div>
-        `;
-        grid.appendChild(col);
-      });
-    }
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('service_38kp9ce', 'template_itkjdvg', this)
+        .then(() => alert("Product verstuurd!"),
+              error => alert("Fout bij versturen: " + error.text));
+      this.reset();
+    });
   </script>
 </body>
 </html>
+
