@@ -1,94 +1,127 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BOLDYASE – Officiële Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOLDYASE | Kleding Webshop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #000;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    /* logo links */
-    .logo {
-      width: 200px;
-      height: auto;
-      flex: 0 0 auto;
-    }
-
-    /* boodschap precies gecentreerd */
-    .shop-opening-message {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      background-color: #fff;
-      color: #000;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 8px 16px;
-      font-weight: bold;
-      font-size: 18px;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      animation-delay: 0.5s;
-    }
-
-    .shop-opening-message .icon {
-      width: 24px;
-      height: 24px;
-      margin-right: 8px;
-      /* voorbeeld: vervang src door jouw realistische SVG/PNG */
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-5px) translateX(-50%);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) translateX(-50%);
-      }
-    }
-
-    /* nav e.d. kun je hieronder nog stylen */
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #fafafa; }
+    .navbar-brand { font-weight: bold; letter-spacing: 2px; }
+    .hero { background: #222; color: #fff; padding: 60px 0; text-align: center; }
+    .product-card { border: 1px solid #eee; border-radius: 10px; background: #fff; transition: box-shadow .2s; }
+    .product-card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+    .footer { background: #222; color: #fff; padding: 30px 0; }
+    .btn-main { background: #222; color: #fff; border: none; }
+    .btn-main:hover { background: #444; }
   </style>
 </head>
 <body>
-
-  <header>
-    <!-- 1) Logo links -->
-    <img src="Naamloos_Tekengebied 178.svg" alt="BOLDYASE Logo" class="logo">
-
-    <!-- 2) Gecentreerde opening-message -->
-    <div class="shop-opening-message">
-      <!-- gebruik hier bijv. een realistische winkelzak SVG/PNG -->
-      <img src="shopping-bag-icon.svg" alt="Winkelzak" class="icon">
-      <span>Shop opent binnenkort!</span>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">BOLDYASE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Over</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#"><span class="bi bi-cart"></span> Winkelwagen</a></li>
+        </ul>
+      </div>
     </div>
-  </header>
+  </nav>
 
- 
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="display-4">Nieuwe collectie 2025</h1>
+      <p class="lead">Ontdek de nieuwste trends bij <b>BOLDYASE</b>. Stijlvolle kleding voor elke gelegenheid.</p>
+      <a href="#shop" class="btn btn-main btn-lg mt-3">Shop nu</a>
+    </div>
+  </section>
 
-  <footer>
-    &copy; 2025 BOLDYASE. Alle rechten voorbehouden.
+  <!-- Product Grid -->
+  <section id="shop" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Populaire Producten</h2>
+      <div class="row g-4">
+        <!-- Product 1 -->
+        <div class="col-md-4">
+          <div class="product-card p-3 text-center">
+            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" class="img-fluid mb-3" alt="Jas">
+            <h5>Stijlvolle Jas</h5>
+            <p class="text-muted">€79,95</p>
+            <button class="btn btn-main w-100">In winkelwagen</button>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-md-4">
+          <div class="product-card p-3 text-center">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80" class="img-fluid mb-3" alt="T-shirt">
+            <h5>Casual T-shirt</h5>
+            <p class="text-muted">€24,95</p>
+            <button class="btn btn-main w-100">In winkelwagen</button>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-4">
+          <div class="product-card p-3 text-center">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" class="img-fluid mb-3" alt="Broek">
+            <h5>Comfortabele Broek</h5>
+            <p class="text-muted">€49,95</p>
+            <button class="btn btn-main w-100">In winkelwagen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Over Ons -->
+  <section id="about" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4 text-center">Over BOLDYASE</h2>
+      <p class="text-center mx-auto" style="max-width: 700px;">
+        BOLDYASE staat voor moderne, duurzame mode. Wij geloven in kwaliteit, stijl en comfort. Onze collecties worden met zorg samengesteld, zodat jij altijd het beste draagt.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Contact</h2>
+      <form class="mx-auto" style="max-width: 500px;">
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Naam" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="E-mail" required>
+        </div>
+        <div class="mb-3">
+          <textarea class="form-control" rows="4" placeholder="Bericht" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-main w-100">Verstuur</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 BOLDYASE. Alle rechten voorbehouden.</p>
+      <div>
+        <a href="#" class="text-white me-3">Instagram</a>
+        <a href="#" class="text-white me-3">Facebook</a>
+        <a href="#" class="text-white">Pinterest</a>
+      </div>
+    </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
