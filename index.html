@@ -74,112 +74,151 @@
     .btn-visual-search { background: transparent; border: none; padding: 0.375rem 0.75rem; }
 
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; /* Andere luxe afbeelding */
-      color: #fff;
-      padding: 150px 0;
-      text-align: center;
-    }
-    .hero h1 { <section class="hero-boldyase">
-  <div class="container">
-    <div class="hero-content">
-      <p class="hero-top-text">Hello, Bold One. The BOLDYASE Collection is Almost Here. See something you love? Reach out — we're listening.</p>
-      <h1 class="hero-title">Welcome, Bold One</h1>
-      <p class="hero-subtitle">BOLDYASE collection almost here</p>
-      <a href="#contact" class="btn btn-cta">Get in Touch</a>
+<!-- HERO SECTION -->
+<section class="hero" style="position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: url('https://images.unsplash.com/photo-1536766768598-6562496f8c98?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90') center/cover no-repeat;">
+  
+  <!-- Subtiel BOLDYASE Watermerk -->
+  <div style="position:absolute; top:20px; left:20px; opacity:0.08; font-size:8rem; font-weight:900; color:white; font-family:'Playfair Display',serif; pointer-events:none; user-select:none; z-index:1;">
+    BOLDYASE
+  </div>
+
+  <!-- Mist Animatie -->
+  <div id="mist" style="position:absolute;top:0;left:0;width:100%;height:100%;background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);animation: mistMove 15s infinite alternate;"></div>
+
+  <!-- Welkom Content -->
+  <div class="container text-center" style="position: relative; z-index:2; color: #fff; text-shadow: 0 0 15px rgba(0,0,0,0.7);">
+    <h1 class="display-1 mb-4 animate__animated animate__fadeInDown">Welcome, Bold One</h1>
+    <p class="lead mb-3 animate__animated animate__fadeInUp animate__delay-1s" style="font-size:1.5rem;">BOLDYASE collection almost here</p>
+    <p class="mb-5 animate__animated animate__fadeInUp animate__delay-2s" style="font-weight: 300; font-size: 1.2rem;">Hello, Bold One. The BOLDYASE Collection is Almost Here. See something you love? Reach out we're listening.</p>
+    <a href="#contact" class="btn btn-main btn-lg animate__animated animate__fadeInUp animate__delay-3s" style="padding: 12px 40px; font-size:1.2rem;">Get in Touch</a>
+  </div>
+</section>
+
+<!-- MIST ANIMATIE CSS -->
+<style>
+@keyframes mistMove {
+  0% { transform: translateX(0px) translateY(0px); }
+  100% { transform: translateX(20px) translateY(20px); }
+}
+</style>
+
+<!-- OUTFIT GENERATOR -->
+<section id="outfit-generator" class="py-5 section-bg">
+  <div class="container text-center">
+    <h2 class="section-title">Outfit Generator</h2>
+    <p class="lead mb-4">Ontvang een gepersonaliseerde outfit suggestie op basis van jouw voorkeur.</p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form id="outfitForm">
+          <div class="mb-3">
+            <select id="gender" class="form-select" required>
+              <option value="">Kies Geslacht</option>
+              <option value="man">Man</option>
+              <option value="vrouw">Vrouw</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <select id="occasion" class="form-select" required>
+              <option value="">Kies Gelegenheid</option>
+              <option value="casual">Casual</option>
+              <option value="zakelijk">Zakelijk</option>
+              <option value="avond">Avond Chic</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-main">Genereer Outfit</button>
+        </form>
+
+        <div id="outfitResult" class="mt-5"></div>
+      </div>
     </div>
   </div>
 </section>
-    .hero p {<section class="hero hero-define">
-  <div class="container">
-    <div class="hero-content">
-      <h1 class="hero-title">Define Your Presence</h1>
-      <p class="hero-subtitle">Ervaar de synergie van vakmanschap en moderne technologie. Shop BOLDYASE.</p>
-      <a href="#shop" class="btn btn-cta">Ontdek Meer</a>
+
+<!-- VIDEO-BASED RECOMMENDER -->
+<section id="video-recommender" class="py-5">
+  <div class="container text-center">
+    <h2 class="section-title">Video-Based Recommender</h2>
+    <p class="lead mb-5">Zie iets leuks? Klik of hover voor suggesties!</p>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="trend-card hover-zoom" onclick="suggest('leren jas')">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Leren jas" loading="lazy">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="trend-card hover-zoom" onclick="suggest('casual t-shirt')">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" alt="T-shirt" loading="lazy">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="trend-card hover-zoom" onclick="suggest('avond chic jurk')">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Avondjurk" loading="lazy">
+        </div>
+      </div>
     </div>
+
+    <div id="videoSuggestion" class="mt-5"></div>
   </div>
 </section>
-    .btn { border-radius: 50px; padding: 10px 25px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; }
-    .btn-main { background-color: var(--primary-color); color: #fff; border: 2px solid var(--primary-color); }
-    .btn-main:hover { background-color: #fff; color: var(--primary-color); }
-    .btn-outline-main { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-    .btn-outline-main:hover { background-color: var(--primary-color); color: #fff; }
-    .btn-secondary-action { background: rgba(255, 255, 255, 0.8); border: none; color: var(--light-text); border-radius: 50%; padding: 8px; font-size: 1rem; line-height: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s ease; }
-    .btn-secondary-action:hover { color: var(--accent-color); background: white; }
-    .btn-secondary-action.active { color: var(--accent-color); }
 
-    .section-bg { background-color: var(--secondary-color); }
-    .section-title { margin-bottom: 4rem; font-size: 2.8rem; position: relative; display: inline-block; padding-bottom: 10px; }
-    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 10px auto 0; }
-    .text-center .section-title::after { margin-left: auto; margin-right: auto; } /* Centreer lijn bij gecentreerde titel */
+<!-- BONUS: JS functies -->
+<script>
+// Outfit Generator logica
+const outfits = {
+  man: {
+    casual: ["Jeans", "T-shirt", "Sneakers"],
+    zakelijk: ["Pak", "Overhemd", "Luxe schoenen"],
+    avond: ["Zwart colbert", "Witte blouse", "Leren loafers"]
+  },
+  vrouw: {
+    casual: ["Maxi-jurk", "Denim jack", "Witte sneakers"],
+    zakelijk: ["Tailleur", "Blouse", "Pumps"],
+    avond: ["Cocktailjurk", "Statement tas", "Hoge hakken"]
+  }
+};
 
-    .product-card {
-      border: none;
-      border-radius: 8px; /* Strakkere radius */
-      background: #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      height: 100%; /* Zorgt dat kaarten gelijke hoogte hebben in een row */
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    .product-card .card-img-top {
-        border-radius: 8px 8px 0 0;
-        transition: transform 0.3s ease;
-        aspect-ratio: 3 / 4; /* Forceer aspect ratio */
-        object-fit: cover; /* Zorg dat afbeelding vult zonder te vervormen */
-        width: 100%;
-    }
-    .product-card:hover .card-img-top { transform: scale(1.03); }
-    .product-card .card-body {
-        padding: 1rem 1.2rem;
-        text-align: center;
-        flex-grow: 1; /* Laat body groeien om footer onderaan te houden */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Verdeel ruimte */
-    }
-    .product-card h5 {
-        font-family: var(--font-body);
-        font-weight: 500;
-        font-size: 1rem; /* Iets kleiner voor strakke look */
-        margin-bottom: 0.5rem;
-        color: var(--primary-color);
-    }
-    .product-price { color: var(--primary-color); font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem; }
-    .product-price .original-price { text-decoration: line-through; color: var(--light-text); font-weight: 400; margin-right: 0.5rem; font-size: 0.9em; }
-    .product-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 10; opacity: 0; transition: opacity 0.3s ease; }
-    .product-card:hover .product-actions { opacity: 1; }
-    .product-tags { margin-top: 0.8rem; margin-bottom: 0.8rem; }
-    .product-tags .badge { font-size: 0.7rem; font-weight: 500; margin: 2px; padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;}
-    .product-tags .badge:hover { background-color: var(--accent-color) !important; color: white !important; }
+document.getElementById('outfitForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const gender = document.getElementById('gender').value;
+  const occasion = document.getElementById('occasion').value;
 
-    .category-card { /* ... styles behouden, maar ook aspect ratio */ }
-    .category-card img { display: block; width: 100%; transition: transform 0.4s ease; aspect-ratio: 1 / 1; object-fit: cover; } /* Vierkant formaat */
+  if (gender && occasion) {
+    const items = outfits[gender][occasion];
+    document.getElementById('outfitResult').innerHTML = `
+      <h4 class="mb-3">Jouw Outfit Suggestie:</h4>
+      <ul class="list-unstyled">
+        ${items.map(item => `<li>✔️ ${item}</li>`).join('')}
+      </ul>
+    `;
+  } else {
+    document.getElementById('outfitResult').innerHTML = `<p class="text-danger">Selecteer eerst alle opties.</p>`;
+  }
+});
 
-    .trend-card { border-radius: 8px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.07); position: relative; }
-    .trend-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.4s ease; }
-    .trend-card:hover img { transform: scale(1.05); }
-    .trend-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 30px 20px 20px; color: #fff; }
-    .trend-overlay h5 { font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.4rem; color: #fff; }
+// Video-Based Recommender logica
+function suggest(product) {
+  document.getElementById('videoSuggestion').innerHTML = `
+    <h4>Misschien ook interessant:</h4>
+    <p>${product} + bijpassende accessoires</p>
+  `;
+}
+</script>
 
-    .outfit-suggestion { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-    .outfit-main-item img { max-width: 100%; height: auto; border-radius: 8px; }
-    .outfit-coordinates .product-card { box-shadow: none; border: 1px solid #eee; height: auto; } /* Simpelere stijl voor coördinaten */
-    .outfit-coordinates .product-card .card-img-top { aspect-ratio: 1 / 1; } /* Vierkante thumbnails */
+<!-- BONUS CSS: Hover Zoom en Smooth Scroll -->
+<style>
+.hover-zoom img {
+  transition: transform 0.5s ease;
+}
+.hover-zoom:hover img {
+  transform: scale(1.05);
+}
+html {
+  scroll-behavior: smooth;
+}
+</style>
 
-    .footer { background: var(--primary-color); color: rgba(255, 255, 255, 0.7); padding: 60px 0 30px; margin-top: 6rem; }
-    .footer h5 { color: #fff; margin-bottom: 1.5rem; font-family: var(--font-heading); text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
-    /* ... rest van footer styles ... */
-    .footer .bottom-text { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; margin-top: 40px; font-size: 0.9rem; text-align: center; color: rgba(255, 255, 255, 0.5); }
-
-    .form-control { border-radius: 5px; border: 1px solid #ddd; padding: 12px 15px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-    .form-control:focus { border-color: var(--accent-color); box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25); }
-
-    /* Placeholder styling */
-    .placeholder-glow .placeholder { background-color: #e0e0e0; }
 
   </style>
 </head>
