@@ -1,48 +1,119 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOLDYASE Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { background-color: #f8f9fa; }
-    .admin-container { max-width: 600px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .preview img { max-width: 100%; margin-top: 10px; }
-    #loginForm { max-width: 400px; margin: 80px auto; display: none; }
-  </style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ontdek de nieuwste luxe mode en trends bij BOLDYASE. Geavanceerde aanbevelingen, duurzame keuzes en een exclusieve shopervaring.">
+    <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, AI recommendations, duurzaam, high fashion">
+    <meta name="author" content="BOLDYASE">
+    <link rel="canonical" href="https://www.boldyase.com/"> <link rel="icon" href="favicon.ico" type="image/x-icon"> <title>BOLDYASE | Luxe Mode & AI-Powered Shopping</title>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
-  <div id="loginForm">
-    <h3 class="text-center mb-3">Beveiligde toegang</h3>
-    <input type="password" id="passwordInput" class="form-control mb-2" placeholder="Voer wachtwoord in">
-    <button onclick="checkPassword()" class="btn btn-dark w-100">Login</button>
-    <p id="loginError" class="text-danger mt-2 text-center" style="display: none;">Onjuist wachtwoord</p>
-  </div>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <img src="logo.png" alt="BOLDYASE Logo"> </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Nieuw</a></li>
+                <li><a href="/dames">Dames</a></li>
+                <li><a href="/heren">Heren</a></li>
+                <li><a href="/accessoires">Accessoires</a></li>
+                <li><a href="/duurzaamheid">Duurzaamheid</a></li>
+                <li><a href="/aanbevelingen">AI Aanbevelingen</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="/zoeken" aria-label="Zoeken"><img src="zoek.png" alt="Zoeken"></a> <a href="/account" aria-label="Mijn Account"><img src="account.png" alt="Mijn Account"></a> <a href="/winkelwagen" aria-label="Winkelwagen"><img src="winkelwagen.png" alt="Winkelwagen"></a> </div>
+    </header>
 
-  <div class="admin-container" style="display: none;" id="adminSection">
-    <h2 class="mb-4 text-center">Voeg nieuw product toe</h2>
-    <form id="productForm">
-      <div class="mb-3">
-        <label for="naam" class="form-label">Productnaam</label>
-        <input type="text" class="form-control" id="naam" required>
-      </div>
-      <div class="mb-3">
-        <label for="prijs" class="form-label">Prijs (€)</label>
-        <input type="number" class="form-control" id="prijs" required>
-      </div>
-      <div class="mb-3">
-        <label for="afbeelding" class="form-label">Afbeelding (link)</label>
-        <input type="url" class="form-control" id="afbeelding" required>
-      </div>
-      <div class="mb-3 preview" id="preview"></div>
-      <button type="submit" class="btn btn-dark w-100">Product opslaan</button>
-    </form>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Ontdek Exclusieve Luxe Mode</h1>
+                <p>Laat je inspireren door de nieuwste collecties en gepersonaliseerde aanbevelingen.</p>
+                <a href="/nieuwe-collectie" class="button">Bekijk Nieuwe Collectie</a>
+            </div>
+            <div class="hero-image">
+                <img src="hero-image.jpg" alt="Model in luxe kleding"> </div>
+        </section>
 
-    <hr class="my-5">
-    <h4 class="text-center">Voorbeeldweergave</h4>
-    <div id="productResult" class="mt-4"></div>
-  </div>
+        <section class="featured-products">
+            <h2>Uitgelichte Producten</h2>
+            <div class="product-grid">
+                <article class="product-card">
+                    <img src="product1.jpg" alt="Product 1">
+                    <h3>Productnaam 1</h3>
+                    <p class="price">€ 199,99</p>
+                    <a href="/product/1" class="button">Bekijk Product</a>
+                </article>
+                <article class="product-card">
+                    <img src="product2.jpg" alt="Product 2">
+                    <h3>Productnaam 2</h3>
+                    <p class="price">€ 249,50</p>
+                    <a href="/product/2" class="button">Bekijk Product</a>
+                </article>
+                </div>
+        </section>
+
+        <section class="ai-recommendations-section">
+            <h2>Persoonlijke Aanbevelingen</h2>
+            <p>Ontdek kledingstukken die speciaal voor jou zijn uitgekozen op basis van jouw stijl en voorkeuren.</p>
+            <a href="/aanbevelingen" class="button">Bekijk Jouw Aanbevelingen</a>
+            </section>
+
+        <section class="sustainable-choices">
+            <h2>Duurzame Mode</h2>
+            <p>Wij zetten ons in voor duurzaamheid. Ontdek onze collectie van eco-vriendelijke en ethisch geproduceerde kleding.</p>
+            <a href="/duurzaamheid" class="button">Ontdek Duurzame Collectie</a>
+            </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Klantenservice</h3>
+                <ul>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/faq">Veelgestelde Vragen</a></li>
+                    <li><a href="/verzending">Verzending & Retourneren</a></li>
+                    <li><a href="/algemene-voorwaarden">Algemene Voorwaarden</a></li>
+                    <li><a href="/privacybeleid">Privacybeleid</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Over BOLDYASE</h3>
+                <ul>
+                    <li><a href="/over-ons">Ons Verhaal</a></li>
+                    <li><a href="/carriere">Carrière</a></li>
+                    <li><a href="/pers">Pers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Volg Ons</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><img src="facebook.png" alt="Facebook"></a>
+                    <a href="https://www.pinterest.com/" target="_blank" aria-label="Pinterest"><img src="pinterest.png" alt="Pinterest"></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Nieuwsbrief</h3>
+                <p>Blijf op de hoogte van de nieuwste trends en exclusieve aanbiedingen.</p>
+                <form action="/nieuwsbrief" method="post">
+                    <input type="email" name="email" placeholder="Jouw e-mailadres" required>
+                    <button type="submit">Aanmelden</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 BOLDYASE. Alle rechten voorbehouden.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> </body>
+</html>
 
   <script>
     const loginForm = document.getElementById('loginForm');
