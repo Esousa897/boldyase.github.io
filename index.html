@@ -1,68 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rotterdam Time Display</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ontdek de nieuwste luxe mode en trends bij BOLDYASE. Geavanceerde aanbevelingen, duurzame keuzes en een exclusieve shopervaring.">
+  <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, AI recommendations, duurzaam, high fashion">
+
+  <title>BOLDYASE | Luxe Mode & AI-Powered Shopping</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <style>
-    body {
-      background-color: #f0f4f8;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .time-container {
-      background-color: #ffffff;
-      padding: 40px 60px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .time-container h1 {
-      margin-bottom: 20px;
-      font-size: 2em;
-      color: #333333;
-    }
-    .time-container p {
-      font-size: 1.5em;
-      color: #555555;
-    }
-  </style>
-</head>
-<body>
-  <div class="time-container">
-    <h1>Current Time in Rotterdam</h1>
-    <p id="rotterdam-time">Loading...</p>
-  </div>
+    @keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  <script>
-    function updateRotterdamTime() {
-      const options = {
-        timeZone: 'Europe/Amsterdam',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-        weekday: 'long'
-      };
-      const formatter = new Intl.DateTimeFormat('en-GB', options);
-      const now = new Date();
-      document.getElementById('rotterdam-time').textContent = formatter.format(now);
-    }
+.hero-content {
+  animation: fadeUp 1.2s ease-out forwards;
+  opacity: 0; /* Start transparant */
+}
 
-    // Initial call
-    updateRotterdamTime();
-    // Update every second
-    setInterval(updateRotterdamTime, 1000);
-  </script>
-</body>
-</html>
-/
+    :root {
+      --primary-color: #1a1a1a; /* Iets donkerder zwart */
+      --secondary-color: #f8f9fa;
+      --accent-color: #c5a47e; /* Aangepast goud/brons accent */
+      --text-color: #333;
+      --light-text: #6c757d;
+      --font-body: 'Montserrat', sans-serif;
+      --font-heading: 'Playfair Display', serif;
+      --subtle-bg: #fdfdfd url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); /* Heel subtiel patroon */
     }
 
     body {
@@ -209,23 +185,23 @@ document.getElementById('outfitForm').addEventListener('submit', function(e) {
 
   if (gender && occasion) {
     const items = outfits[gender][occasion];
-    document.getElementById('outfitResult').innerHTML = `
+    document.getElementById('outfitResult').innerHTML = 
       <h4 class="mb-3">Jouw Outfit Suggestie:</h4>
       <ul class="list-unstyled">
-        ${items.map(item => `<li>✔️ ${item}</li>`).join('')}
+        ${items.map(item => <li>✔️ ${item}</li>).join('')}
       </ul>
-    `;
+    ;
   } else {
-    document.getElementById('outfitResult').innerHTML = `<p class="text-danger">Selecteer eerst alle opties.</p>`;
+    document.getElementById('outfitResult').innerHTML = <p class="text-danger">Selecteer eerst alle opties.</p>;
   }
 });
 
 // Video-Based Recommender logica
 function suggest(product) {
-  document.getElementById('videoSuggestion').innerHTML = `
+  document.getElementById('videoSuggestion').innerHTML = 
     <h4>Misschien ook interessant:</h4>
     <p>${product} + bijpassende accessoires</p>
-  `;
+  ;
 }
 </script>
 
@@ -780,3 +756,5 @@ html {
 
 </body>
 </html>
+
+
