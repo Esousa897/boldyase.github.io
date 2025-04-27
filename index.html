@@ -1,7 +1,67 @@
-<section class="boldyase-hero d-flex align-items-center justify-content-center text-center" style="height: 100vh; background: url('https://images.unsplash.com/photo-1618220179428-22790babb9bb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;">
-  <div class="overlay" style="background: rgba(0, 0, 0, 0.6); position: absolute; width: 100%; height: 100%; top: 0; left: 0;"></div>
-  <div class="container position-relative" style="z-index: 2;">
-    <h1 class="display-2 text-white fw-bold" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Welcome, Bold One</h1>
-    <p class="lead text-light mt-3" style="text-shadow: 1px 1px 5px rgba(0,0,0,0.6); font-size: 1.8rem;">BOLDYASE Collection Almost Here</p>
+<section class="hero-boldyase d-flex align-items-center justify-content-center text-center">
+  <div class="container">
+    <h1 class="hero-title">Welcome, Bold One</h1>
+    <p class="hero-subtitle">BOLDYASE Collection Almost Here</p>
   </div>
 </section>
+
+<style>
+.hero-boldyase {
+  position: relative;
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1618220179428-22790babb9bb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-boldyase::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Donkere overlay voor leesbaarheid */
+  z-index: 1;
+}
+
+.hero-boldyase .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  margin-bottom: 1rem;
+  animation: fadeInDown 1.2s ease forwards;
+}
+
+.hero-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  color: #e0e0e0;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  font-weight: 300;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+/* Simpele fade animaties */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.8rem; }
+  .hero-subtitle { font-size: 1.4rem; }
+}
+</style>
