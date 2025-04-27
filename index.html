@@ -1,82 +1,214 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ontdek de nieuwste luxe mode en trends bij BOLDYASE. Geavanceerde aanbevelingen, duurzame keuzes en een exclusieve shopervaring.">
+    <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, AI recommendations, duurzaam, high fashion">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ontdek de nieuwste luxe mode en trends bij BOLDYASE. Geavanceerde aanbevelingen, duurzame keuzes en een exclusieve shopervaring.">
-  <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, AI recommendations, duurzaam, high fashion">
-  <title>BOLDYASE | Luxe Mode & AI-Powered Shopping</title>
+    <title>BOLDYASE | Luxe Mode & AI-Powered Shopping</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #1a1a1a; /* Iets donkerder zwart */
+            --secondary-color: #f8f9fa;
+            --accent-color: #c5a47e; /* Aangepast goud/brons accent */
+            --text-color: #333;
+            --light-text: #6c757d;
+            --font-body: 'Montserrat', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            --subtle-bg: #fdfdfd url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); /* Heel subtiel patroon */
+        }
 
-<body>
+        body {
+            font-family: var(--font-body);
+            background-color: var(--subtle-bg);
+            color: var(--text-color);
+            line-height: 1.7; /* Iets meer ruimte */
+            font-weight: 300; /* Lichter basis font weight */
+        }
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
-  <div class="container">
-    <a class="navbar-brand" href="#">BOLDYASE</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#shop" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#shop">Alle Producten</a></li>
-            <li><a class="dropdown-item" href="#">Nieuwe Collectie</a></li>
-            <li><a class="dropdown-item" href="#trends">Trends</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Heren</a></li>
-            <li><a class="dropdown-item" href="#">Dames</a></li>
-            <li><a class="dropdown-item" href="#">Accessoires</a></li>
-            <li><a class="dropdown-item" href="/kindermode">Kindermode</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#categories">Categorieën</a></li>
-        <li class="nav-item"><a class="nav-link" href="#about">Over Ons</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-      <div class="d-flex align-items-center">
-        <form class="d-flex me-3" role="search">
-          <input class="form-control form-control-sm me-2" type="search" placeholder="Zoeken..." aria-label="Search">
-          <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="bi bi-search"></i></button>
-        </form>
-        <a class="nav-link" href="#" title="Account"><i class="bi bi-person"></i></a>
-        <a class="nav-link position-relative" href="#" title="Winkelwagen">
-          <i class="bi bi-cart"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
+        h1, h2, h3, h4, h5, h6, .navbar-brand, .section-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        p, li, label, input, textarea, .btn {
+            font-weight: 400; /* Normaal gewicht voor leesbaarheid */
+        }
 
-<!-- Hero Section -->
-<section class="boldyase-intro-hero position-relative text-center text-white d-flex align-items-center" style="background: url('assets/images/hero-bg.jpg') center/cover no-repeat; height: 100vh;">
-  <div class="container position-relative z-2">
-    <h1 class="display-1 fw-bold">Welcome, Bold One</h1>
-    <p class="lead">BOLDYASE Collection Almost Here</p>
-    <a href="#shop" class="btn btn-main btn-lg mt-3">Ontdek Meer</a>
-  </div>
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important; /* Iets transparant */
+            backdrop-filter: blur(10px); /* Blur effect voor luxe */
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .navbar-brand { font-size: 2rem; }
+        .nav-link { color: var(--text-color) !important; margin: 0 0.8rem; transition: color 0.3s ease; font-weight: 400;}
+        .nav-link:hover, .nav-link.active { color: var(--accent-color) !important; }
+        .navbar-icons .nav-link, .navbar-icons .btn { font-size: 1.3rem; color: var(--primary-color) !important; }
+        .cart-count { background-color: var(--accent-color); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; position: relative; top: -10px; left: -5px; font-weight: 700;}
+        .btn-visual-search { background: transparent; border: none; padding: 0.375rem 0.75rem; }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; /* Andere luxe afbeelding */
+            color: #fff;
+            padding: 150px 0;
+            text-align: center;
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 1rem; color: #fff;}
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 300; }
+
+        .btn { border-radius: 50px; padding: 10px 25px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; }
+        .btn-main { background-color: var(--primary-color); color: #fff; border: 2px solid var(--primary-color); }
+        .btn-main:hover { background-color: #fff; color: var(--primary-color); }
+        .btn-outline-main { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
+        .btn-outline-main:hover { background-color: var(--primary-color); color: #fff; }
+        .btn-secondary-action { background: rgba(255, 255, 255, 0.8); border: none; color: var(--light-text); border-radius: 50%; padding: 8px; font-size: 1rem; line-height: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .btn-secondary-action:hover { color: var(--accent-color); background: white; }
+        .btn-secondary-action.active { color: var(--accent-color); }
+
+        .section-bg { background-color: var(--secondary-color); }
+        .section-title { margin-bottom: 4rem; font-size: 2.8rem; position: relative; display: inline-block; padding-bottom: 10px; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 10px auto 0; }
+        .text-center .section-title::after { margin-left: auto; margin-right: auto; } /* Centreer lijn bij gecentreerde titel */
+
+        .product-card {
+            border: none;
+            border-radius: 8px; /* Strakkere radius */
+            background: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            height: 100%; /* Zorgt dat kaarten gelijke hoogte hebben in een row */
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .product-card .card-img-top {
+            border-radius: 8px 8px 0 0;
+            transition: transform 0.3s ease;
+            aspect-ratio: 3 / 4; /* Forceer aspect ratio */
+            object-fit: cover; /* Zorg dat afbeelding vult zonder te vervormen */
+            width: 100%;
+        }
+        .product-card:hover .card-img-top { transform: scale(1.03); }
+        .product-card .card-body {
+            padding: 1rem 1.2rem;
+            text-align: center;
+            flex-grow: 1; /* Laat body groeien om footer onderaan te houden */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Verdeel ruimte */
+        }
+        .product-card h5 {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem; /* Iets kleiner voor strakke look */
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        .product-price { color: var(--primary-color); font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem; }
+        .product-price .original-price { text-decoration: line-through; color: var(--light-text); font-weight: 400; margin-right: 0.5rem; font-size: 0.9em; }
+        .product-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 10; opacity: 0; transition: opacity 0.3s ease; }
+        .product-card:hover .product-actions { opacity: 1; }
+        .product-tags { margin-top: 0.8rem; margin-bottom: 0.8rem; }
+        .product-tags .badge { font-size: 0.7rem; font-weight: 500; margin: 2px; padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;}
+        .product-tags .badge:hover { background-color: var(--accent-color) !important; color: white !important; }
+
+        .category-card { /* ... styles behouden, maar ook aspect ratio */ }
+        .category-card img { display: block; width: 100%; transition: transform 0.4s ease; aspect-ratio: 1 / 1; object-fit: cover; } /* Vierkant formaat */
+
+        .trend-card { border-radius: 8px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.07); position: relative; }
+        .trend-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.4s ease; }
+        .trend-card:hover img { transform: scale(1.05); }
+        .trend-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 30px 20px 20px; color: #fff; }
+        .trend-overlay h5 { font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.4rem; color: #fff; }
+
+        .outfit-suggestion { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .outfit-main-item img { max-width: 100%; height: auto; border-radius: 8px; }
+        .outfit-coordinates .product-card { box-shadow: none; border: 1px solid #eee; height: auto; } /* Simpelere stijl voor coördinaten */
+        .outfit-coordinates .product-card .card-img-top { aspect-ratio: 1 / 1; } /* Vierkante thumbnails */
+
+        .footer { background: var(--primary-color); color: rgba(255, 255, 255, 0.7); padding: 60px 0 30px; margin-top: 6rem; }
+        .footer h5 { color: #fff; margin-bottom: 1.5rem; font-family: var(--font-heading); text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
+        /* ... rest van footer styles ... */
+        .footer .bottom-text { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; margin-top: 40px; font-size: 0.9rem; text-align: center; color: rgba(255, 255, 255, 0.5); }
+
+        .form-control { border-radius: 5px; border: 1px solid #ddd; padding: 12px 15px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-control:focus { border-color: var(--accent-color); box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25); }
+
+        /* Placeholder styling */
+        .placeholder-glow .placeholder { background-color: #e0e0e0; }
+
+        /* Nieuwe stijlen voor de hero sectie */
+        .hero-extended {
+            background: url('https://images.unsplash.com/photo-1523050854058-8df901151109?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; /* Chic en duidelijke lay-out achtergrond */
+            color: #fff;
+            padding: 180px 0; /* Iets meer padding voor de tekst */
+            text-align: center;
+            position: relative; /* Voor de overlay */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Subtiele donkere overlay voor leesbaarheid */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-text-horizon {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Subtiele schaduw */
+            color: #eee; /* Iets lichter dan de titel */
+        }
+
+        .hero-title {
+            font-size: 3.5rem; /* Grote witte titel */
+            margin-bottom: 0.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Duidelijke schaduw */
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #ddd;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Subtiele schaduw */
+        }
+
+        .btn-call-
+
+  <!-- Mist Animatie -->
   <div id="mist" style="position:absolute;top:0;left:0;width:100%;height:100%;background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);animation: mistMove 15s infinite alternate;"></div>
+
+  <!-- Welkom Content -->
+  <div class="container text-center" style="position: relative; z-index:2; color: #fff; text-shadow: 0 0 15px rgba(0,0,0,0.7);">
+    <h1 class="display-1 mb-4 animate__animated animate__fadeInDown">Welcome, Bold One</h1>
+    <p class="lead mb-3 animate__animated animate__fadeInUp animate__delay-1s" style="font-size:1.5rem;">BOLDYASE collection almost here</p>
+    <p class="mb-5 animate__animated animate__fadeInUp animate__delay-2s" style="font-weight: 300; font-size: 1.2rem;">Hello, Bold One. The BOLDYASE Collection is Almost Here. See something you love? Reach out we're listening.</p>
+    <a href="#contact" class="btn btn-main btn-lg animate__animated animate__fadeInUp animate__delay-3s" style="padding: 12px 40px; font-size:1.2rem;">Get in Touch</a>
+  </div>
 </section>
 
+<!-- MIST ANIMATIE CSS -->
 <style>
 @keyframes mistMove {
   0% { transform: translateX(0px) translateY(0px); }
@@ -84,189 +216,66 @@
 }
 </style>
 
-<!-- Categories Section -->
-<section id="categories" class="py-5">
-  <div class="container">
-    <h2 class="text-center section-title">Ontdek Categorieën</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <a href="#shop" class="category-card text-decoration-none d-block">
-          <img src="assets/images/herenmode.jpg" alt="Herenmode" class="img-fluid rounded" loading="lazy">
-          <div class="text-center mt-2"><h5>Heren</h5></div>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="#shop" class="category-card text-decoration-none d-block">
-          <img src="assets/images/damesmode.jpg" alt="Damesmode" class="img-fluid rounded" loading="lazy">
-          <div class="text-center mt-2"><h5>Dames</h5></div>
-        </a>
-      </div>
-      <div class="col-md-4">
-        <a href="#shop" class="category-card text-decoration-none d-block">
-          <img src="assets/images/accessoires.jpg" alt="Accessoires" class="img-fluid rounded" loading="lazy">
-          <div class="text-center mt-2"><h5>Accessoires</h5></div>
-        </a>
-      </div>
-    </div>
-  </div>
+<!-- OUTFIT GENERATOR -->
+<section id="outfit-generator" class="py-5 section-bg">
+
+
+         <div class="collapse navbar-collapse" id="navMenu">
+           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+             <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+             <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#shop" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                 <li><a class="dropdown-item" href="#shop">Alle Producten</a></li>
+                 <li><a class="dropdown-item" href="#">Nieuwe Collectie</a></li>
+                 <li><a class="dropdown-item" href="#trends">Trends</a></li>
+                 <li><hr class="dropdown-divider"></li>
+                 <li><a class="dropdown-item" href="#">Heren</a></li>
+                 <li><a class="dropdown-item" href="#">Dames</a></li>
+                 <li><a class="dropdown-item" href="#">Accessoires</a></li>
+               </ul>
+             </li>
+             <li class="nav-item"><a class="nav-link" href="#categories">Categorieën</a></li>
+             <li class="nav-item"><a href="/kindermode" class="nav-link">Kindermode</a></li>
+             <li class="nav-item"><a class="nav-link" href="#about">Over Ons</a></li>
+             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+           </ul>
+           <div class="d-flex align-items-center navbar-icons">
+            </div>
+         </div>
 </section>
 
-<!-- Shop Section -->
-<section id="shop" class="py-5 section-bg">
-  <div class="container">
-    <h2 class="mb-4 text-center section-title">Uitgelichte Producten</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="product-card card shadow-sm h-100">
-          <img src="assets/images/product1.jpg" class="card-img-top" alt="Leren Jas" loading="lazy">
-          <div class="card-body text-center">
-            <h5 class="card-title">Premium Leren Jas</h5>
-            <p class="card-text"><strong>€249,95</strong></p>
-            <a href="#" class="btn btn-main w-100">Bekijk Product</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="product-card card shadow-sm h-100">
-          <img src="assets/images/product2.jpg" class="card-img-top" alt="Horloge" loading="lazy">
-          <div class="card-body text-center">
-            <h5 class="card-title">Elegant Horloge</h5>
-            <p class="card-text"><strong>€189,00</strong></p>
-            <a href="#" class="btn btn-main w-100">Bekijk Product</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="product-card card shadow-sm h-100">
-          <img src="assets/images/product3.jpg" class="card-img-top" alt="Sneakers" loading="lazy">
-          <div class="card-body text-center">
-            <h5 class="card-title">Luxe Sneakers</h5>
-            <p class="card-text"><strong>€119,95</strong></p>
-            <a href="#" class="btn btn-main w-100">Bekijk Product</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Outfit Generator Section -->
-<section id="outfit-generator" class="py-5 bg-light">
+<!-- VIDEO-BASED RECOMMENDER -->
+<section id="video-recommender" class="py-5">
   <div class="container text-center">
-    <h2 class="section-title">Outfit Generator</h2>
-    <p class="lead mb-4">Ontvang een gepersonaliseerde outfit suggestie op basis van jouw voorkeur.</p>
-    <form id="outfitForm">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <select id="gender" class="form-select mb-3" required>
-            <option value="">Kies Geslacht</option>
-            <option value="man">Man</option>
-            <option value="vrouw">Vrouw</option>
-          </select>
-          <select id="occasion" class="form-select mb-3" required>
-            <option value="">Kies Gelegenheid</option>
-            <option value="casual">Casual</option>
-            <option value="zakelijk">Zakelijk</option>
-            <option value="avond">Avond Chic</option>
-          </select>
-          <button type="submit" class="btn btn-main">Genereer Outfit</button>
-        </div>
-      </div>
-    </form>
-    <div id="outfitResult" class="mt-5"></div>
-  </div>
-</section>
+    <h2 class="section-title">Video-Based Recommender</h2>
+    <p class="lead mb-5">Zie iets leuks? Klik of hover voor suggesties!</p>
 
-<!-- Spotlight on Trends Section -->
-<section id="trends" class="py-5">
-  <div class="container">
-    <h2 class="text-center section-title">Spotlight op Trends</h2>
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="assets/images/trend1.jpg" class="img-fluid rounded" alt="Duurzame Materialen" loading="lazy">
-          <div class="text-center mt-2">Duurzame Materialen</div>
-        </div>
-        <div class="swiper-slide">
-          <img src="assets/images/trend2.jpg" class="img-fluid rounded" alt="Modern Tailoring" loading="lazy">
-          <div class="text-center mt-2">Modern Tailoring</div>
-        </div>
-        <div class="swiper-slide">
-          <img src="assets/images/trend3.jpg" class="img-fluid rounded" alt="Statement Accessoires" loading="lazy">
-          <div class="text-center mt-2">Statement Accessoires</div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="trend-card hover-zoom" onclick="suggest('leren jas')">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Leren jas" loading="lazy">
         </div>
       </div>
-      <div class="swiper-pagination mt-3"></div>
+      <div class="col-md-4">
+        <div class="trend-card hover-zoom" onclick="suggest('casual t-shirt')">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" alt="T-shirt" loading="lazy">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="trend-card hover-zoom" onclick="suggest('avond chic jurk')">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Avondjurk" loading="lazy">
+        </div>
+      </div>
     </div>
+
+    <div id="videoSuggestion" class="mt-5"></div>
   </div>
 </section>
 
-<!-- Swiper Script -->
+<!-- BONUS: JS functies -->
 <script>
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 1,
-  spaceBetween: 30,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  breakpoints: {
-    768: { slidesPerView: 2 },
-    992: { slidesPerView: 3 }
-  }
-});
-</script>
-<!-- Contact Section -->
-<section id="contact" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center section-title">Blijf Verbonden</h2>
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <form id="contactForm">
-          <div class="mb-3">
-            <label for="name" class="form-label">Naam</label>
-            <input type="text" class="form-control" id="name" placeholder="Uw naam" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">E-mailadres</label>
-            <input type="email" class="form-control" id="email" placeholder="Uw e-mailadres" required>
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label">Bericht</label>
-            <textarea class="form-control" id="message" rows="5" placeholder="Uw bericht..." required></textarea>
-          </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-main">Versturen</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer text-center text-white bg-dark py-4">
-  <div class="container">
-    <p class="mb-1">© <span id="currentYear"></span> BOLDYASE. Alle rechten voorbehouden.</p>
-    <div class="social-icons mt-2">
-      <a href="#" class="text-white me-3" title="Instagram"><i class="bi bi-instagram"></i></a>
-      <a href="#" class="text-white me-3" title="Facebook"><i class="bi bi-facebook"></i></a>
-      <a href="#" class="text-white me-3" title="Pinterest"><i class="bi bi-pinterest"></i></a>
-      <a href="#" class="text-white" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-    </div>
-  </div>
-</footer>
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script>
-// Jaar updaten in footer
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-// Outfit Generator
+// Outfit Generator logica
 const outfits = {
   man: {
     casual: ["Jeans", "T-shirt", "Sneakers"],
@@ -287,25 +296,25 @@ document.getElementById('outfitForm').addEventListener('submit', function(e) {
 
   if (gender && occasion) {
     const items = outfits[gender][occasion];
-    document.getElementById('outfitResult').innerHTML = `
+    document.getElementById('outfitResult').innerHTML = 
       <h4 class="mb-3">Jouw Outfit Suggestie:</h4>
       <ul class="list-unstyled">
-        ${items.map(item => `<li>✔️ ${item}</li>`).join('')}
+        ${items.map(item => <li>✔️ ${item}</li>).join('')}
       </ul>
-    `;
+    ;
   } else {
-    document.getElementById('outfitResult').innerHTML = '<p class="text-danger">Selecteer eerst alle opties.</p>';
+    document.getElementById('outfitResult').innerHTML = <p class="text-danger">Selecteer eerst alle opties.</p>;
   }
 });
+
+// Video-Based Recommender logica
+function suggest(product) {
+  document.getElementById('videoSuggestion').innerHTML = 
+    <h4>Misschien ook interessant:</h4>
+    <p>${product} + bijpassende accessoires</p>
+  ;
+}
 </script>
-
-</body>
-</html>
-
-
-</body>
-</html>
-
 
 <!-- BONUS CSS: Hover Zoom en Smooth Scroll -->
 <style>
