@@ -6,16 +6,19 @@
     <title>BOOLDYASE – Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         /* --- Globale Stijlen & Variabelen --- */
         :root {
-            --bg-color: #f1eee9;
-            --text-color: #333; /* Donkergrijs/Zwart voor tekst */
-            --border-color: #e0e0e0; /* Zeer lichte rand */
-            --heading-font: 'Playfair Display', serif; /* Serif voor H1 */
-            --body-font: 'Lato', sans-serif; /* Sans-serif voor rest */
+            --bg-color: #f2efe8; /* Nieuwe achtergrondkleur */
+            --text-color: #1a1a1a; /* Nieuwe tekst/icoon kleur */
+            --hover-color: #555; /* Nieuwe hover kleur */
+            --border-color: #dcdcdc; /* Iets aangepaste subtiele rand */
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Helvetica Neue', Arial, sans-serif; /* Nieuwe body/menu font stack */
+
+            --header-height: 75px; /* Definieer header hoogte voor padding */
         }
 
         * {
@@ -29,204 +32,248 @@
             color: var(--text-color);
             background-color: var(--bg-color);
             line-height: 1.6;
+            /* Voeg padding toe gelijk aan header hoogte als header fixed is */
+            /* padding-top: var(--header-height); */ /* Zie .content-wrapper */
         }
 
         .container {
-            max-width: 1300px; /* Iets bredere container voor de look */
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 30px; /* Meer padding aan zijkanten */
+            padding: 0 30px;
         }
 
         img {
             max-width: 100%;
-            display: block; /* Voorkomt extra ruimte onder afbeeldingen */
+            display: block;
         }
 
-        /* --- Header --- */
-        header {
-            padding: 20px 0;
+        /* --- Vaste Header --- */
+        .site-header {
+            position: fixed; /* Maak header vast */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--bg-color); /* Achtergrond voor vaste header */
             border-bottom: 1px solid var(--border-color);
-            background-color: var(--bg-color); /* Zelfde als body */
+            z-index: 1000; /* Zorg dat header boven andere content staat */
+            display: flex; /* Gebruik flexbox om container te centreren */
+            align-items: center; /* Verticaal centreren */
         }
 
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Ruimte tussen links, midden, rechts */
             align-items: center;
+            width: 100%; /* Zorg dat container volle breedte inneemt */
         }
 
-        .logo {
-            font-family: var(--body-font); /* Sans-serif voor logo */
-            font-size: 1.5rem;
+        .header-left .logo { /* Specifiekere selector */
+            font-family: var(--heading-font); /* Playfair voor logo */
+            font-size: 1.6rem; /* Iets groter misschien */
             font-weight: 700;
             color: var(--text-color);
             text-decoration: none;
-            text-transform: uppercase; /* Hoofdletters */
-            letter-spacing: 1.5px; /* Meer ruimte tussen letters */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
-        nav a {
-            margin: 0 18px; /* Iets meer ruimte */
+        .header-center nav { /* Navigatie in het midden */
+           /* Gecentreerd door space-between op parent */
+        }
+
+        .header-center nav a {
+            font-family: var(--body-font); /* Helvetica/Arial voor menu */
+            margin: 0 18px;
             text-decoration: none;
             color: var(--text-color);
-            font-weight: 400; /* Normaal gewicht */
+            font-weight: 400;
             font-size: 0.9rem;
-             /* Geen uppercase */
             letter-spacing: 0.5px;
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            color: #777; /* Iets donkerder grijs bij hover */
+        .header-center nav a:hover {
+            color: var(--hover-color); /* Gebruik hover variable */
+        }
+
+        .header-right { /* Container voor iconen */
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Ruimte tussen iconen */
+        }
+
+        .header-right .icon-link svg {
+            width: 22px; /* Grootte van iconen */
+            height: 22px;
+            fill: var(--text-color); /* Gebruik tekstkleur variable */
+            transition: fill 0.3s ease;
+        }
+
+        .header-right .icon-link:hover svg {
+            fill: var(--hover-color); /* Gebruik hover variable */
+        }
+
+
+        /* --- Content Wrapper (om content onder vaste header te duwen) --- */
+        .content-wrapper {
+             padding-top: var(--header-height); /* Belangrijk! */
         }
 
         /* --- Hero Sectie --- */
         .hero {
-            padding: 80px 0; /* Ruime padding */
+            /* Padding zit nu in content-wrapper, eventueel extra hier */
+             padding-top: 80px; /* Extra padding boven */
+             padding-bottom: 80px; /* Padding onder */
         }
 
         .hero-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 60px; /* Ruimte tussen tekst en afbeelding */
+            gap: 60px;
         }
 
         .hero-text {
-            flex: 1 1 45%; /* Tekst neemt ongeveer 45% van de ruimte */
+            flex: 1 1 45%;
             max-width: 550px;
         }
 
         .hero-text h1 {
-            font-family: var(--heading-font);
-            font-size: 4.5rem; /* Groot formaat */
+            font-family: var(--heading-font); /* Playfair voor H1 */
+            font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 35px;
             line-height: 1.1;
             color: var(--text-color);
-            text-transform: uppercase; /* Hoofdletters */
-            letter-spacing: 4px; /* Veel ruimte tussen letters */
+            text-transform: uppercase;
+            letter-spacing: 4px;
         }
 
         .cta-button {
-            display: inline-block; /* Nodig voor padding/margin */
+            display: inline-block;
             padding: 12px 30px;
-            background-color: transparent; /* Geen achtergrond */
-            color: var(--text-color); /* Tekstkleur */
-            border: 1px solid var(--text-color); /* Rand in tekstkleur */
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
             cursor: pointer;
-            font-family: var(--body-font); /* Sans-serif */
+            font-family: var(--body-font); /* Helvetica/Arial voor knop */
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 700; /* Mag bold zijn voor een knop */
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            text-decoration: none; /* Voor als het een link is */
-            transition: all 0.3s ease; /* Soepele overgang */
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            background-color: var(--text-color); /* Achtergrond wordt tekstkleur */
-            color: var(--bg-color); /* Tekst wordt achtergrondkleur */
-            border-color: var(--text-color); /* Rand blijft */
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--text-color);
         }
 
         .hero-image {
-            flex: 1 1 55%; /* Afbeelding neemt ongeveer 55% */
-            max-width: 650px; /* Maximale breedte voor de afbeelding */
+            flex: 1 1 55%;
+            max-width: 650px;
         }
 
         .hero-image img {
-            width: 100%; /* Zorgt dat afbeelding de container vult */
+            width: 100%;
             height: auto;
-            object-fit: cover; /* Zorgt dat afbeelding mooi schaalt */
+            object-fit: cover;
         }
 
         /* --- Responsiviteit --- */
         @media (max-width: 992px) {
+             /* Aanpassingen voor vaste header eventueel nodig? */
              .hero-text h1 {
-                font-size: 3.5rem; /* Iets kleiner op tablets */
+                font-size: 3.5rem;
                 letter-spacing: 3px;
             }
             .hero-content {
                 gap: 40px;
             }
+             .header-center nav a { margin: 0 12px;} /* Minder ruimte */
         }
 
 
         @media (max-width: 768px) {
+            :root {
+                 --header-height: 65px; /* Kleinere header op mobiel */
+            }
             .container {
-                 padding: 0 20px; /* Minder padding op mobiel */
+                 padding: 0 20px;
             }
 
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
+            /* Header aanpassen voor mobiel: bv. hamburger menu */
+            /* Voor nu: vereenvoudigde layout */
+            .site-header { height: auto; position: static; /* Of andere mobiele oplossing */ }
+            .content-wrapper { padding-top: 0; } /* Geen padding nodig als header niet fixed is */
 
-            nav {
-                 text-align: center;
-            }
-             nav a {
-                margin: 0 10px;
+             .header-content {
+                 flex-direction: column;
+                 padding: 15px 0; /* Padding binnen header content */
+                 gap: 15px;
              }
+             .header-left { order: 1; }
+             .header-center { order: 3; } /* Nav onderaan */
+             .header-right { order: 2; } /* Iconen in het midden */
 
-            .hero {
-                 padding: 50px 0;
-            }
+            .hero { padding: 40px 0; } /* Minder padding */
 
             .hero-content {
                 flex-direction: column;
                 text-align: center;
             }
-
-            .hero-text {
-                max-width: 100%;
-                margin-bottom: 40px; /* Ruimte onder tekst voor afbeelding */
-                flex-basis: auto; /* Reset flex-basis */
-            }
-
-            .hero-image {
-                 max-width: 80%; /* Maak afbeelding iets kleiner dan volle breedte */
-                 margin: 0 auto; /* Centreer afbeelding */
-                 flex-basis: auto; /* Reset flex-basis */
-            }
+             .hero-text { margin-bottom: 30px; }
+             .hero-image { max-width: 80%; margin: 0 auto; }
 
             .hero-text h1 {
-                font-size: 2.8rem; /* Nog kleiner op mobiel */
+                font-size: 2.8rem;
                 letter-spacing: 2px;
             }
-
-             .cta-button {
-                 padding: 10px 25px;
-                 font-size: 0.8rem;
-             }
+             .cta-button { padding: 10px 25px; font-size: 0.8rem; }
         }
 
     </style>
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="container header-content">
-            <a href="#" class="logo">BOOLDYASE</a>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+            <div class="header-left">
+                <a href="#" class="logo">BOOLDYASE</a>
+            </div>
+            <div class="header-center">
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
                 </nav>
+            </div>
+            <div class="header-right">
+                <a href="#" class="icon-link" aria-label="Zoeken">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </a>
+                <a href="#" class="icon-link" aria-label="Winkelwagen">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zm-1.45-5c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0 0 20.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h11v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6z"/></svg>
+                </a>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h1>New Arrivals</h1>
-                <a href="#" class="cta-button">Shop Now</a> </div>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Fashion Model Showcase">
+    <div class="content-wrapper">
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>New Arrivals</h1>
+                    <a href="#" class="cta-button">Shop Now</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Fashion Model Showcase">
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-</body>
+        </div> </body>
 </html>
