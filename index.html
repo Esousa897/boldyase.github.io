@@ -1,25 +1,75 @@
+
+Copy
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOLDYASE – Home</title>
+    <title>BOOLDYASE – Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1eee9;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 20px;
+        }
+        .hero-text {
+            max-width: 500px;
+        }
+        .hero-text h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .hero-text button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>BOLDYASE</h1>
-
-    <!-- Winkelwagen SVG -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-        <path d="M5 5L15 5L20 25H40L45 10H15" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M0 0H5V5H0V0Z" fill="none" />
-    </svg>
-
-    <!-- Zoekcirkel SVG -->
-    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
-        <circle cx="20" cy="20" r="15" stroke="black" stroke-width="2" />
-        <line x1="30" y1="30" x2="40" y2="40" stroke="black" stroke-width="2" />
-    </svg>
-</header>
+    <header>
+        <div class="logo">BOOLDYASE</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>New Arrivals</h1>
+            <button>Shop Now</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/600x400" alt="AI Generated Fashion Model">
+        </div>
+    </section>
 </body>
 </html>
