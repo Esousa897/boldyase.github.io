@@ -1,75 +1,232 @@
-
-Copy
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOOLDYASE – Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* --- Globale Stijlen & Variabelen --- */
+        :root {
+            --bg-color: #f1eee9;
+            --text-color: #333; /* Donkergrijs/Zwart voor tekst */
+            --border-color: #e0e0e0; /* Zeer lichte rand */
+            --heading-font: 'Playfair Display', serif; /* Serif voor H1 */
+            --body-font: 'Lato', sans-serif; /* Sans-serif voor rest */
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f1eee9;
         }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid #ccc;
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
         }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
+
+        .container {
+            max-width: 1300px; /* Iets bredere container voor de look */
+            margin: 0 auto;
+            padding: 0 30px; /* Meer padding aan zijkanten */
         }
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 50px 20px;
-        }
-        .hero-text {
-            max-width: 500px;
-        }
-        .hero-text h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-        .hero-text button {
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .hero-image img {
+
+        img {
             max-width: 100%;
-            height: auto;
+            display: block; /* Voorkomt extra ruimte onder afbeeldingen */
         }
+
+        /* --- Header --- */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-color); /* Zelfde als body */
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--body-font); /* Sans-serif voor logo */
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            text-transform: uppercase; /* Hoofdletters */
+            letter-spacing: 1.5px; /* Meer ruimte tussen letters */
+        }
+
+        nav a {
+            margin: 0 18px; /* Iets meer ruimte */
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 400; /* Normaal gewicht */
+            font-size: 0.9rem;
+             /* Geen uppercase */
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #777; /* Iets donkerder grijs bij hover */
+        }
+
+        /* --- Hero Sectie --- */
+        .hero {
+            padding: 80px 0; /* Ruime padding */
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px; /* Ruimte tussen tekst en afbeelding */
+        }
+
+        .hero-text {
+            flex: 1 1 45%; /* Tekst neemt ongeveer 45% van de ruimte */
+            max-width: 550px;
+        }
+
+        .hero-text h1 {
+            font-family: var(--heading-font);
+            font-size: 4.5rem; /* Groot formaat */
+            font-weight: 700;
+            margin-bottom: 35px;
+            line-height: 1.1;
+            color: var(--text-color);
+            text-transform: uppercase; /* Hoofdletters */
+            letter-spacing: 4px; /* Veel ruimte tussen letters */
+        }
+
+        .cta-button {
+            display: inline-block; /* Nodig voor padding/margin */
+            padding: 12px 30px;
+            background-color: transparent; /* Geen achtergrond */
+            color: var(--text-color); /* Tekstkleur */
+            border: 1px solid var(--text-color); /* Rand in tekstkleur */
+            cursor: pointer;
+            font-family: var(--body-font); /* Sans-serif */
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none; /* Voor als het een link is */
+            transition: all 0.3s ease; /* Soepele overgang */
+        }
+
+        .cta-button:hover {
+            background-color: var(--text-color); /* Achtergrond wordt tekstkleur */
+            color: var(--bg-color); /* Tekst wordt achtergrondkleur */
+            border-color: var(--text-color); /* Rand blijft */
+        }
+
+        .hero-image {
+            flex: 1 1 55%; /* Afbeelding neemt ongeveer 55% */
+            max-width: 650px; /* Maximale breedte voor de afbeelding */
+        }
+
+        .hero-image img {
+            width: 100%; /* Zorgt dat afbeelding de container vult */
+            height: auto;
+            object-fit: cover; /* Zorgt dat afbeelding mooi schaalt */
+        }
+
+        /* --- Responsiviteit --- */
+        @media (max-width: 992px) {
+             .hero-text h1 {
+                font-size: 3.5rem; /* Iets kleiner op tablets */
+                letter-spacing: 3px;
+            }
+            .hero-content {
+                gap: 40px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                 padding: 0 20px; /* Minder padding op mobiel */
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                 text-align: center;
+            }
+             nav a {
+                margin: 0 10px;
+             }
+
+            .hero {
+                 padding: 50px 0;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 40px; /* Ruimte onder tekst voor afbeelding */
+                flex-basis: auto; /* Reset flex-basis */
+            }
+
+            .hero-image {
+                 max-width: 80%; /* Maak afbeelding iets kleiner dan volle breedte */
+                 margin: 0 auto; /* Centreer afbeelding */
+                 flex-basis: auto; /* Reset flex-basis */
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem; /* Nog kleiner op mobiel */
+                letter-spacing: 2px;
+            }
+
+             .cta-button {
+                 padding: 10px 25px;
+                 font-size: 0.8rem;
+             }
+        }
+
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">BOOLDYASE</div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <section class="hero">
-        <div class="hero-text">
-            <h1>New Arrivals</h1>
-            <button>Shop Now</button>
+        <div class="container header-content">
+            <a href="#" class="logo">BOOLDYASE</a>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                </nav>
         </div>
-        <div class="hero-image">
-            <img src="https://via.placeholder.com/600x400" alt="AI Generated Fashion Model">
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>New Arrivals</h1>
+                <a href="#" class="cta-button">Shop Now</a> </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Fashion Model Showcase">
+            </div>
         </div>
     </section>
+
 </body>
 </html>
