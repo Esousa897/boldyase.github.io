@@ -18,12 +18,17 @@
             --heading-font: 'Playfair Display', serif;
             --body-font: 'Helvetica Neue', Arial, sans-serif;
             --header-height: 75px;
+            --section-padding: 80px; /* Consistente verticale padding voor secties */
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+             scroll-behavior: smooth; /* Soepel scrollen */
         }
 
         body {
@@ -41,12 +46,18 @@
 
         img {
             max-width: 100%;
+            height: auto; /* Behoud aspect ratio */
             display: block;
         }
 
         a {
             text-decoration: none;
-            color: inherit; /* Links erven kleur */
+            color: inherit;
+            transition: color 0.3s ease; /* Basis transitie voor links */
+        }
+
+        h1, h2, h3 {
+             line-height: 1.2; /* Strakkere lijnhoogte voor koppen */
         }
 
         /* --- Vaste Header --- */
@@ -61,7 +72,10 @@
             z-index: 1000;
             display: flex;
             align-items: center;
+            transition: background-color 0.3s ease; /* Voor evt. scroll effecten later */
         }
+        /* Voeg een subtiele schaduw toe bij scrollen (optioneel, vereist JS) */
+        /* body.scrolled .site-header { box-shadow: 0 2px 5px rgba(0,0,0,0.1); } */
 
         .header-content {
             display: flex;
@@ -84,7 +98,6 @@
             font-weight: 400;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
-            transition: color 0.3s ease;
         }
 
         .header-center nav a:hover {
@@ -108,16 +121,15 @@
             fill: var(--hover-color);
         }
 
-
         /* --- Content Wrapper --- */
         .content-wrapper {
-             padding-top: var(--header-height); /* Ruimte voor vaste header */
+             padding-top: var(--header-height);
         }
 
         /* --- Hero Sectie --- */
         .hero {
-             padding-top: 80px;
-             padding-bottom: 80px;
+             padding-top: var(--section-padding);
+             padding-bottom: var(--section-padding);
         }
 
         .hero-content {
@@ -137,7 +149,6 @@
             font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 35px;
-            line-height: 1.1;
             text-transform: uppercase;
             letter-spacing: 4px;
         }
@@ -154,7 +165,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         .cta-button:hover {
@@ -168,73 +179,63 @@
             max-width: 650px;
         }
 
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        /* --- NIEUW: Category Grid Sectie --- */
+        /* --- Category Grid Sectie --- */
         .category-grid {
-            padding: 60px 0; /* Ruimte boven/onder de grid */
-            background-color: var(--bg-color); /* Zorg dat achtergrond consistent is */
+            padding-top: var(--section-padding);
+            padding-bottom: var(--section-padding);
+            background-color: var(--bg-color);
         }
 
         .section-title-wrapper {
             text-align: center;
-            margin-bottom: 40px; /* Ruimte onder de titel/lijnen */
+            margin-bottom: 50px; /* Iets meer ruimte */
             position: relative;
-            padding: 10px 0; /* Ruimte voor de lijnen */
+            padding: 10px 0;
         }
 
-        /* Lijnen boven/onder de titel */
         .section-title-wrapper::before,
         .section-title-wrapper::after {
             content: '';
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px; /* Breedte van de lijnen */
-            height: 1px; /* Dikte van de lijnen */
-            background-color: var(--border-color); /* Kleur van de lijnen */
+            width: 50px;
+            height: 1px;
+            background-color: var(--border-color);
         }
 
-        .section-title-wrapper::before {
-            top: 0;
-        }
-
-        .section-title-wrapper::after {
-            bottom: 0;
-        }
+        .section-title-wrapper::before { top: 0; }
+        .section-title-wrapper::after { bottom: 0; }
 
         .category-grid h2 {
-            font-family: var(--body-font); /* Sans-serif */
-            font-size: 1.1rem; /* Relatief kleine titel */
-            font-weight: 700; /* Bold */
+            font-family: var(--body-font);
+            font-size: 1.1rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 3px; /* Veel letterafstand */
-            margin: 15px 0; /* Ruimte tussen titel en lijnen */
+            letter-spacing: 3px;
+            margin: 15px 0;
         }
 
         .grid-container {
             display: grid;
-             /* Maakt responsieve kolommen, min 250px breed, max 1 fractie */
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px; /* Ruimte tussen grid items */
+            gap: 25px;
         }
 
         .grid-item {
-            position: relative; /* Voor absolute positionering van label */
-            aspect-ratio: 3 / 4; /* Verhouding voor de hoogte (pas aan indien nodig) */
+            position: relative;
+            aspect-ratio: 3 / 4;
             background-size: cover;
             background-position: center;
-            display: block; /* Als het een 'a' tag is */
-            overflow: hidden; /* Verbergt eventuele overflow */
-            transition: transform 0.3s ease; /* Kleine hover animatie */
+            display: block;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Langere transitie */
+            border-radius: 4px; /* Subtiele afronding */
         }
 
         .grid-item:hover {
-             transform: scale(1.03); /* Iets groter bij hover */
+             transform: scale(1.04); /* Iets meer zoom */
+             box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Subtiele schaduw bij hover */
         }
 
         .grid-item-label {
@@ -242,8 +243,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(26, 26, 26, 0.8); /* Semi-transparant donker */
-            color: #fff; /* Witte tekst */
+            background-color: rgba(26, 26, 26, 0.8);
+            color: #fff;
             padding: 15px;
             text-align: center;
             font-family: var(--body-font);
@@ -251,25 +252,84 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background-color 0.3s ease; /* Transitie voor hover */
+            transition: background-color 0.3s ease;
+            border-bottom-left-radius: 4px; /* Afronding meenemen */
+            border-bottom-right-radius: 4px;
         }
 
-        /* Optioneel: label iets lichter bij hover op grid item */
-        /*
-        .grid-item:hover .grid-item-label {
-             background-color: rgba(85, 85, 85, 0.8);
+        /* --- NIEUW: Brand Feature Sectie --- */
+        .brand-feature {
+            padding-top: var(--section-padding);
+            padding-bottom: var(--section-padding);
+            background-color: #fff; /* Witte achtergrond voor contrast */
         }
-        */
+
+        .brand-feature .container {
+            display: flex;
+            flex-wrap: wrap; /* Wrap op kleinere schermen */
+            align-items: center;
+            gap: 60px; /* Ruimte tussen tekst en afbeelding */
+        }
+
+        .brand-text {
+            flex: 1 1 45%; /* Ongeveer helft van de ruimte */
+            max-width: 500px;
+        }
+
+        .brand-text h3 {
+            font-family: var(--heading-font); /* Serif voor deze titel */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .brand-text p {
+            font-size: 1rem;
+            line-height: 1.7; /* Iets meer ruimte voor leesbaarheid */
+            margin-bottom: 25px; /* Ruimte onder paragraaf */
+        }
+        /* Optioneel: een link in deze sectie */
+        /* .brand-text .learn-more-link { ... } */
+
+        .brand-image {
+             flex: 1 1 45%;
+             max-width: 600px;
+             border-radius: 6px; /* Afronding voor afbeelding */
+             overflow: hidden; /* Zorgt dat afronding werkt */
+        }
+
+        /* --- NIEUW: Footer --- */
+        footer {
+            padding: 30px 0; /* Meer padding in footer */
+            background-color: var(--bg-color); /* Terug naar beige */
+            border-top: 1px solid var(--border-color);
+            margin-top: var(--section-padding); /* Ruimte boven footer */
+        }
+
+        .footer-content {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--hover-color); /* Lichter grijs voor footer tekst */
+        }
+        /* Optioneel: social links in footer */
+        /* .footer-social-links { margin-top: 15px; } */
+        /* .footer-social-links a { margin: 0 10px; } */
+        /* .footer-social-links svg { ... } */
+
 
         /* --- Responsiviteit --- */
         @media (max-width: 992px) {
+            :root { --section-padding: 60px; } /* Minder padding op tablet */
             .hero-text h1 { font-size: 3.5rem; letter-spacing: 3px; }
             .hero-content { gap: 40px; }
             .header-center nav a { margin: 0 12px; }
+
+            .brand-feature .container { gap: 40px; }
+            .brand-text h3 { font-size: 2rem; }
         }
 
         @media (max-width: 768px) {
-            :root { --header-height: auto; } /* Header hoogte niet meer vast */
+            :root { --header-height: auto; --section-padding: 50px; }
             .site-header { height: auto; position: static; }
             .content-wrapper { padding-top: 0; }
 
@@ -279,20 +339,29 @@
             .header-center { order: 3; }
             .header-right { order: 2; }
 
-            .hero { padding: 40px 0; }
+            .hero { padding-top: var(--section-padding); padding-bottom: var(--section-padding);}
             .hero-content { flex-direction: column; text-align: center; }
-            .hero-text { margin-bottom: 30px; }
-            .hero-image { max-width: 80%; margin: 0 auto; }
+            .hero-text { margin-bottom: 30px; order: 2; } /* Tekst onder afbeelding op mobiel */
+            .hero-image { max-width: 100%; order: 1; } /* Afbeelding bovenaan */
             .hero-text h1 { font-size: 2.8rem; letter-spacing: 2px; }
             .cta-button { padding: 10px 25px; font-size: 0.8rem; }
 
-            /* Grid aanpassingen mobiel */
-            .category-grid { padding: 40px 0; }
+            .category-grid { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
             .section-title-wrapper { margin-bottom: 30px; }
             .category-grid h2 { font-size: 1rem; letter-spacing: 2px; }
-            .grid-container { gap: 15px; }
-            .grid-item { aspect-ratio: 4 / 5; } /* Evt. andere verhouding mobiel */
+            .grid-container { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Kleinere min breedte */ }
+            .grid-item { aspect-ratio: 1 / 1; } /* Vierkant op mobiel? */
             .grid-item-label { padding: 12px; font-size: 0.8rem; }
+
+            /* Brand feature mobiel: stacken */
+             .brand-feature { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
+             .brand-feature .container { flex-direction: column; text-align: center; gap: 30px; }
+             .brand-text { order: 2; max-width: 100%;} /* Tekst onder afbeelding */
+             .brand-image { order: 1; max-width: 90%; margin: 0 auto; } /* Afbeelding boven */
+             .brand-text h3 { font-size: 1.8rem; }
+
+             footer { margin-top: var(--section-padding); padding: 25px 0; }
+             .footer-content { font-size: 0.8rem; }
         }
 
     </style>
@@ -341,17 +410,40 @@
                     <h2>Premium Clothing</h2>
                 </div>
                 <div class="grid-container">
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1581044777550-4cfa6ce14a41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Women's</div>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1581044777550-4cfa6ce14a41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
+                        <div class="grid-item-label">Women's</div>
                     </a>
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1617114919973-11a66ed286e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Men's</div>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1617114919973-11a66ed286e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
+                        <div class="grid-item-label">Men's</div>
                     </a>
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1521045452978-34c658171031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Men's</div>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1521045452978-34c658171031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
+                        <div class="grid-item-label">Men's</div>
                     </a>
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1577985042170-9194b6a0e93a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Accessories</div>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1577985042170-9194b6a0e93a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
+                        <div class="grid-item-label">Accessories</div>
                     </a>
                 </div>
             </div>
         </section>
 
-        </div> </body>
+        <section class="brand-feature">
+             <div class="container">
+                 <div class="brand-text">
+                     <h3>The Essence of BOOLDYASE</h3>
+                     <p>Discover timeless pieces crafted with attention to detail and sustainable practices. Our collections blend classic silhouettes with modern sensibilities for effortless elegance.</p>
+                     <p>We believe in quality over quantity, creating garments designed to be cherished for years to come.</p>
+                     </div>
+                 <div class="brand-image">
+                    <img src="https://images.unsplash.com/photo-1616255989631-d75147f5c2fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Brand detail or lifestyle shot">
+                 </div>
+             </div>
+        </section>
+
+    </div> <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 BOOLDYASE. Alle rechten voorbehouden.</p>
+            </div>
+    </footer>
+
+</body>
 </html>
