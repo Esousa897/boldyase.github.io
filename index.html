@@ -1,449 +1,59 @@
+
+Copy
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOOLDYASE – Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- Globale Stijlen & Variabelen --- */
-        :root {
-            --bg-color: #f2efe8;
-            --text-color: #1a1a1a;
-            --hover-color: #555;
-            --border-color: #dcdcdc;
-            --heading-font: 'Playfair Display', serif;
-            --body-font: 'Helvetica Neue', Arial, sans-serif;
-            --header-height: 75px;
-            --section-padding: 80px; /* Consistente verticale padding voor secties */
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-             scroll-behavior: smooth; /* Soepel scrollen */
-        }
-
-        body {
-            font-family: var(--body-font);
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto; /* Behoud aspect ratio */
-            display: block;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease; /* Basis transitie voor links */
-        }
-
-        h1, h2, h3 {
-             line-height: 1.2; /* Strakkere lijnhoogte voor koppen */
-        }
-
-        /* --- Vaste Header --- */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--header-height);
-            background-color: var(--bg-color);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s ease; /* Voor evt. scroll effecten later */
-        }
-        /* Voeg een subtiele schaduw toe bij scrollen (optioneel, vereist JS) */
-        /* body.scrolled .site-header { box-shadow: 0 2px 5px rgba(0,0,0,0.1); } */
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .header-left .logo {
-            font-family: var(--heading-font);
-            font-size: 1.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .header-center nav a {
-            font-family: var(--body-font);
-            margin: 0 18px;
-            font-weight: 400;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        .header-center nav a:hover {
-            color: var(--hover-color);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .header-right .icon-link svg {
-            width: 22px;
-            height: 22px;
-            fill: var(--text-color);
-            transition: fill 0.3s ease;
-        }
-
-        .header-right .icon-link:hover svg {
-            fill: var(--hover-color);
-        }
-
-        /* --- Content Wrapper --- */
-        .content-wrapper {
-             padding-top: var(--header-height);
-        }
-
-        /* --- Hero Sectie --- */
-        .hero {
-             padding-top: var(--section-padding);
-             padding-bottom: var(--section-padding);
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 60px;
-        }
-
-        .hero-text {
-            flex: 1 1 45%;
-            max-width: 550px;
-        }
-
-        .hero-text h1 {
-            font-family: var(--heading-font);
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 35px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--text-color);
-            cursor: pointer;
-            font-family: var(--body-font);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            border-color: var(--text-color);
-        }
-
-        .hero-image {
-            flex: 1 1 55%;
-            max-width: 650px;
-        }
-
-        /* --- Category Grid Sectie --- */
-        .category-grid {
-            padding-top: var(--section-padding);
-            padding-bottom: var(--section-padding);
-            background-color: var(--bg-color);
-        }
-
-        .section-title-wrapper {
-            text-align: center;
-            margin-bottom: 50px; /* Iets meer ruimte */
-            position: relative;
-            padding: 10px 0;
-        }
-
-        .section-title-wrapper::before,
-        .section-title-wrapper::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 1px;
-            background-color: var(--border-color);
-        }
-
-        .section-title-wrapper::before { top: 0; }
-        .section-title-wrapper::after { bottom: 0; }
-
-        .category-grid h2 {
-            font-family: var(--body-font);
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 15px 0;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .grid-item {
-            position: relative;
-            aspect-ratio: 3 / 4;
-            background-size: cover;
-            background-position: center;
-            display: block;
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Langere transitie */
-            border-radius: 4px; /* Subtiele afronding */
-        }
-
-        .grid-item:hover {
-             transform: scale(1.04); /* Iets meer zoom */
-             box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Subtiele schaduw bij hover */
-        }
-
-        .grid-item-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(26, 26, 26, 0.8);
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            font-family: var(--body-font);
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.3s ease;
-            border-bottom-left-radius: 4px; /* Afronding meenemen */
-            border-bottom-right-radius: 4px;
-        }
-
-        /* --- NIEUW: Brand Feature Sectie --- */
-        .brand-feature {
-            padding-top: var(--section-padding);
-            padding-bottom: var(--section-padding);
-            background-color: #fff; /* Witte achtergrond voor contrast */
-        }
-
-        .brand-feature .container {
-            display: flex;
-            flex-wrap: wrap; /* Wrap op kleinere schermen */
-            align-items: center;
-            gap: 60px; /* Ruimte tussen tekst en afbeelding */
-        }
-
-        .brand-text {
-            flex: 1 1 45%; /* Ongeveer helft van de ruimte */
-            max-width: 500px;
-        }
-
-        .brand-text h3 {
-            font-family: var(--heading-font); /* Serif voor deze titel */
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .brand-text p {
-            font-size: 1rem;
-            line-height: 1.7; /* Iets meer ruimte voor leesbaarheid */
-            margin-bottom: 25px; /* Ruimte onder paragraaf */
-        }
-        /* Optioneel: een link in deze sectie */
-        /* .brand-text .learn-more-link { ... } */
-
-        .brand-image {
-             flex: 1 1 45%;
-             max-width: 600px;
-             border-radius: 6px; /* Afronding voor afbeelding */
-             overflow: hidden; /* Zorgt dat afronding werkt */
-        }
-
-        /* --- NIEUW: Footer --- */
-        footer {
-            padding: 30px 0; /* Meer padding in footer */
-            background-color: var(--bg-color); /* Terug naar beige */
-            border-top: 1px solid var(--border-color);
-            margin-top: var(--section-padding); /* Ruimte boven footer */
-        }
-
-        .footer-content {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--hover-color); /* Lichter grijs voor footer tekst */
-        }
-        /* Optioneel: social links in footer */
-        /* .footer-social-links { margin-top: 15px; } */
-        /* .footer-social-links a { margin: 0 10px; } */
-        /* .footer-social-links svg { ... } */
-
-
-        /* --- Responsiviteit --- */
-        @media (max-width: 992px) {
-            :root { --section-padding: 60px; } /* Minder padding op tablet */
-            .hero-text h1 { font-size: 3.5rem; letter-spacing: 3px; }
-            .hero-content { gap: 40px; }
-            .header-center nav a { margin: 0 12px; }
-
-            .brand-feature .container { gap: 40px; }
-            .brand-text h3 { font-size: 2rem; }
-        }
-
-        @media (max-width: 768px) {
-            :root { --header-height: auto; --section-padding: 50px; }
-            .site-header { height: auto; position: static; }
-            .content-wrapper { padding-top: 0; }
-
-            .container { padding: 0 20px; }
-            .header-content { flex-direction: column; padding: 15px 0; gap: 15px; }
-            .header-left { order: 1; }
-            .header-center { order: 3; }
-            .header-right { order: 2; }
-
-            .hero { padding-top: var(--section-padding); padding-bottom: var(--section-padding);}
-            .hero-content { flex-direction: column; text-align: center; }
-            .hero-text { margin-bottom: 30px; order: 2; } /* Tekst onder afbeelding op mobiel */
-            .hero-image { max-width: 100%; order: 1; } /* Afbeelding bovenaan */
-            .hero-text h1 { font-size: 2.8rem; letter-spacing: 2px; }
-            .cta-button { padding: 10px 25px; font-size: 0.8rem; }
-
-            .category-grid { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
-            .section-title-wrapper { margin-bottom: 30px; }
-            .category-grid h2 { font-size: 1rem; letter-spacing: 2px; }
-            .grid-container { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Kleinere min breedte */ }
-            .grid-item { aspect-ratio: 1 / 1; } /* Vierkant op mobiel? */
-            .grid-item-label { padding: 12px; font-size: 0.8rem; }
-
-            /* Brand feature mobiel: stacken */
-             .brand-feature { padding-top: var(--section-padding); padding-bottom: var(--section-padding); }
-             .brand-feature .container { flex-direction: column; text-align: center; gap: 30px; }
-             .brand-text { order: 2; max-width: 100%;} /* Tekst onder afbeelding */
-             .brand-image { order: 1; max-width: 90%; margin: 0 auto; } /* Afbeelding boven */
-             .brand-text h3 { font-size: 1.8rem; }
-
-             footer { margin-top: var(--section-padding); padding: 25px 0; }
-             .footer-content { font-size: 0.8rem; }
-        }
-
-    </style>
+    <title>BOLDYASE - Nieuwe Collectie</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-content">
-            <div class="header-left">
-                <a href="#" class="logo">BOOLDYASE</a>
-            </div>
-            <div class="header-center">
-                <nav>
-                    <a href="#">Home</a>
-                    <a href="#">Shop</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
-                </nav>
-            </div>
-            <div class="header-right">
-                <a href="#" class="icon-link" aria-label="Zoeken">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                </a>
-                <a href="#" class="icon-link" aria-label="Winkelwagen">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zm-1.45-5c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0 0 20.01 4H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h11v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6z"/></svg>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="content-wrapper">
-        <section class="hero">
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <h1>New Arrivals</h1>
-                    <a href="#" class="cta-button">Shop Now</a>
-                </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Fashion Model Showcase">
-                </div>
-            </div>
-        </section>
-
-        <section class="category-grid">
-            <div class="container">
-                <div class="section-title-wrapper">
-                    <h2>Premium Clothing</h2>
-                </div>
-                <div class="grid-container">
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1581044777550-4cfa6ce14a41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
-                        <div class="grid-item-label">Women's</div>
-                    </a>
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1617114919973-11a66ed286e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
-                        <div class="grid-item-label">Men's</div>
-                    </a>
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1521045452978-34c658171031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
-                        <div class="grid-item-label">Men's</div>
-                    </a>
-                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1577985042170-9194b6a0e93a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
-                        <div class="grid-item-label">Accessories</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="brand-feature">
-             <div class="container">
-                 <div class="brand-text">
-                     <h3>The Essence of BOOLDYASE</h3>
-                     <p>Discover timeless pieces crafted with attention to detail and sustainable practices. Our collections blend classic silhouettes with modern sensibilities for effortless elegance.</p>
-                     <p>We believe in quality over quantity, creating garments designed to be cherished for years to come.</p>
-                     </div>
-                 <div class="brand-image">
-                    <img src="https://images.unsplash.com/photo-1616255989631-d75147f5c2fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Brand detail or lifestyle shot">
-                 </div>
-             </div>
-        </section>
-
-    </div> <footer>
-        <div class="container footer-content">
-            <p>&copy; 2025 BOOLDYASE. Alle rechten voorbehouden.</p>
-            </div>
-    </footer>
-
+    <div class="container">
+        <h1 class="title">BOLDYASE</h1>
+        <h2 class="subtitle">NEW ARRIVALS</h2>
+        <a class="shop-button" href="#">SHOP NOW</a>
+    </div>
 </body>
-</html>
+</html>body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8; /* Licht neutraal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.title {
+    font-size: 48px;
+    color: #000; /* Donker voor contrast */
+    border: 2px solid #000; /* Stroke-effect */
+    padding: 10px;
+    display: inline-block;
+}
+
+.subtitle {
+    font-size: 24px;
+    color: #000; /* Donker voor contrast */
+    margin: 20px 0;
+}
+
+.shop-button {
+    background: none;
+    border: 2px solid #000; /* Stroke-effect */
+    color: #000; /* Donker voor contrast */
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.shop-button:hover {
+    background-color: #000; /* Achtergrondkleur bij hover */
+    color: #fff; /* Witte tekst bij hover */
+}
