@@ -11,14 +11,13 @@
     <style>
         /* --- Globale Stijlen & Variabelen --- */
         :root {
-            --bg-color: #f2efe8; /* Nieuwe achtergrondkleur */
-            --text-color: #1a1a1a; /* Nieuwe tekst/icoon kleur */
-            --hover-color: #555; /* Nieuwe hover kleur */
-            --border-color: #dcdcdc; /* Iets aangepaste subtiele rand */
+            --bg-color: #f2efe8;
+            --text-color: #1a1a1a;
+            --hover-color: #555;
+            --border-color: #dcdcdc;
             --heading-font: 'Playfair Display', serif;
-            --body-font: 'Helvetica Neue', Arial, sans-serif; /* Nieuwe body/menu font stack */
-
-            --header-height: 75px; /* Definieer header hoogte voor padding */
+            --body-font: 'Helvetica Neue', Arial, sans-serif;
+            --header-height: 75px;
         }
 
         * {
@@ -32,8 +31,6 @@
             color: var(--text-color);
             background-color: var(--bg-color);
             line-height: 1.6;
-            /* Voeg padding toe gelijk aan header hoogte als header fixed is */
-            /* padding-top: var(--header-height); */ /* Zie .content-wrapper */
         }
 
         .container {
@@ -47,46 +44,43 @@
             display: block;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit; /* Links erven kleur */
+        }
+
         /* --- Vaste Header --- */
         .site-header {
-            position: fixed; /* Maak header vast */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: var(--header-height);
-            background-color: var(--bg-color); /* Achtergrond voor vaste header */
+            background-color: var(--bg-color);
             border-bottom: 1px solid var(--border-color);
-            z-index: 1000; /* Zorg dat header boven andere content staat */
-            display: flex; /* Gebruik flexbox om container te centreren */
-            align-items: center; /* Verticaal centreren */
+            z-index: 1000;
+            display: flex;
+            align-items: center;
         }
 
         .header-content {
             display: flex;
-            justify-content: space-between; /* Ruimte tussen links, midden, rechts */
+            justify-content: space-between;
             align-items: center;
-            width: 100%; /* Zorg dat container volle breedte inneemt */
+            width: 100%;
         }
 
-        .header-left .logo { /* Specifiekere selector */
-            font-family: var(--heading-font); /* Playfair voor logo */
-            font-size: 1.6rem; /* Iets groter misschien */
+        .header-left .logo {
+            font-family: var(--heading-font);
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--text-color);
-            text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
 
-        .header-center nav { /* Navigatie in het midden */
-           /* Gecentreerd door space-between op parent */
-        }
-
         .header-center nav a {
-            font-family: var(--body-font); /* Helvetica/Arial voor menu */
+            font-family: var(--body-font);
             margin: 0 18px;
-            text-decoration: none;
-            color: var(--text-color);
             font-weight: 400;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
@@ -94,37 +88,36 @@
         }
 
         .header-center nav a:hover {
-            color: var(--hover-color); /* Gebruik hover variable */
+            color: var(--hover-color);
         }
 
-        .header-right { /* Container voor iconen */
+        .header-right {
             display: flex;
             align-items: center;
-            gap: 20px; /* Ruimte tussen iconen */
+            gap: 20px;
         }
 
         .header-right .icon-link svg {
-            width: 22px; /* Grootte van iconen */
+            width: 22px;
             height: 22px;
-            fill: var(--text-color); /* Gebruik tekstkleur variable */
+            fill: var(--text-color);
             transition: fill 0.3s ease;
         }
 
         .header-right .icon-link:hover svg {
-            fill: var(--hover-color); /* Gebruik hover variable */
+            fill: var(--hover-color);
         }
 
 
-        /* --- Content Wrapper (om content onder vaste header te duwen) --- */
+        /* --- Content Wrapper --- */
         .content-wrapper {
-             padding-top: var(--header-height); /* Belangrijk! */
+             padding-top: var(--header-height); /* Ruimte voor vaste header */
         }
 
         /* --- Hero Sectie --- */
         .hero {
-            /* Padding zit nu in content-wrapper, eventueel extra hier */
-             padding-top: 80px; /* Extra padding boven */
-             padding-bottom: 80px; /* Padding onder */
+             padding-top: 80px;
+             padding-bottom: 80px;
         }
 
         .hero-content {
@@ -140,12 +133,11 @@
         }
 
         .hero-text h1 {
-            font-family: var(--heading-font); /* Playfair voor H1 */
+            font-family: var(--heading-font);
             font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 35px;
             line-height: 1.1;
-            color: var(--text-color);
             text-transform: uppercase;
             letter-spacing: 4px;
         }
@@ -157,12 +149,11 @@
             color: var(--text-color);
             border: 1px solid var(--text-color);
             cursor: pointer;
-            font-family: var(--body-font); /* Helvetica/Arial voor knop */
+            font-family: var(--body-font);
             font-size: 0.85rem;
-            font-weight: 700; /* Mag bold zijn voor een knop */
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            text-decoration: none;
             transition: all 0.3s ease;
         }
 
@@ -183,56 +174,125 @@
             object-fit: cover;
         }
 
-        /* --- Responsiviteit --- */
-        @media (max-width: 992px) {
-             /* Aanpassingen voor vaste header eventueel nodig? */
-             .hero-text h1 {
-                font-size: 3.5rem;
-                letter-spacing: 3px;
-            }
-            .hero-content {
-                gap: 40px;
-            }
-             .header-center nav a { margin: 0 12px;} /* Minder ruimte */
+        /* --- NIEUW: Category Grid Sectie --- */
+        .category-grid {
+            padding: 60px 0; /* Ruimte boven/onder de grid */
+            background-color: var(--bg-color); /* Zorg dat achtergrond consistent is */
         }
 
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 40px; /* Ruimte onder de titel/lijnen */
+            position: relative;
+            padding: 10px 0; /* Ruimte voor de lijnen */
+        }
+
+        /* Lijnen boven/onder de titel */
+        .section-title-wrapper::before,
+        .section-title-wrapper::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px; /* Breedte van de lijnen */
+            height: 1px; /* Dikte van de lijnen */
+            background-color: var(--border-color); /* Kleur van de lijnen */
+        }
+
+        .section-title-wrapper::before {
+            top: 0;
+        }
+
+        .section-title-wrapper::after {
+            bottom: 0;
+        }
+
+        .category-grid h2 {
+            font-family: var(--body-font); /* Sans-serif */
+            font-size: 1.1rem; /* Relatief kleine titel */
+            font-weight: 700; /* Bold */
+            text-transform: uppercase;
+            letter-spacing: 3px; /* Veel letterafstand */
+            margin: 15px 0; /* Ruimte tussen titel en lijnen */
+        }
+
+        .grid-container {
+            display: grid;
+             /* Maakt responsieve kolommen, min 250px breed, max 1 fractie */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px; /* Ruimte tussen grid items */
+        }
+
+        .grid-item {
+            position: relative; /* Voor absolute positionering van label */
+            aspect-ratio: 3 / 4; /* Verhouding voor de hoogte (pas aan indien nodig) */
+            background-size: cover;
+            background-position: center;
+            display: block; /* Als het een 'a' tag is */
+            overflow: hidden; /* Verbergt eventuele overflow */
+            transition: transform 0.3s ease; /* Kleine hover animatie */
+        }
+
+        .grid-item:hover {
+             transform: scale(1.03); /* Iets groter bij hover */
+        }
+
+        .grid-item-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 26, 26, 0.8); /* Semi-transparant donker */
+            color: #fff; /* Witte tekst */
+            padding: 15px;
+            text-align: center;
+            font-family: var(--body-font);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease; /* Transitie voor hover */
+        }
+
+        /* Optioneel: label iets lichter bij hover op grid item */
+        /*
+        .grid-item:hover .grid-item-label {
+             background-color: rgba(85, 85, 85, 0.8);
+        }
+        */
+
+        /* --- Responsiviteit --- */
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 3.5rem; letter-spacing: 3px; }
+            .hero-content { gap: 40px; }
+            .header-center nav a { margin: 0 12px; }
+        }
 
         @media (max-width: 768px) {
-            :root {
-                 --header-height: 65px; /* Kleinere header op mobiel */
-            }
-            .container {
-                 padding: 0 20px;
-            }
+            :root { --header-height: auto; } /* Header hoogte niet meer vast */
+            .site-header { height: auto; position: static; }
+            .content-wrapper { padding-top: 0; }
 
-            /* Header aanpassen voor mobiel: bv. hamburger menu */
-            /* Voor nu: vereenvoudigde layout */
-            .site-header { height: auto; position: static; /* Of andere mobiele oplossing */ }
-            .content-wrapper { padding-top: 0; } /* Geen padding nodig als header niet fixed is */
+            .container { padding: 0 20px; }
+            .header-content { flex-direction: column; padding: 15px 0; gap: 15px; }
+            .header-left { order: 1; }
+            .header-center { order: 3; }
+            .header-right { order: 2; }
 
-             .header-content {
-                 flex-direction: column;
-                 padding: 15px 0; /* Padding binnen header content */
-                 gap: 15px;
-             }
-             .header-left { order: 1; }
-             .header-center { order: 3; } /* Nav onderaan */
-             .header-right { order: 2; } /* Iconen in het midden */
+            .hero { padding: 40px 0; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text { margin-bottom: 30px; }
+            .hero-image { max-width: 80%; margin: 0 auto; }
+            .hero-text h1 { font-size: 2.8rem; letter-spacing: 2px; }
+            .cta-button { padding: 10px 25px; font-size: 0.8rem; }
 
-            .hero { padding: 40px 0; } /* Minder padding */
-
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-             .hero-text { margin-bottom: 30px; }
-             .hero-image { max-width: 80%; margin: 0 auto; }
-
-            .hero-text h1 {
-                font-size: 2.8rem;
-                letter-spacing: 2px;
-            }
-             .cta-button { padding: 10px 25px; font-size: 0.8rem; }
+            /* Grid aanpassingen mobiel */
+            .category-grid { padding: 40px 0; }
+            .section-title-wrapper { margin-bottom: 30px; }
+            .category-grid h2 { font-size: 1rem; letter-spacing: 2px; }
+            .grid-container { gap: 15px; }
+            .grid-item { aspect-ratio: 4 / 5; } /* Evt. andere verhouding mobiel */
+            .grid-item-label { padding: 12px; font-size: 0.8rem; }
         }
 
     </style>
@@ -271,6 +331,24 @@
                 </div>
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Fashion Model Showcase">
+                </div>
+            </div>
+        </section>
+
+        <section class="category-grid">
+            <div class="container">
+                <div class="section-title-wrapper">
+                    <h2>Premium Clothing</h2>
+                </div>
+                <div class="grid-container">
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1581044777550-4cfa6ce14a41?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Women's</div>
+                    </a>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1617114919973-11a66ed286e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Men's</div>
+                    </a>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1521045452978-34c658171031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Men's</div>
+                    </a>
+                    <a href="#" class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1577985042170-9194b6a0e93a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"> <div class="grid-item-label">Accessories</div>
+                    </a>
                 </div>
             </div>
         </section>
