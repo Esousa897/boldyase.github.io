@@ -1,59 +1,175 @@
-
-Copy
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOLDYASE - Nieuwe Collectie</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Vergelijker | BOLDYASE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #f4f4f4;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .hero {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .software-categories, .featured-software {
+      padding: 60px 40px;
+    }
+
+    .software-categories h2,
+    .featured-software h2 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .grid, .featured-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .category-card, .software-card {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, background-color 0.2s, color 0.2s;
+    }
+
+    .category-card:hover {
+      background-color: #000;
+      color: #fff;
+      transform: scale(1.03);
+      cursor: pointer;
+    }
+
+    .category-card a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+    }
+
+    .software-card {
+      background-color: #f2f2f2;
+    }
+
+    .software-card h3 {
+      margin-top: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #000;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #333;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: #f4f4f4;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">BOLDYASE</h1>
-        <h2 class="subtitle">NEW ARRIVALS</h2>
-        <a class="shop-button" href="#">SHOP NOW</a>
+
+  <header>
+    <h1>BOOLDYASE</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Over Ons</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Vind de Beste Software voor Jouw Branche</h1>
+    <p>Vergelijk tools en kies de perfecte oplossing voor jouw bedrijf.</p>
+  </section>
+
+  <section class="software-categories">
+    <h2>Softwarecategorieën</h2>
+    <div class="grid">
+      <div class="category-card"><a href="#">📊 CRM-systemen</a></div>
+      <div class="category-card"><a href="#">🧾 Boekhoudsoftware</a></div>
+      <div class="category-card"><a href="#">🛒 E-commerce Tools</a></div>
+      <div class="category-card"><a href="#">📅 Projectbeheer</a></div>
+      <div class="category-card"><a href="#">💬 Klantenservice</a></div>
+      <div class="category-card"><a href="#">📦 Voorraadbeheer</a></div>
     </div>
+  </section>
+
+  <section class="featured-software">
+    <h2>Populaire Tools Deze Maand</h2>
+    <div class="featured-list">
+      <div class="software-card">
+        <h3>Zoho CRM</h3>
+        <p>Volledig CRM-platform voor verkoop, marketing en support.</p>
+        <a href="#" class="btn">Meer Info</a>
+      </div>
+      <div class="software-card">
+        <h3>Exact Online</h3>
+        <p>Cloud boekhoudsoftware voor MKB-bedrijven in Nederland.</p>
+        <a href="#" class="btn">Bekijk Nu</a>
+      </div>
+      <div class="software-card">
+        <h3>Shopify</h3>
+        <p>Start jouw eigen webshop met krachtige e-commerce functies.</p>
+        <a href="#" class="btn">Aan de Slag</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 BOOLDYASE - Alle rechten voorbehouden.
+  </footer>
+
 </body>
-</html>body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8; /* Licht neutraal */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    text-align: center;
-}
-
-.title {
-    font-size: 48px;
-    color: #000; /* Donker voor contrast */
-    border: 2px solid #000; /* Stroke-effect */
-    padding: 10px;
-    display: inline-block;
-}
-
-.subtitle {
-    font-size: 24px;
-    color: #000; /* Donker voor contrast */
-    margin: 20px 0;
-}
-
-.shop-button {
-    background: none;
-    border: 2px solid #000; /* Stroke-effect */
-    color: #000; /* Donker voor contrast */
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.shop-button:hover {
-    background-color: #000; /* Achtergrondkleur bij hover */
-    color: #fff; /* Witte tekst bij hover */
-}
+</html>
