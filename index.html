@@ -244,6 +244,26 @@
     </div>
   </section>
 
+  <!-- Shopping Cart Section -->
+  <div>
+    <img src="shopping-cart.png" alt="Winkelwagen" class="cart">
+    <button onclick="addItem()">Voeg item toe</button>
+  </div>
+  <div class="items" id="items">
+    <h3>Items in de winkelwagen:</h3>
+    <ul id="itemList">
+    </ul>
+  </div>
+
+  <script>
+    function addItem() {
+        const itemList = document.getElementById('itemList');
+        const listItem = document.createElement('li');
+        listItem.textContent = 'Nieuw Item';
+        itemList.appendChild(listItem);
+    }
+  </script>
+
   <!-- Footer -->
   <footer class="footer text-center text-white bg-dark py-4">
     <div class="container">
