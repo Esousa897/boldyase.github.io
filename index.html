@@ -1,688 +1,963 @@
-
+<!DOCTYPE html>
 <html lang="nl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ontdek de nieuwste luxe mode en trends bij BOLDYASE. Geavanceerde aanbevelingen, duurzame keuzes en een exclusieve shopervaring.">
   <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, AI recommendations, duurzaam, high fashion">
- 
-  <title>BOLDYASE | Luxe Mode & AI-Powered Shopping</title>
- 
+  <title>BOLDYASE | Luxe Mode &amp; AI-Powered Shopping</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
- 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <style>
     :root {
-      --primary-color: #1a1a1a; /* Iets donkerder zwart */
+      --primary-color: #1a1a1a;
       --secondary-color: #f8f9fa;
-      --accent-color: #c5a47e; /* Aangepast goud/brons accent */
+      --accent-color: #c5a47e;
       --text-color: #333;
       --light-text: #6c757d;
       --font-body: 'Montserrat', sans-serif;
       --font-heading: 'Playfair Display', serif;
-      --subtle-bg: #fdfdfd url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); /* Heel subtiel patroon */
+      --subtle-bg: #fdfdfd url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
- 
+
     body {
       font-family: var(--font-body);
       background-color: var(--subtle-bg);
       color: var(--text-color);
-      line-height: 1.7; /* Iets meer ruimte */
-      font-weight: 300; /* Lichter basis font weight */
+      line-height: 1.7;
+      font-weight: 300;
     }
- 
-    h1, h2, h3, h4, h5, h6, .navbar-brand, .section-title {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .navbar-brand,
+    .section-title {
       font-family: var(--font-heading);
       font-weight: 700;
       color: var(--primary-color);
     }
-    p, li, label, input, textarea, .btn {
-        font-weight: 400; /* Normaal gewicht voor leesbaarheid */
+
+    p,
+    li,
+    label,
+    input,
+    textarea,
+    .btn {
+      font-weight: 400;
     }
- 
+
     .navbar {
-      background-color: rgba(255, 255, 255, 0.95) !important; /* Iets transparant */
-      backdrop-filter: blur(10px); /* Blur effect voor luxe */
-      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
       padding-top: 1rem;
       padding-bottom: 1rem;
     }
-    .navbar-brand { font-size: 2rem; }
-    .nav-link { color: var(--text-color) !important; margin: 0 0.8rem; transition: color 0.3s ease; font-weight: 400;}
-    .nav-link:hover, .nav-link.active { color: var(--accent-color) !important; }
-    .navbar-icons .nav-link, .navbar-icons .btn { font-size: 1.3rem; color: var(--primary-color) !important; }
-    .cart-count { background-color: var(--accent-color); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 50%; position: relative; top: -10px; left: -5px; font-weight: 700;}
-    .btn-visual-search { background: transparent; border: none; padding: 0.375rem 0.75rem; }
- 
+
+    .navbar-brand {
+      font-size: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-color) !important;
+      margin: 0 0.8rem;
+      transition: color 0.3s ease;
+      font-weight: 400;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-color) !important;
+    }
+
+    .navbar-icons .nav-link,
+    .navbar-icons .btn {
+      font-size: 1.3rem;
+      color: var(--primary-color) !important;
+    }
+
+    .cart-count {
+      background-color: var(--accent-color);
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 50%;
+      position: relative;
+      top: -10px;
+      left: -5px;
+      font-weight: 700;
+    }
+
+    .btn-visual-search {
+      background: transparent;
+      border: none;
+      padding: 0.375rem 0.75rem;
+    }
+
     .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; /* Andere luxe afbeelding */
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
       color: #fff;
       padding: 150px 0;
       text-align: center;
     }
-    .hero h1 { font-size: 4rem; margin-bottom: 1rem; color: #fff;}
-    .hero p { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 300; }
- 
-    .btn { border-radius: 50px; padding: 10px 25px; font-weight: 500; letter-spacing: 0.5px; transition: all 0.3s ease; }
-    .btn-main { background-color: var(--primary-color); color: #fff; border: 2px solid var(--primary-color); }
-    .btn-main:hover { background-color: #fff; color: var(--primary-color); }
-    .btn-outline-main { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-    .btn-outline-main:hover { background-color: var(--primary-color); color: #fff; }
-    .btn-secondary-action { background: rgba(255, 255, 255, 0.8); border: none; color: var(--light-text); border-radius: 50%; padding: 8px; font-size: 1rem; line-height: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s ease; }
-    .btn-secondary-action:hover { color: var(--accent-color); background: white; }
-    .btn-secondary-action.active { color: var(--accent-color); }
- 
-    .section-bg { background-color: var(--secondary-color); }
-    .section-title { margin-bottom: 4rem; font-size: 2.8rem; position: relative; display: inline-block; padding-bottom: 10px; }
-    .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent-color); margin: 10px auto 0; }
-    .text-center .section-title::after { margin-left: auto; margin-right: auto; } /* Centreer lijn bij gecentreerde titel */
- 
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .btn {
+      border-radius: 50px;
+      padding: 10px 25px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-main {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-main:hover {
+      background-color: #fff;
+      color: var(--primary-color);
+    }
+
+    .btn-outline-main {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline-main:hover {
+      background-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .btn-secondary-action {
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      color: var(--light-text);
+      border-radius: 50%;
+      padding: 8px;
+      font-size: 1rem;
+      line-height: 1;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary-action:hover {
+      color: var(--accent-color);
+      background: white;
+    }
+
+    .btn-secondary-action.active {
+      color: var(--accent-color);
+    }
+
+    .section-bg {
+      background-color: var(--secondary-color);
+    }
+
+    .section-title {
+      margin-bottom: 4rem;
+      font-size: 2.8rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-color);
+      margin: 10px auto 0;
+    }
+
+    .text-center .section-title::after {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .product-card {
       border: none;
-      border-radius: 8px; /* Strakkere radius */
+      border-radius: 8px;
       background: #fff;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      height: 100%; /* Zorgt dat kaarten gelijke hoogte hebben in een row */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      height: 100%;
       display: flex;
       flex-direction: column;
     }
-    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
     .product-card .card-img-top {
-        border-radius: 8px 8px 0 0;
-        transition: transform 0.3s ease;
-        aspect-ratio: 3 / 4; /* Forceer aspect ratio */
-        object-fit: cover; /* Zorg dat afbeelding vult zonder te vervormen */
-        width: 100%;
+      border-radius: 8px 8px 0 0;
+      transition: transform 0.3s ease;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      width: 100%;
     }
-    .product-card:hover .card-img-top { transform: scale(1.03); }
+
+    .product-card:hover .card-img-top {
+      transform: scale(1.03);
+    }
+
     .product-card .card-body {
-        padding: 1rem 1.2rem;
-        text-align: center;
-        flex-grow: 1; /* Laat body groeien om footer onderaan te houden */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Verdeel ruimte */
+      padding: 1rem 1.2rem;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+
     .product-card h5 {
-        font-family: var(--font-body);
-        font-weight: 500;
-        font-size: 1rem; /* Iets kleiner voor strakke look */
-        margin-bottom: 0.5rem;
-        color: var(--primary-color);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
     }
-    .product-price { color: var(--primary-color); font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem; }
-    .product-price .original-price { text-decoration: line-through; color: var(--light-text); font-weight: 400; margin-right: 0.5rem; font-size: 0.9em; }
-    .product-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 8px; z-index: 10; opacity: 0; transition: opacity 0.3s ease; }
-    .product-card:hover .product-actions { opacity: 1; }
-    .product-tags { margin-top: 0.8rem; margin-bottom: 0.8rem; }
-    .product-tags .badge { font-size: 0.7rem; font-weight: 500; margin: 2px; padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;}
-    .product-tags .badge:hover { background-color: var(--accent-color) !important; color: white !important; }
- 
-    .category-card { /* ... styles behouden, maar ook aspect ratio */ }
-    .category-card img { display: block; width: 100%; transition: transform 0.4s ease; aspect-ratio: 1 / 1; object-fit: cover; } /* Vierkant formaat */
- 
-    .trend-card { border-radius: 8px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.07); position: relative; }
-    .trend-card img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.4s ease; }
-    .trend-card:hover img { transform: scale(1.05); }
-    .trend-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 30px 20px 20px; color: #fff; }
-    .trend-overlay h5 { font-family: var(--font-heading); margin-bottom: 0.5rem; font-size: 1.4rem; color: #fff; }
- 
-    .outfit-suggestion { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-    .outfit-main-item img { max-width: 100%; height: auto; border-radius: 8px; }
-    .outfit-coordinates .product-card { box-shadow: none; border: 1px solid #eee; height: auto; } /* Simpelere stijl voor coördinaten */
-    .outfit-coordinates .product-card .card-img-top { aspect-ratio: 1 / 1; } /* Vierkante thumbnails */
- 
-    .footer { background: var(--primary-color); color: rgba(255, 255, 255, 0.7); padding: 60px 0 30px; margin-top: 6rem; }
-    .footer h5 { color: #fff; margin-bottom: 1.5rem; font-family: var(--font-heading); text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
-    /* ... rest van footer styles ... */
-    .footer .bottom-text { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 30px; margin-top: 40px; font-size: 0.9rem; text-align: center; color: rgba(255, 255, 255, 0.5); }
- 
-    .form-control { border-radius: 5px; border: 1px solid #ddd; padding: 12px 15px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-    .form-control:focus { border-color: var(--accent-color); box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25); }
- 
-    /* Placeholder styling */
-    .placeholder-glow .placeholder { background-color: #e0e0e0; }
- 
+
+    .product-price {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .product-price .original-price {
+      text-decoration: line-through;
+      color: var(--light-text);
+      font-weight: 400;
+      margin-right: 0.5rem;
+      font-size: 0.9em;
+    }
+
+    .product-actions {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .product-actions {
+      opacity: 1;
+    }
+
+    .product-tags {
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-tags .badge {
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin: 2px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-tags .badge:hover {
+      background-color: var(--accent-color) !important;
+      color: white !important;
+    }
+
+    .category-card img {
+      display: block;
+      width: 100%;
+      transition: transform 0.4s ease;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .trend-card {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+      position: relative;
+    }
+
+    .trend-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .trend-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .trend-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      padding: 30px 20px 20px;
+      color: #fff;
+    }
+
+    .trend-overlay h5 {
+      font-family: var(--font-heading);
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .outfit-suggestion {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .outfit-main-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .outfit-coordinates .product-card {
+      box-shadow: none;
+      border: 1px solid #eee;
+      height: auto;
+    }
+
+    .outfit-coordinates .product-card .card-img-top {
+      aspect-ratio: 1 / 1;
+    }
+
+    .footer {
+      background: var(--primary-color);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 60px 0 30px;
+      margin-top: 6rem;
+    }
+
+    .footer h5 {
+      color: #fff;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .footer .bottom-text {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 30px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-control {
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      padding: 12px 15px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25);
+    }
+
+    .placeholder-glow .placeholder {
+      background-color: #e0e0e0;
+    }
   </style>
 </head>
+
 <body>
- 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">BOLDYASE</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#shop" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#shop">Alle Producten</a></li>
-                <li><a class="dropdown-item" href="#">Nieuwe Collectie</a></li>
-                <li><a class="dropdown-item" href="#trends">Trends</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Heren</a></li>
-                <li><a class="dropdown-item" href="#">Dames</a></li>
-                <li><a class="dropdown-item" href="#">Accessoires</a></li>
-              </ul>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#categories">Categorieën</a></li>
-            <li class="nav-item"><a class="nav-link" href="#about">Over Ons</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          </ul>
-          <div class="d-flex align-items-center navbar-icons">
-            <form class="d-flex me-2" role="search">
-              <input class="form-control form-control-sm me-1" type="search" placeholder="Zoeken..." aria-label="Search">
-              <button class="btn btn-outline-secondary btn-sm" type="submit" title="Zoeken"><i class="bi bi-search"></i></button>
-              <button class="btn btn-visual-search btn-sm" type="button" title="Zoek met afbeelding (Visuele Zoekfunctie)">
-                <i class="bi bi-camera"></i> </button>
-            </form>
-            <a class="nav-link" href="#" title="Account"><i class="bi bi-person"></i></a>
-            <a class="nav-link position-relative" href="#" title="Winkelwagen">
-              <i class="bi bi-cart"></i>
-              <span class="cart-count position-absolute top-0 start-100 translate-middle">3</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div class="container header-content">
+      <a href="#" class="logo">BOOLDYASE</a>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
   </header>
- 
-  <main style="padding-top: 90px;"> <section class="hero">
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>New Arrivals</h1>
+        <a href="#" class="cta-button">Shop Now</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1020&q=80" alt="Fashion Model Showcase">
+      </div>
+    </div>
+  </section>
+
+  <main style="padding-top: 90px;">
+    <section class="hero">
       <div class="container">
         <h1 class="display-3">Define Your Presence</h1>
         <p class="lead">Ervaar de synergie van vakmanschap en moderne technologie. Shop BOLDYASE.</p>
         <a href="#shop" class="btn btn-main btn-lg mt-3">Ontdek Meer</a>
       </div>
     </section>
- 
+
     <section id="categories" class="py-5">
-        <div class="container">
-            <h2 class="text-center section-title">Ontdek Categorieën</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <a href="#" class="category-card d-block text-decoration-none">
-                        <img src="https://images.unsplash.com/photo-1551803817-de0713f6888a?auto=format&fit=crop&w=600&h=600&q=80" alt="Herenmode">
-                        <div class="category-card-overlay"><h5>Heren</h5></div>
-                    </a>
-                </div>
-                 <div class="col-md-4">
-                     <a href="#" class="category-card d-block text-decoration-none">
-                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&h=600&q=80" alt="Damesmode">
-                         <div class="category-card-overlay"><h5>Dames</h5></div>
-                    </a>
-                </div>
-                 <div class="col-md-4">
-                     <a href="#" class="category-card d-block text-decoration-none">
-                        <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&h=600&q=80" alt="Accessoires">
-                         <div class="category-card-overlay"><h5>Accessoires</h5></div>
-                    </a>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="text-center section-title">Ontdek Categorie n</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <a href="#" class="category-card d-block text-decoration-none">
+              <img src="https://images.unsplash.com/photo-1551803817-de0713f6888a?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Herenmode">
+              <div class="category-card-overlay">
+                <h5>Heren</h5>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="#" class="category-card d-block text-decoration-none">
+              <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Damesmode">
+              <div class="category-card-overlay">
+                <h5>Dames</h5>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="#" class="category-card d-block text-decoration-none">
+              <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=80" alt="Accessoires">
+              <div class="category-card-overlay">
+                <h5>Accessoires</h5>
+              </div>
+            </a>
+          </div>
         </div>
+      </div>
     </section>
- 
+
     <section id="shop" class="py-5 section-bg">
       <div class="container">
         <h2 class="mb-4 text-center section-title">Uitgelichte Selectie</h2>
         <div class="d-flex justify-content-end mb-4">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sorteren op </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Aanbevolen (AI)</a></li>
-                    <li><a class="dropdown-item" href="#">Populariteit</a></li>
-                    <li><a class="dropdown-item" href="#">Nieuwste</a></li>
-                    <li><a class="dropdown-item" href="#">Prijs: Laag naar Hoog</a></li>
-                    <li><a class="dropdown-item" href="#">Prijs: Hoog naar Laag</a></li>
-                </ul>
-            </div>
-             <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
-                <i class="bi bi-filter-right"></i> Filters </button>
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Sorteren op
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">&nbsp;Aanbevolen (AI)&nbsp;</a></li>
+              <li><a class="dropdown-item" href="#">&nbsp;Populariteit&nbsp;</a></li>
+              <li><a class="dropdown-item" href="#">&nbsp;Nieuwste&nbsp;</a></li>
+              <li><a class="dropdown-item" href="#">&nbsp;Prijs: Laag naar Hoog&nbsp;</a></li>
+              <li><a class="dropdown-item" href="#">&nbsp;Prijs: Hoog naar Laag&nbsp;</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+            <i class="bi bi-filter-right"></i> Filters
+          </button>
         </div>
- 
+
         <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
           <div class="col">
             <div class="product-card" data-product-id="101">
-              <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Leren Jas">
-               <div class="product-actions">
-                    <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                    <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                    <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                </div>
+              <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Leren Jas">
+              <div class="product-actions">
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
+              </div>
               <div class="card-body">
-                <div> <h5>Premium Leren Jas</h5>
-                    <p class="product-price">€249,95</p>
-                    <div class="product-tags">
-                        <span class="badge bg-light text-dark">Leer</span>
-                        <span class="badge bg-light text-dark">Biker</span>
-                        <span class="badge bg-light text-dark">Tijdloos</span>
-                    </div>
+                <div>
+                  <h5>Premium Leren Jas</h5>
+                  <p class="product-price"> 249,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Leer</span>
+                    <span class="badge bg-light text-dark">Biker</span>
+                    <span class="badge bg-light text-dark">Tijdloos</span>
+                  </div>
                 </div>
-                <button class="btn btn-main mt-auto w-100">Bekijken</button> </div>
+                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              </div>
             </div>
           </div>
+
           <div class="col">
             <div class="product-card" data-product-id="102">
-              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Horloge">
-                <div class="product-actions">
-                    <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                     <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                </div>
-              <div class="card-body">
-                 <div>
-                    <h5>Elegant Horloge</h5>
-                    <p class="product-price">€189,00</p>
-                     <div class="product-tags">
-                        <span class="badge bg-light text-dark">Accessoire</span>
-                        <span class="badge bg-light text-dark">Metaal</span>
-                        <span class="badge bg-light text-dark">Klassiek</span>
-                    </div>
-                 </div>
-                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Horloge">
+              <div class="product-actions">
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
               </div>
-            </div>
-          </div>
-          <div class="col">
-             <div class="product-card" data-product-id="103">
-              <span class="product-badge" style="background-color: var(--accent-color); color:white; top:10px; left:10px; border-radius:4px; padding: 4px 8px; font-size: 0.8rem;">Sale</span>
-              <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Sneakers">
-               <div class="product-actions">
-                    <button class="btn-secondary-action active" title="Verwijder van Wishlist"><i class="bi bi-heart-fill"></i></button>
-                    <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                     <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                </div>
               <div class="card-body">
                 <div>
-                    <h5>Luxe Leren Sneakers</h5>
-                    <p class="product-price"><span class="original-price">€150,00</span> €119,95</p>
-                    <div class="product-tags">
-                        <span class="badge bg-light text-dark">Schoenen</span>
-                        <span class="badge bg-light text-dark">Leer</span>
-                        <span class="badge bg-light text-dark">Casual</span>
-                    </div>
+                  <h5>Elegant Horloge</h5>
+                  <p class="product-price"> 189,00</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Accessoire</span>
+                    <span class="badge bg-light text-dark">Metaal</span>
+                    <span class="badge bg-light text-dark">Klassiek</span>
+                  </div>
                 </div>
                 <button class="btn btn-main mt-auto w-100">Bekijken</button>
               </div>
             </div>
           </div>
+
+          <div class="col">
+            <div class="product-card" data-product-id="103">
+              <span class="product-badge" style="background-color: var(--accent-color); color:white; top:10px; left:10px; border-radius:4px; padding: 4px 8px; font-size: 0.8rem;">Sale</span>
+              <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Sneakers">
+              <div class="product-actions">
+                <button class="btn-secondary-action active" title="Verwijder van Wishlist"><i class="bi bi-heart-fill"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
+              </div>
+              <div class="card-body">
+                <div>
+                  <h5>Luxe Leren Sneakers</h5>
+                  <p class="product-price"><span class="original-price"> 150,00</span>  119,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Schoenen</span>
+                    <span class="badge bg-light text-dark">Leer</span>
+                    <span class="badge bg-light text-dark">Casual</span>
+                  </div>
+                </div>
+                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              </div>
+            </div>
+          </div>
+
           <div class="col">
             <div class="product-card" data-product-id="104">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Sport Schoen">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Sport Schoen">
               <div class="product-actions">
-                    <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                    <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                     <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                </div>
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
+              </div>
               <div class="card-body">
                 <div>
-                    <h5>Performance Sportschoen</h5>
-                    <p class="product-price">€99,95</p>
-                     <div class="product-tags">
-                        <span class="badge bg-light text-dark">Sport</span>
-                        <span class="badge bg-light text-dark">Ademend</span>
-                         <span class="badge bg-light text-dark">Synthetisch</span>
-                    </div>
+                  <h5>Performance Sportschoen</h5>
+                  <p class="product-price"> 99,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Sport</span>
+                    <span class="badge bg-light text-dark">Ademend</span>
+                    <span class="badge bg-light text-dark">Synthetisch</span>
+                  </div>
                 </div>
                 <button class="btn btn-main mt-auto w-100">Bekijken</button>
               </div>
             </div>
           </div>
+
           <div class="col">
-                <div class="product-card" data-product-id="orig1">
-                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Jas">
-                     <div class="product-actions">
-                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                        <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                         <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                    </div>
-                    <div class="card-body">
-                       <div>
-                            <h5>Stijlvolle Jas</h5>
-                            <p class="product-price">€79,95</p>
-                             <div class="product-tags">
-                                <span class="badge bg-light text-dark">Jas</span>
-                                <span class="badge bg-light text-dark">Casual Chic</span>
-                            </div>
-                       </div>
-                        <button class="btn btn-main mt-auto w-100">Bekijken</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="product-card" data-product-id="orig2">
-                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="T-shirt">
-                    <div class="product-actions">
-                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                        <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                         <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                    </div>
-                     <div class="card-body">
-                       <div>
-                            <h5>Casual T-shirt</h5>
-                            <p class="product-price">€24,95</p>
-                             <div class="product-tags">
-                                <span class="badge bg-light text-dark">T-shirt</span>
-                                <span class="badge bg-light text-dark">Basic</span>
-                                <span class="badge bg-light text-dark">Katoen</span>
-                            </div>
-                       </div>
-                        <button class="btn btn-main mt-auto w-100">Bekijken</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="product-card" data-product-id="orig3">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Broek">
-                    <div class="product-actions">
-                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                        <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                         <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                    </div>
-                     <div class="card-body">
-                       <div>
-                            <h5>Comfortabele Broek</h5>
-                            <p class="product-price">€49,95</p>
-                            <div class="product-tags">
-                                <span class="badge bg-light text-dark">Broek</span>
-                                <span class="badge bg-light text-dark">Comfort</span>
-                            </div>
-                       </div>
-                        <button class="btn btn-main mt-auto w-100">Bekijken</button>
-                    </div>
-                </div>
-            </div>
-             <div class="col">
-                <div class="product-card" data-product-id="108">
-                    <img src="https://images.unsplash.com/photo-1600804889194-e6fbf08ddb39?auto=format&fit=crop&w=400&h=533&q=80" class="card-img-top" alt="Polo Shirt">
-                    <div class="product-actions">
-                        <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
-                        <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
-                         <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
-                    </div>
-                     <div class="card-body">
-                       <div>
-                            <h5>Klassiek Polo Shirt</h5>
-                            <p class="product-price">€59,95</p>
-                             <div class="product-tags">
-                                <span class="badge bg-light text-dark">Polo</span>
-                                <span class="badge bg-light text-dark">Smart Casual</span>
-                            </div>
-                       </div>
-                        <button class="btn btn-main mt-auto w-100">Bekijken</button>
-                    </div>
-                </div>
-            </div>
-        </div> </div> </section>
- 
-     <section id="trends" class="py-5">
-        <div class="container">
-             <h2 class="text-center section-title">Spotlight op Trends</h2>
-             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <a href="#" class="trend-card d-block text-decoration-none">
-                         <img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?auto=format&fit=crop&w=600&q=80" alt="Trend: Duurzame Materialen">
-                        <div class="trend-overlay">
-                            <h5>Duurzame Materialen</h5>
-                            <p class="mb-0 small">Ontdek onze eco-bewuste selectie.</p>
-                        </div>
-                    </a>
-                </div>
-                 <div class="col-md-6 col-lg-4">
-                    <a href="#" class="trend-card d-block text-decoration-none">
-                         <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=600&q=80" alt="Trend: Modern Tailoring">
-                        <div class="trend-overlay">
-                            <h5>Modern Tailoring</h5>
-                             <p class="mb-0 small">Scherpe lijnen, nieuwe pasvormen.</p>
-                        </div>
-                    </a>
-                </div>
-                 <div class="col-lg-4 d-none d-lg-block"> <a href="#" class="trend-card d-block text-decoration-none">
-                         <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=600&q=80" alt="Trend: Statement Accessoires">
-                        <div class="trend-overlay">
-                            <h5>Statement Accessoires</h5>
-                             <p class="mb-0 small">Maak je look compleet.</p>
-                        </div>
-                    </a>
-                </div>
-             </div>
+            <div class="product-card" data-product-id="orig1">
+              <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Jas">
+              <div class="product-actions">
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
               </div>
-    </section>
- 
-    <section id="recommendations-Browse" class="py-5 section-bg">
-        <div class="container">
-             <h2 class="mb-4 text-center section-title">Gebaseerd op je Kijkgedrag</h2>
-             <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-                 <div class="col">
-                     <div class="product-card placeholder-glow" aria-hidden="true">
-                         <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#bdc3c7"></rect></svg>
-                         <div class="card-body text-center">
-                            <span class="placeholder col-8 d-block mx-auto"></span>
-                            <span class="placeholder col-4 d-block mx-auto mt-2"></span>
-                            <span class="placeholder col-6 d-block mx-auto mt-3"></span>
-                            <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
-                         </div>
-                    </div>
-                 </div>
-                 <div class="col">
-                     <div class="product-card placeholder-glow" aria-hidden="true">
-                         <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#bdc3c7"></rect></svg>
-                         <div class="card-body text-center">
-                            <span class="placeholder col-7 d-block mx-auto"></span>
-                            <span class="placeholder col-5 d-block mx-auto mt-2"></span>
-                            <span class="placeholder col-7 d-block mx-auto mt-3"></span>
-                            <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
-                         </div>
-                    </div>
-                 </div>
-                  <div class="col d-none d-md-block"> <div class="product-card placeholder-glow" aria-hidden="true">
-                         <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#bdc3c7"></rect></svg>
-                         <div class="card-body text-center">
-                            <span class="placeholder col-8 d-block mx-auto"></span>
-                            <span class="placeholder col-4 d-block mx-auto mt-2"></span>
-                            <span class="placeholder col-6 d-block mx-auto mt-3"></span>
-                            <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
-                         </div>
-                    </div>
-                 </div>
-                 <div class="col d-none d-lg-block"> <div class="product-card placeholder-glow" aria-hidden="true">
-                         <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#bdc3c7"></rect></svg>
-                         <div class="card-body text-center">
-                            <span class="placeholder col-7 d-block mx-auto"></span>
-                            <span class="placeholder col-5 d-block mx-auto mt-2"></span>
-                            <span class="placeholder col-5 d-block mx-auto mt-3"></span>
-                            <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
-                         </div>
-                    </div>
-                 </div>
-                 </div>
-        </div>
-    </section>
- 
-    <section id="outfit-suggestions" class="py-5">
-        <div class="container">
-            <h2 class="text-center section-title">Maak je Outfit Compleet</h2>
-             <div class="outfit-suggestion">
-                 <div class="row g-4 align-items-center">
-                     <div class="col-lg-4 text-center outfit-main-item">
-                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&h=533&q=80" class="img-fluid mb-3" alt="Hoofditem: Leren Jas">
-                         <h5>Premium Leren Jas</h5>
-                         <p class="product-price">€249,95</p>
-                     </div>
-                     <div class="col-lg-1 text-center d-none d-lg-block">
-                         <i class="bi bi-plus-lg display-4 text-muted"></i>
-                     </div>
-                     <div class="col-lg-7">
-                         <h4 class="mb-3">Voorgestelde Combinaties (AI):</h4>
-                         <div class="row g-3 row-cols-2 row-cols-md-3">
-                             <div class="col">
-                                <div class="product-card outfit-coordinates">
-                                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=300&h=300&q=80" class="card-img-top" alt="Suggestie 1">
-                                    <div class="card-body p-2 text-center">
-                                        <h6 class="small mb-1">Casual T-shirt</h6>
-                                        <p class="product-price small mb-1">€24,95</p>
-                                        <button class="btn btn-sm btn-outline-main w-100">Voeg toe</button>
-                                    </div>
-                                </div>
-                             </div>
-                             <div class="col">
-                               <div class="product-card outfit-coordinates">
-                                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&h=300&q=80" class="card-img-top" alt="Suggestie 2">
-                                    <div class="card-body p-2 text-center">
-                                        <h6 class="small mb-1">Comfortabele Broek</h6>
-                                        <p class="product-price small mb-1">€49,95</p>
-                                         <button class="btn btn-sm btn-outline-main w-100">Voeg toe</button>
-                                    </div>
-                                </div>
-                             </div>
-                             <div class="col">
-                               <div class="product-card outfit-coordinates">
-                                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=300&h=300&q=80" class="card-img-top" alt="Suggestie 3">
-                                    <div class="card-body p-2 text-center">
-                                        <h6 class="small mb-1">Luxe Sneakers</h6>
-                                        <p class="product-price small mb-1">€119,95</p>
-                                         <button class="btn btn-sm btn-outline-main w-100">Voeg toe</button>
-                                    </div>
-                                </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
+              <div class="card-body">
+                <div>
+                  <h5>Stijlvolle Jas</h5>
+                  <p class="product-price"> 79,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Jas</span>
+                    <span class="badge bg-light text-dark">Casual Chic</span>
+                  </div>
+                </div>
+                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              </div>
             </div>
-             </div>
-    </section>
- 
- 
-    <section id="about" class="py-5 section-bg">
-      <div class="container">
-         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow-lg" alt="Over BOLDYASE"> </div>
-            <div class="col-lg-6">
-                 <h2 class="mb-4 section-title text-start" style="margin-left: 0;">Over BOLDYASE</h2> <p class="lead">
-                    BOLDYASE definieert moderne luxe door duurzaamheid, innovatie en tijdloze stijl te combineren.
-                 </p>
-                 <p>
-                    Wij geloven in de kracht van kwaliteit, vakmanschap en ethische productie. Onze collecties worden met zorg ontworpen en samengesteld, gebruikmakend van hoogwaardige, duurzame materialen. We integreren technologie om uw winkelervaring te personaliseren en te verbeteren, van AI-gestuurde aanbevelingen tot een naadloze online beleving.
-                 </p>
-                 <p>
-                   Ontdek de wereld van BOLDYASE - waar mode en bewustzijn samenkomen.
-                 </p>
-                 <a href="#contact" class="btn btn-outline-main mt-3">Neem Contact Op</a>
+          </div>
+
+          <div class="col">
+            <div class="product-card" data-product-id="orig2">
+              <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="T-shirt">
+              <div class="product-actions">
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
+              </div>
+              <div class="card-body">
+                <div>
+                  <h5>Casual T-shirt</h5>
+                  <p class="product-price"> 24,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">T-shirt</span>
+                    <span class="badge bg-light text-dark">Basic</span>
+                    <span class="badge bg-light text-dark">Katoen</span>
+                  </div>
+                </div>
+                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              </div>
             </div>
+          </div>
+
+          <div class="col">
+            <div class="product-card" data-product-id="orig3">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Broek">
+              <div class="product-actions">
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
+              </div>
+              <div class="card-body">
+                <div>
+                  <h5>Comfortabele Broek</h5>
+                  <p class="product-price"> 49,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Broek</span>
+                    <span class="badge bg-light text-dark">Comfort</span>
+                  </div>
+                </div>
+                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="product-card" data-product-id="108">
+              <img src="https://images.unsplash.com/photo-1600804889194-e6fbf08ddb39?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="card-img-top" alt="Polo Shirt">
+              <div class="product-actions">
+                <button class="btn-secondary-action" title="Aan Wishlist toevoegen"><i class="bi bi-heart"></i></button>
+                <button class="btn-secondary-action" title="Vergelijkbare items (AI)"><i class="bi bi-search-heart"></i></button>
+                <button class="btn-secondary-action" title="Virtuele Paskamer (AI)"><i class="bi bi-magic"></i></button>
+              </div>
+              <div class="card-body">
+                <div>
+                  <h5>Klassiek Polo Shirt</h5>
+                  <p class="product-price"> 59,95</p>
+                  <div class="product-tags">
+                    <span class="badge bg-light text-dark">Polo</span>
+                    <span class="badge bg-light text-dark">Smart Casual</span>
+                  </div>
+                </div>
+                <button class="btn btn-main mt-auto w-100">Bekijken</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
- 
+
+    <section id="trends" class="py-5">
+      <div class="container">
+        <h2 class="text-center section-title">Spotlight op Trends</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <a href="#" class="trend-card d-block text-decoration-none">
+              <img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Trend: Duurzame Materialen">
+              <div class="trend-overlay">
+                <h5>Duurzame Materialen</h5>
+                <p class="mb-0 small">Ontdek onze eco-bewuste selectie.</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a href="#" class="trend-card d-block text-decoration-none">
+              <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Trend: Modern Tailoring">
+              <div class="trend-overlay">
+                <h5>Modern Tailoring</h5>
+                <p class="mb-0 small">Scherpe lijnen, nieuwe pasvormen.</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <a href="#" class="trend-card d-block text-decoration-none">
+              <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Trend: Statement Accessoires">
+              <div class="trend-overlay">
+                <h5>Statement Accessoires</h5>
+                <p class="mb-0 small">Maak je look compleet.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recommendations-Browse" class="py-5 section-bg">
+      <div class="container">
+        <h2 class="mb-4 text-center section-title">Gebaseerd op je Kijkgedrag</h2>
+        <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+          <div class="col">
+            <div class="product-card placeholder-glow" aria-hidden="true">
+              <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#bdc3c7"></rect>
+              </svg>
+              <div class="card-body text-center">
+                <span class="placeholder col-8 d-block mx-auto"></span>
+                <span class="placeholder col-4 d-block mx-auto mt-2"></span>
+                <span class="placeholder col-6 d-block mx-auto mt-3"></span>
+                <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="product-card placeholder-glow" aria-hidden="true">
+              <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#bdc3c7"></rect>
+              </svg>
+              <div class="card-body text-center">
+                <span class="placeholder col-7 d-block mx-auto"></span>
+                <span class="placeholder col-5 d-block mx-auto mt-2"></span>
+                <span class="placeholder col-7 d-block mx-auto mt-3"></span>
+                <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-none d-md-block">
+            <div class="product-card placeholder-glow" aria-hidden="true">
+              <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#bdc3c7"></rect>
+              </svg>
+              <div class="card-body text-center">
+                <span class="placeholder col-8 d-block mx-auto"></span>
+                <span class="placeholder col-4 d-block mx-auto mt-2"></span>
+                <span class="placeholder col-6 d-block mx-auto mt-3"></span>
+                <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-none d-lg-block">
+            <div class="product-card placeholder-glow" aria-hidden="true">
+              <svg class="bd-placeholder-img card-img-top" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#bdc3c7"></rect>
+              </svg>
+              <div class="card-body text-center">
+                <span class="placeholder col-7 d-block mx-auto"></span>
+                <span class="placeholder col-5 d-block mx-auto mt-2"></span>
+                <span class="placeholder col-5 d-block mx-auto mt-3"></span>
+                <button class="btn btn-main disabled placeholder col-10 mt-3"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="outfit-suggestions" class="py-5">
+      <div class="container">
+        <h2 class="text-center section-title">Maak je Outfit Compleet</h2>
+        <div class="outfit-suggestion">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-4 text-center outfit-main-item">
+              <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&amp;fit=crop&amp;w=400&amp;h=533&amp;q=80" class="img-fluid mb-3" alt="Hoofditem: Leren Jas">
+              <h5>Premium Leren Jas</h5>
+              <p class="product-price"> 249,95</p>
+            </div>
+            <div class="col-lg-1 text-center d-none d-lg-block">
+              <i class="bi bi-plus-lg display-4 text-muted"></i>
+            </div>
+            <div class="col-lg-7">
+              <h4 class="mb-3">Voorgestelde Combinaties (AI):</h4>
+              <div class="row g-3 row-cols-2 row-cols-md-3">
+                <div class="col">
+                  <div class="product-card outfit-coordinates">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&amp;fit=crop&amp;w=300&amp;h=300&amp;q=80" class="card-img-top" alt="Suggestie 1">
+                    <div class="card-body p-2 text-center">
+                      <h6 class="small mb-1">Casual T-shirt</h6>
+                      <p class="product-price small mb-1"> 24,95</p>
+                      <button class="btn btn-sm btn-outline-main w-100">Voeg toe</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="product-card outfit-coordinates">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=300&amp;h=300&amp;q=80" class="card-img-top" alt="Suggestie 2">
+                    <div class="card-body p-2 text-center">
+                      <h6 class="small mb-1">Comfortabele Broek</h6>
+                      <p class="product-price small mb-1"> 49,95</p>
+                      <button class="btn btn-sm btn-outline-main w-100">Voeg toe</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="product-card outfit-coordinates">
+                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&amp;fit=crop&amp;w=300&amp;h=300&amp;q=80" class="card-img-top" alt="Suggestie 3">
+                    <div class="card-body p-2 text-center">
+                      <h6 class="small mb-1">Luxe Sneakers</h6>
+                      <p class="product-price small mb-1"> 119,95</p>
+                      <button class="btn btn-sm btn-outline-main w-100">Voeg toe</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-5 section-bg">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" class="img-fluid rounded shadow-lg" alt="Over BOLDYASE">
+          </div>
+          <div class="col-lg-6">
+            <h2 class="mb-4 section-title text-start" style="margin-left: 0;">Over BOLDYASE</h2>
+            <p class="lead">BOLDYASE definieert moderne luxe door duurzaamheid, innovatie en tijdloze stijl te combineren.</p>
+            <p>Wij geloven in de kracht van kwaliteit, vakmanschap en ethische productie. Onze collecties worden met zorg ontworpen en samengesteld, gebruikmakend van hoogwaardige, duurzame materialen. We integreren technologie om uw winkelervaring te personaliseren en te verbeteren, van AI-gestuurde aanbevelingen tot een naadloze online beleving.</p>
+            <p>Ontdek de wereld van BOLDYASE - waar mode en bewustzijn samenkomen.</p>
+            <a href="#contact" class="btn btn-outline-main mt-3">Neem Contact Op</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="py-5">
       <div class="container">
         <h2 class="mb-4 text-center section-title">Blijf Verbonden</h2>
-         <div class="row justify-content-center">
-            <div class="col-lg-7">
-                 <p class="text-center mb-5 lead" style="font-weight: 300;">Vragen of samenwerken? We horen graag van u.</p>
-                <form id="contactForm">
-                    <div class="row g-3">
-                        <div class="col-md-6 mb-3">
-                            <label for="contactName" class="form-label">Naam</label>
-                            <input type="text" class="form-control" id="contactName" placeholder="Uw naam" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="contactEmail" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="contactEmail" placeholder="Uw e-mailadres" required>
-                        </div>
-                        <div class="col-12 mb-3">
-                             <label for="contactSubject" class="form-label">Onderwerp</label>
-                            <input type="text" class="form-control" id="contactSubject" placeholder="Onderwerp van uw bericht">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="contactMessage" class="form-label">Bericht</label>
-                            <textarea class="form-control" id="contactMessage" rows="6" placeholder="Uw bericht..." required></textarea>
-                        </div>
-                        <div class="col-12 text-center">
-                             <button type="submit" class="btn btn-main btn-lg px-5">Verstuur</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <p class="text-center mb-5 lead" style="font-weight: 300;">Vragen of samenwerken? We horen graag van u.</p>
+            <form id="contactForm">
+              <div class="row g-3">
+                <div class="col-md-6 mb-3">
+                  <label for="contactName" class="form-label">Naam</label>
+                  <input type="text" class="form-control" id="contactName" placeholder="Uw naam" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="contactEmail" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="contactEmail" placeholder="Uw e-mailadres" required>
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="contactSubject" class="form-label">Onderwerp</label>
+                  <input type="text" class="form-control" id="contactSubject" placeholder="Onderwerp van uw bericht">
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="contactMessage" class="form-label">Bericht</label>
+                  <textarea class="form-control" id="contactMessage" rows="6" placeholder="Uw bericht..." required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-main btn-lg px-5">Verstuur</button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
- 
   </main>
- 
+
   <footer class="footer">
     <div class="container">
-        <div class="row g-5"> <div class="col-lg-4 col-md-6">
-                 <h5 class="text-uppercase">BOLDYASE</h5>
-                 <p>Moderne luxe, duurzaam design. <br> AI-powered shopping experience.</p>
-                 <div class="social-icons mt-4">
-                     <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
-                     <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
-                     <a href="#" title="Pinterest"><i class="bi bi-pinterest"></i></a>
-                     <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a> </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                 <h5 class="text-uppercase">Service</h5>
-                 <ul class="list-unstyled">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Levering</a></li>
-                    <li><a href="#">Retourneren</a></li>
-                    <li><a href="#">Maattabel</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#">Mijn Account</a></li>
-                 </ul>
-            </div>
-             <div class="col-lg-2 col-md-6 col-sm-6">
-                  <h5 class="text-uppercase">Info</h5>
-                 <ul class="list-unstyled">
-                    <li><a href="#about">Over Ons</a></li>
-                    <li><a href="#">Duurzaamheid</a></li>
-                    <li><a href="#">Vacatures</a></li>
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Voorwaarden</a></li>
-                     <li><a href="#">Sitemap</a></li>
-                 </ul>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <h5 class="text-uppercase">Nieuwsbrief</h5>
-                <p>Ontvang exclusieve updates, trend alerts en persoonlijke aanbiedingen direct in je inbox.</p>
-                <form id="newsletterForm" class="d-flex mt-3">
-                    <input type="email" class="form-control me-2 flex-grow-1" placeholder="E-mailadres" required>
-                    <button type="submit" class="btn btn-outline-light flex-shrink-0">Aanmelden</button>
-                </form>
-            </div>
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <h5 class="text-uppercase">BOLDYASE</h5>
+          <p>Moderne luxe, duurzaam design. <br> AI-powered shopping experience.</p>
+          <div class="social-icons mt-4">
+            <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" title="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h5 class="text-uppercase">Service</h5>
+          <ul class="list-unstyled">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Levering</a></li>
+            <li><a href="#">Retourneren</a></li>
+            <li><a href="#">Maattabel</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Mijn Account</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <h5 class="text-uppercase">Info</h5>
+          <ul class="list-unstyled">
+            <li><a href="#about">Over Ons</a></li>
+            <li><a href="#">Duurzaamheid</a></li>
+            <li><a href="#">Vacatures</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Voorwaarden</a></li>
+            <li><a href="#">Sitemap</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5 class="text-uppercase">Nieuwsbrief</h5>
+          <p>Ontvang exclusieve updates, trend alerts en persoonlijke aanbiedingen direct in je inbox.</p>
+          <form id="newsletterForm" class="d-flex mt-3">
+            <input type="email" class="form-control me-2 flex-grow-1" placeholder="E-mailadres" required>
+            <button type="submit" class="btn btn-outline-light flex-shrink-0">Aanmelden</button>
+          </form>
+        </div>
+      </div>
+
       <div class="bottom-text">
-          <p>&copy; <span id="currentYear">2025</span> BOLDYASE. Alle rechten voorbehouden.</p>
+        <p>&copy; <span id="currentYear">2025</span> BOLDYASE. Alle rechten voorbehouden.</p>
       </div>
     </div>
   </footer>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
- 
   <script>
     // Update jaar in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
- 
+
     // Voorbeeld: Tooltips activeren (optioneel)
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl)
     })
- 
+
     // Comment: Hier komt de JS voor filters, sortering, wishlist, cart,
     // API calls naar backend voor AI features (aanbevelingen, visual search etc.)
     // en eventuele carousel initialisatie (bv. Swiper.js).
   </script>
- 
 </body>
+
 </html>
