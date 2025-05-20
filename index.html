@@ -1,416 +1,82 @@
-r<!DOCTYPE html>
-<html lang="nl">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ontdek de nieuwste luxe mode en trends bij BOLDYASE. Geavanceerde aanbevelingen, duurzame keuzes en een exclusieve shopervaring.">
-  <meta name="keywords" content="kleding, mode, webshop, BOLDYASE, luxe, trends, AI recommendations, duurzaam, high fashion">
-  <title>BOLDYASE | Luxe Mode &amp; AI-Powered Shopping</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <style>
-    :root {
-      --primary-color: #1a1a1a;
-      --secondary-color: #f8f9fa;
-      --accent-color: #c5a47e;
-      --text-color: #333;
-      --light-text: #6c757d;
-      --font-body: 'Montserrat', sans-serif;
-      --font-heading: 'Playfair Display', serif;
-      --subtle-bg: #fdfdfd url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f0f0f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    body {
-      font-family: var(--font-body);
-      background-color: var(--subtle-bg);
-      color: var(--text-color);
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    .navbar-brand,
-    .section-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      color: var(--primary-color);
-    }
-
-    p,
-    li,
-    label,
-    input,
-    textarea,
-    .btn {
-      font-weight: 400;
-    }
-
-    .navbar {
-      background-color: rgba(255, 255, 255, 0.95) !important;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-    }
-
-    .navbar-brand {
-      font-size: 2rem;
-    }
-
-    .nav-link {
-      color: var(--text-color) !important;
-      margin: 0 0.8rem;
-      transition: color 0.3s ease;
-      font-weight: 400;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-      color: var(--accent-color) !important;
-    }
-
-    .navbar-icons .nav-link,
-    .navbar-icons .btn {
-      font-size: 1.3rem;
-      color: var(--primary-color) !important;
-    }
-
-    .cart-count {
-      background-color: var(--accent-color);
-      color: white;
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 50%;
-      position: relative;
-      top: -10px;
-      left: -5px;
-      font-weight: 700;
-    }
-
-    .btn-visual-search {
-      background: transparent;
-      border: none;
-      padding: 0.375rem 0.75rem;
-    }
-
-    .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      color: #fff;
-      padding: 150px 0;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .btn {
-      border-radius: 50px;
-      padding: 10px 25px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-main {
-      background-color: var(--primary-color);
-      color: #fff;
-      border: 2px solid var(--primary-color);
-    }
-
-    .btn-main:hover {
-      background-color: #fff;
-      color: var(--primary-color);
-    }
-
-    .btn-outline-main {
-      background-color: transparent;
-      color: var(--primary-color);
-      border: 2px solid var(--primary-color);
-    }
-
-    .btn-outline-main:hover {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-
-    .btn-secondary-action {
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      color: var(--light-text);
-      border-radius: 50%;
-      padding: 8px;
-      font-size: 1rem;
-      line-height: 1;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .btn-secondary-action:hover {
-      color: var(--accent-color);
-      background: white;
-    }
-
-    .btn-secondary-action.active {
-      color: var(--accent-color);
-    }
-
-    .section-bg {
-      background-color: var(--secondary-color);
-    }
-
-    .section-title {
-      margin-bottom: 4rem;
-      font-size: 2.8rem;
-      position: relative;
-      display: inline-block;
-      padding-bottom: 10px;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--accent-color);
-      margin: 10px auto 0;
-    }
-
-    .text-center .section-title::after {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .product-card {
-      border: none;
-      border-radius: 8px;
-      background: #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .product-card .card-img-top {
-      border-radius: 8px 8px 0 0;
-      transition: transform 0.3s ease;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      width: 100%;
-    }
-
-    .product-card:hover .card-img-top {
-      transform: scale(1.03);
-    }
-
-    .product-card .card-body {
-      padding: 1rem 1.2rem;
-      text-align: center;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .product-card h5 {
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--primary-color);
-    }
-
-    .product-price {
-      color: var(--primary-color);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-
-    .product-price .original-price {
-      text-decoration: line-through;
-      color: var(--light-text);
-      font-weight: 400;
-      margin-right: 0.5rem;
-      font-size: 0.9em;
-    }
-
-    .product-actions {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      z-index: 10;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .product-card:hover .product-actions {
-      opacity: 1;
-    }
-
-    .product-tags {
-      margin-top: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .product-tags .badge {
-      font-size: 0.7rem;
-      font-weight: 500;
-      margin: 2px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .product-tags .badge:hover {
-      background-color: var(--accent-color) !important;
-      color: white !important;
-    }
-
-    .category-card img {
-      display: block;
-      width: 100%;
-      transition: transform 0.4s ease;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-    }
-
-    .trend-card {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-      position: relative;
-    }
-
-    .trend-card img {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .trend-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .trend-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-      padding: 30px 20px 20px;
-      color: #fff;
-    }
-
-    .trend-overlay h5 {
-      font-family: var(--font-heading);
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-      color: #fff;
-    }
-
-    .outfit-suggestion {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    .outfit-main-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    .outfit-coordinates .product-card {
-      box-shadow: none;
-      border: 1px solid #eee;
-      height: auto;
-    }
-
-    .outfit-coordinates .product-card .card-img-top {
-      aspect-ratio: 1 / 1;
-    }
-
-    .footer {
-      background: var(--primary-color);
-      color: rgba(255, 255, 255, 0.7);
-      padding: 60px 0 30px;
-      margin-top: 6rem;
-    }
-
-    .footer h5 {
-      color: #fff;
-      margin-bottom: 1.5rem;
-      font-family: var(--font-heading);
-      text-transform: uppercase;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
-    }
-
-    .footer .bottom-text {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 30px;
-      margin-top: 40px;
-      font-size: 0.9rem;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-    .form-control {
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      padding: 12px 15px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-control:focus {
-      border-color: var(--accent-color);
-      box-shadow: 0 0 0 0.2rem rgba(197, 164, 126, 0.25);
-    }
-
-    .placeholder-glow .placeholder {
-      background-color: #e0e0e0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLDYASE - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+        .slogan {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .coming-soon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+        .image-container {
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            .slogan {
+                font-size: 1.2rem;
+            }
+            .coming-soon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <img src="result (11).jpeg" alt="BOLDYASE Logo">
-  <h1>BOLDYASE</h1>
-  <p>A new brand is on its way. Stay tuned for more updates!</p>
-  <a href="mailto:info@boldyase.com" class="btn">CONTACT</a>
+    <div class="container">
+        <h1>BOLDYASE</h1>
+        <p class="slogan">Unleash Your Bold. Embrace Your Unique.</p>
+        <p class="coming-soon">Launching Online Soon</p>
+        <p>Get ready to experience fashion that defies expectations and celebrates individuality.</p>
+        <div class="image-container">
+            <img src="https://source.unsplash.com/random/800x400?fashion" alt="Bold Fashion Preview">
+        </div>
+    </div>
 </body>
-
 </html>
