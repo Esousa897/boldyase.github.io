@@ -12,34 +12,49 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            background-image: 
+                linear-gradient(135deg, #A67B5B 0%, #EFE6DC 100%), /* Diagonal split */
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.1),
+                    rgba(255, 255, 255, 0.1) 1px,
+                    transparent 1px,
+                    transparent 40px
+                ); /* Horizontal lines */
+            background-blend-mode: overlay;
         }
         .container {
             text-align: center;
             padding: 20px;
             max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 5px;
+            color: #4A2C18;
         }
         .slogan {
             font-size: 1.5rem;
             margin-bottom: 30px;
             font-style: italic;
+            color: #5C3D26;
         }
         .coming-soon {
             font-size: 2rem;
             margin-bottom: 20px;
-            color: #ff6b6b;
+            color: #8B4513;
         }
         .image-container {
             margin-top: 40px;
