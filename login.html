@@ -1,16 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
-  <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Onderhoud | BOLDYASE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow"> <!-- Vertelt zoekmachines deze pagina niet te indexeren -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Gebruik hetzelfde lettertype als je site */
+            background-color: #F3F4F6; /* Of je site's achtergrondkleur */
+            color: #1F2937; /* Je site's tekstkleur */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .maintenance-box {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+        .maintenance-box h1 {
+            font-size: 2rem;
+            color: #4F46E5; /* Je primaire kleur */
+            margin-bottom: 1rem;
+        }
+        .maintenance-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-  <h2>Login</h2>
-  <form method="POST" action="/login">
-    <label>Gebruikersnaam:</label>
-    <input type="text" name="username" required /><br />
-    <label>Wachtwoord:</label>
-    <input type="password" name="password" required /><br />
-    <button type="submit">Inloggen</button>
-  </form>
+    <div class="maintenance-box">
+        <h1>🛠️ We zijn even bezig met iets moois!</h1>
+        <p>BOLDYASE.COM is momenteel in onderhoud om je binnenkort een nog betere ervaring te bieden. Kom snel terug!</p>
+        <p>Bedankt voor je geduld.</p>
+    </div>
 </body>
 </html>
