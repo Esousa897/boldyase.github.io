@@ -1,3 +1,27 @@
+<?php
+class PremiumCTAGenerator {
+    public $primaryCTAs = [
+        'add_to_cart' => ['Add to Cart', 'Shop Now', 'Quick Buy'],
+        'ab_variants' => ['Add to Bag', 'Shop Now', 'Buy Now']
+    ];
+    
+    public $secondaryCTAs = ['Add to Wishlist', 'Size Guide', 'Notify When Available'];
+    
+    public $hoverCTAs = ['Quick View', 'See Details'];
+    
+    public function generateCTA($type = 'primary', $variant = 0, $product = []) {
+        $ctaText = ($type === 'primary') ? 
+            $this->primaryCTAs['add_to_cart'][$variant % count($this->primaryCTAs['add_to_cart'])] : 
+            $this->secondaryCTAs[$variant % count($this->secondaryCTAs)];
+            
+        $btnClass = $variant % 2 === 0 ? 'cta-filled' : 'cta-outline';
+        
+        $price = isset($product['price']) ? ' €' . number_format($product['price'], 2) . '' : '';
+        
+        return "<button class=\"cta-btn $btnClass\" data-ab-variant=\"$variant\" tabindex=\"0\">$ctaText$price</button>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -416,6 +440,43 @@
     }
     @media (max-width: 575px) {
       .footer .row > div { margin-bottom: 2rem; }
+    }
+
+    /* PremiumCTAGenerator Button Styles */
+    .cta-btn {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;
+      border-radius: var(--radius);
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-btn.cta-filled {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+    .cta-btn.cta-filled:hover, .cta-btn.cta-filled:focus {
+      background: var(--accent);
+      color: var(--primary);
+      border-color: var(--accent);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 4px 16px rgba(247, 200, 115, 0.3);
+    }
+    .cta-btn.cta-outline {
+      background: transparent;
+      color: var(--secondary);
+      border-color: var(--secondary);
+    }
+    .cta-btn.cta-outline:hover, .cta-btn.cta-outline:focus {
+      background: var(--secondary);
+      color: #fff;
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 3px 12px rgba(135, 99, 255, 0.2);
     }
   </style>
 </head>
