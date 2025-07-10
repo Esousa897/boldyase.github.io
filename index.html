@@ -1,3 +1,80 @@
+<?php
+class CTATestingEngine {
+    private $buttonVariants;
+    private $styles;
+    private $animations;
+    
+    public function __construct() {
+        // Initialize button variants for A/B testing
+        $this->buttonVariants = [
+            'primary',
+            'secondary', 
+            'accent',
+            'outline'
+        ];
+        
+        // Initialize different styles for CTAs
+        $this->styles = [
+            'default',
+            'rounded',
+            'square',
+            'gradient',
+            'shadow'
+        ];
+        
+        // Initialize different animations for CTAs
+        $this->animations = [
+            'none',
+            'pulse',
+            'bounce',
+            'fade',
+            'slide'
+        ];
+    }
+    
+    /**
+     * Get CTA configuration based on user ID for consistent A/B testing
+     * @param int $userId User identifier for consistent variant assignment
+     * @return array Configuration array with variant, style, and animation
+     */
+    public function getCTAConfig($userId) {
+        return [
+            'variant' => $this->buttonVariants[$userId % count($this->buttonVariants)],
+            'style' => $this->styles[$userId % count($this->styles)],
+            'animation' => $this->animations[$userId % count($this->animations)]
+        ];
+    }
+    
+    /**
+     * Get available button variants
+     * @return array List of available button variants
+     */
+    public function getButtonVariants() {
+        return $this->buttonVariants;
+    }
+    
+    /**
+     * Get available styles
+     * @return array List of available styles
+     */
+    public function getStyles() {
+        return $this->styles;
+    }
+    
+    /**
+     * Get available animations
+     * @return array List of available animations
+     */
+    public function getAnimations() {
+        return $this->animations;
+    }
+}
+
+// Example usage - can be used in any part of the HTML where dynamic CTA is needed
+$ctaEngine = new CTATestingEngine();
+$userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 1; // Default to 1 if no session
+$ctaConfig = $ctaEngine->getCTAConfig($userId);
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -476,6 +553,9 @@
     <h1>Welcome, Bold One</h1>
     <p class="subheadline">BOLDYASE Collection Almost Here</p>
     <p class="intro-text">Hello, Bold One. De BOLDYASE collectie is bijna hier.<br>Zie je iets moois? Laat het ons weten – we luisteren.</p>
+    <!-- Dynamic CTA using CTATestingEngine class - Example usage:
+         class="button big-button cta-<?php echo $ctaConfig['variant']; ?> cta-style-<?php echo $ctaConfig['style']; ?> cta-anim-<?php echo $ctaConfig['animation']; ?>"
+    -->
     <a href="#contact" class="button big-button">Get in Touch</a>
   </div>
 </section>
