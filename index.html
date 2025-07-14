@@ -1,986 +1,229 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>BOLDYASE | Luxe Mode & AI Shopping</title>
-  <meta name="description" content="Luxe mode, trends, AI-advies & personalisatie.">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* Luxury Color Palette */
-      --primary: #000000;
-      --secondary: #ffffff;
-      --accent-gold: #d4af37;
-      --accent-hover: #f7c873;
-      --bg-light: #fafafa;
-      --surface: #fff;
-      --text-muted: #666;
-      
-      /* Luxury Styling Variables */
-      --radius: 20px;
-      --shadow: 0 4px 36px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 8px 48px rgba(0, 0, 0, 0.12);
-      --transition: all 0.3s cubic-bezier(.39,.53,.33,1);
-      
-      /* Grid System */
-      --grid-gap: 24px;
-      --container-max: 1320px;
-    }
-    
-    /* Custom Font for Luxury Feel */
-    @font-face {
-      font-family: 'LuxuryFont';
-      src: local('Playfair Display'), local('Didot'), local('Georgia');
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: var(--bg-light);
-      color: var(--primary);
-      min-height: 100vh;
-      letter-spacing: 0.01em;
-      margin: 0;
-      padding: 0;
-    }
-    
-    /* Fluid Responsive Grid System */
-    .luxury-grid {
-      display: grid;
-      gap: var(--grid-gap);
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      transition: var(--transition);
-    }
-    
-    @media (min-width: 768px) {
-      .luxury-grid-2 { grid-template-columns: repeat(2, 1fr); }
-      .luxury-grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .luxury-grid-4 { grid-template-columns: repeat(4, 1fr); }
-    }
-    
-    h1, h2, h3, h4, .section-title {
-      font-family: 'LuxuryFont', 'Playfair Display', serif;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    
-    .section-title { 
-      font-size: 2.5rem; 
-      letter-spacing: -1px; 
-      margin-bottom: 3rem; 
-      text-align: center;
-    }
-    
-    /* Luxury Navbar with Black/White Theme */
-    .navbar {
-      background: var(--primary) !important;
-      box-shadow: 0 2px 24px rgba(0, 0, 0, 0.15);
-      font-family: 'Montserrat', Arial, sans-serif;
-      transition: var(--transition);
-      padding: 1rem 0;
-    }
-    
-    .navbar-brand {
-      font-family: 'LuxuryFont', serif;
-      font-size: 1.8rem;
-      color: var(--accent-gold) !important;
-      font-weight: 700;
-      letter-spacing: 3px;
-      transition: var(--transition);
-    }
-    
-    .navbar-brand:hover {
-      transform: scale(1.05);
-      color: var(--accent-hover) !important;
-    }
-    
-    .navbar-nav .nav-link {
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 0.7rem 1.2rem;
-      border-radius: var(--radius);
-      transition: var(--transition);
-      color: var(--secondary) !important;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Animated Hover States */
-    @keyframes bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    
-    .navbar-nav .nav-link:hover, 
-    .navbar-nav .nav-link:focus {
-      background: var(--secondary);
-      color: var(--primary) !important;
-      animation: bob 0.5s ease-in-out;
-      outline: none;
-    }
-    
-    .navbar-nav .nav-link.active {
-      background: var(--accent-gold);
-      color: var(--primary) !important;
-    }
-    
-    /* Luxury CTA Button Styling */
-    .btn-cta {
-      background: var(--primary);
-      color: var(--secondary);
-      font-weight: 700;
-      border: 2px solid var(--primary);
-      border-radius: var(--radius);
-      padding: 0.8rem 2.5rem;
-      font-size: 1.1rem;
-      transition: var(--transition);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      position: relative;
-      overflow: hidden;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .btn-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--accent-gold);
-      transition: left 0.3s ease;
-      z-index: -1;
-    }
-    
-    .btn-cta:hover::before {
-      left: 0;
-    }
-    
-    .btn-cta:hover, 
-    .btn-cta:focus {
-      background: var(--accent-gold);
-      border-color: var(--accent-gold);
-      color: var(--primary);
-      transform: scale(1.05);
-      box-shadow: 0 6px 30px rgba(212, 175, 55, 0.3);
-    }
-    
-    /* A/B Testing CTA Variants */
-    .btn-cta-variant-a {
-      background: var(--accent-gold);
-      color: var(--primary);
-      border-color: var(--accent-gold);
-    }
-    
-    .btn-cta-variant-a:hover {
-      background: var(--primary);
-      color: var(--accent-gold);
-      border-color: var(--primary);
-    }
-    
-    /* Sticky CTA Bar */
-    .sticky-cta-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--primary);
-      padding: 1rem;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-    
-    .sticky-cta-bar.show {
-      transform: translateY(0);
-    }
-    
-    .sticky-cta-bar .cta-text {
-      color: var(--secondary);
-      font-weight: 600;
-      margin: 0;
-    }
-    
-    /* Mobile Floating Action Button */
-    .fab-container {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      z-index: 999;
-    }
-    
-    .fab {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: var(--accent-gold);
-      color: var(--primary);
-      border: none;
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    
-    .fab:hover {
-      transform: scale(1.1) rotate(360deg);
-      background: var(--primary);
-      color: var(--accent-gold);
-    }
-    
-    /* Hero Section with Luxury Feel */
-    .hero {
-      position: relative;
-      min-height: 80vh;
-      background: url('https://source.unsplash.com/1920x1080/?luxury,fashion') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--secondary);
-      text-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
-    }
-    
-    .hero-overlay {
-      position: absolute; 
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
-      z-index: 1;
-    }
-    
-    .hero-content {
-      z-index: 2; 
-      position: relative;
-      text-align: center;
-      padding: 120px 20px 80px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .hero h1 { 
-      font-size: 3.5rem; 
-      margin-bottom: 1rem;
-      font-family: 'LuxuryFont', serif;
-      letter-spacing: 2px;
-    }
-    
-    .hero .lead { 
-      font-size: 1.3rem; 
-      margin-bottom: 2rem; 
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 300;
-    }
-    
-    /* Luxury Cards with Gold Accents */
-    .luxury-card {
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      background: var(--surface);
-      transition: var(--transition);
-      overflow: hidden;
-      position: relative;
-      border: 1px solid rgba(212, 175, 55, 0.1);
-    }
-    
-    .luxury-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--accent-hover));
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-    
-    .luxury-card:hover::before {
-      transform: scaleX(1);
-    }
-    
-    .luxury-card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-5px);
-    }
-    
-    .luxury-card img {
-      width: 100%; 
-      aspect-ratio: 1/1; 
-      object-fit: cover;
-      transition: var(--transition);
-    }
-    
-    .luxury-card:hover img {
-      transform: scale(1.08);
-      filter: brightness(1.1) contrast(1.05);
-    }
-    
-    /* Context-Aware CTA */
-    .cta-context {
-      padding: 0.6rem 1.8rem;
-      font-size: 1rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: var(--transition);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    .cta-in-stock {
-      background: var(--primary);
-      color: var(--secondary);
-      border: 2px solid var(--primary);
-    }
-    
-    .cta-low-stock {
-      background: var(--accent-gold);
-      color: var(--primary);
-      border: 2px solid var(--accent-gold);
-      animation: pulse 2s infinite;
-    }
-    
-    .cta-out-of-stock {
-      background: var(--text-muted);
-      color: var(--secondary);
-      border: 2px solid var(--text-muted);
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-    
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-    }
-    
-    /* Accessibility Features */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-    
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--primary);
-      color: var(--secondary);
-      padding: 8px;
-      text-decoration: none;
-      border-radius: var(--radius);
-      z-index: 100;
-    }
-    
-    .skip-link:focus {
-      top: 10px;
-    }
-    
-    /* Focus Styles for Keyboard Navigation */
-    *:focus {
-      outline: 3px solid var(--accent-gold);
-      outline-offset: 2px;
-    }
-    
-    /* Product Cards with Stock Status */
-    .product-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      display: flex; 
-      flex-direction: column; 
-      height: 100%; 
-      overflow: hidden;
-      position: relative;
-    }
-    
-    .product-card:hover { 
-      box-shadow: var(--shadow-hover); 
-      transform: scale(1.02); 
-    }
-    
-    .product-card img { 
-      width: 100%; 
-      object-fit: cover; 
-      min-height: 300px; 
-    }
-    
-    .product-card .card-body { 
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .product-card h5 { 
-      font-size: 1.2rem; 
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    
-    .product-card .product-price { 
-      color: var(--accent-gold); 
-      font-weight: 600;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-    
-    .stock-indicator {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 0.3rem 0.8rem;
-      border-radius: var(--radius);
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-    
-    .stock-in {
-      background: rgba(0, 255, 0, 0.9);
-      color: var(--primary);
-    }
-    
-    .stock-low {
-      background: rgba(255, 193, 7, 0.9);
-      color: var(--primary);
-    }
-    
-    .stock-out {
-      background: rgba(255, 0, 0, 0.9);
-      color: var(--secondary);
-    }
-    
-    /* AI Widget with Luxury Styling */
-    .ai-widget {
-      background: linear-gradient(135deg, var(--primary), #1a1a1a);
-      border: 2px solid var(--accent-gold);
-      border-radius: var(--radius);
-      padding: 2rem;
-      text-align: center;
-      color: var(--secondary);
-      font-size: 1.1rem;
-      margin: 2rem 0;
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .ai-widget::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-      animation: rotate 10s linear infinite;
-    }
-    
-    @keyframes rotate {
-      100% { transform: rotate(360deg); }
-    }
-    
-    .ai-widget-content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Footer with Luxury Theme */
-    .footer {
-      background: var(--primary);
-      color: var(--secondary);
-      padding: 4rem 0 2rem 0;
-      font-size: 1rem;
-      border-top: 1px solid var(--accent-gold);
-    }
-    
-    .footer a { 
-      color: var(--secondary); 
-      opacity: 0.8; 
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    
-    .footer a:hover { 
-      opacity: 1; 
-      color: var(--accent-gold);
-    }
-    
-    .footer .social-icons a {
-      display: inline-block; 
-      margin-right: 20px; 
-      font-size: 1.5rem;
-      color: var(--secondary); 
-      transition: var(--transition);
-    }
-    
-    .footer .social-icons a:hover { 
-      color: var(--accent-gold);
-      transform: translateY(-3px);
-    }
-    
-    .footer .bottom-text { 
-      margin-top: 3rem; 
-      font-size: 0.9rem; 
-      color: rgba(255, 255, 255, 0.6);
-      text-align: center;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      padding-top: 2rem;
-    }
-    
-    /* Mobile Optimizations */
-    @media (max-width: 767px) {
-      .hero h1 { font-size: 2rem; }
-      .section-title { font-size: 1.8rem; }
-      .sticky-cta-bar { 
-        flex-direction: column; 
-        gap: 0.5rem;
-        padding: 0.8rem;
-      }
-      .luxury-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .navbar-brand { font-size: 1.4rem; }
-      .fab-container { bottom: 100px; }
-    }
-    
-    /* Large Touch Targets for Mobile */
-    @media (hover: none) {
-      .btn-cta,
-      .cta-context,
-      .fab {
-        min-height: 48px;
-        min-width: 48px;
-      }
-    }
-    
-    /* Newsletter with Luxury Styling */
-    .newsletter-form {
-      display: flex;
-      gap: 1rem;
-      max-width: 400px;
-      margin-top: 1rem;
-    }
-    
-    .newsletter-form input {
-      flex: 1;
-      padding: 0.8rem 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--secondary);
-      border-radius: var(--radius);
-      transition: var(--transition);
-    }
-    
-    .newsletter-form input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-    
-    .newsletter-form input:focus {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: var(--accent-gold);
-    }
-    
-    .newsletter-form button {
-      padding: 0.8rem 1.5rem;
-      background: var(--accent-gold);
-      color: var(--primary);
-      border: none;
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: var(--transition);
-      white-space: nowrap;
-    }
-    
-    .newsletter-form button:hover {
-      background: var(--accent-hover);
-      transform: scale(1.05);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLDYASE - Luxe Webshop</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        /* Algemene stijlen */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        header nav a {
+            margin-left: 20px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        header nav a:hover {
+            color: #000;
+        }
+
+        /* Hero Sectie */
+        .hero {
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card .info {
+            padding: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .product-card .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer .social-links a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        footer .social-links a:hover {
+            color: #ccc;
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Skip to main content link for accessibility -->
-<a href="#main" class="skip-link">Skip naar hoofdinhoud</a>
+    <!-- Header -->
+    <header>
+        <div class="logo">BOLDYASE</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Over Ons</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation" aria-label="Hoofdmenu">
-  <div class="container">
-    <a class="navbar-brand" href="#" aria-label="BOLDYASE home">BOLDYASE</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu openen">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link active" href="#" aria-current="page">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#categories">Categorieën</a></li>
-        <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
-        <li class="nav-item"><a class="nav-link" href="#trends">Trends</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-      <div class="d-flex align-items-center navbar-icons">
-        <form class="d-flex me-3" role="search">
-          <label for="search" class="sr-only">Zoeken</label>
-          <input class="form-control form-control-sm me-2" type="search" id="search" placeholder="Zoeken..." aria-label="Zoeken">
-          <button class="btn btn-outline-light btn-sm" type="submit" aria-label="Zoek"><i class="bi bi-search"></i></button>
-        </form>
-        <a class="nav-link me-2" href="#" aria-label="Account"><i class="bi bi-person"></i></a>
-        <a class="nav-link position-relative" href="#" aria-label="Winkelwagen, 3 items">
-          <i class="bi bi-cart"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
+    <!-- Hero Sectie -->
+    <section class="hero">
+        <div>
+            <h1>Welkom bij BOLDYASE</h1>
+            <p>Ontdek onze exclusieve collectie van luxe producten, ontworpen voor de moderne levensstijl.</p>
+        </div>
+    </section>
 
-<!-- Hero Section -->
-<section class="hero" id="main">
-  <div class="hero-overlay"></div>
-  <div class="container hero-content">
-    <h1>Welcome to Luxury</h1>
-    <p class="lead">Ervaar de perfecte combinatie van tijdloze elegantie en moderne innovatie.</p>
-    <!-- A/B Testing: Alternate between these CTAs -->
-    <a href="#shop" class="btn-cta btn-lg mt-3" data-variant="control">Shop Collectie</a>
-    <!-- <a href="#shop" class="btn-cta btn-cta-variant-a btn-lg mt-3" data-variant="variant-a">Ontdek Nu</a> -->
-  </div>
-</section>
-
-<!-- Sticky CTA Bar (shows on scroll) -->
-<div class="sticky-cta-bar" id="stickyCTA" aria-live="polite">
-  <p class="cta-text">Exclusieve korting: 20% op alle nieuwe items!</p>
-  <button class="btn-cta" onclick="window.location.href='#shop'">Shop Nu</button>
-</div>
-
-<!-- Mobile Floating Action Button -->
-<div class="fab-container d-md-none">
-  <button class="fab" aria-label="Open winkelwagen" onclick="window.location.href='#'">
-    <i class="bi bi-cart"></i>
-  </button>
-</div>
-
-<!-- AI Chatbot Widget -->
-<div class="container">
-  <div class="row my-5">
-    <div class="col-lg-8 mx-auto">
-      <div class="ai-widget" role="complementary" aria-label="AI Assistent">
-        <div class="ai-widget-content">
-          <h3><i class="bi bi-robot"></i> AI Personal Shopper</h3>
-          <p>Ontdek gepersonaliseerde aanbevelingen op basis van jouw stijl en voorkeuren.</p>
-          <button class="btn-cta" aria-label="Start AI chat">Chat met onze AI</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Categories Section -->
-<section id="categories" class="py-5">
-  <div class="container">
-    <h2 class="section-title">Luxe Categorieën</h2>
-    <div class="luxury-grid luxury-grid-3">
-      <a href="#" class="luxury-card text-decoration-none" tabindex="0" aria-label="Shop herenmode">
-        <img src="https://source.unsplash.com/800x800/?mens,luxury,fashion" alt="Luxe herenmode">
-        <div class="p-3 text-center">
-          <h3 class="h5 text-dark">Heren Collectie</h3>
-          <p class="text-muted mb-0">Tijdloze elegantie</p>
-        </div>
-      </a>
-      <a href="#" class="luxury-card text-decoration-none" tabindex="0" aria-label="Shop damesmode">
-        <img src="https://source.unsplash.com/800x800/?womens,luxury,fashion" alt="Luxe damesmode">
-        <div class="p-3 text-center">
-          <h3 class="h5 text-dark">Dames Collectie</h3>
-          <p class="text-muted mb-0">Verfijnde schoonheid</p>
-        </div>
-      </a>
-      <a href="#" class="luxury-card text-decoration-none" tabindex="0" aria-label="Shop accessoires">
-        <img src="https://source.unsplash.com/800x800/?accessories,luxury" alt="Luxe accessoires">
-        <div class="p-3 text-center">
-          <h3 class="h5 text-dark">Accessoires</h3>
-          <p class="text-muted mb-0">Het perfecte detail</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Shop Section with Context-Aware CTAs -->
-<section id="shop" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="section-title">Exclusieve Collectie</h2>
-    <div class="luxury-grid luxury-grid-3">
-      <!-- Product 1: In Stock -->
-      <article class="product-card">
-        <span class="stock-indicator stock-in" aria-label="Op voorraad">Op voorraad</span>
-        <img src="https://source.unsplash.com/800x800/?leather,jacket,luxury" alt="Premium Leren Jas">
-        <div class="card-body">
-          <h3 class="h5">Premium Leren Jas</h3>
-          <p class="product-price">€899,00</p>
-          <p class="text-muted small mb-3">Handgemaakt Italiaans leer</p>
-          <button class="cta-context cta-in-stock w-100" aria-label="Voeg Premium Leren Jas toe aan winkelwagen">In Winkelwagen</button>
-        </div>
-      </article>
-      
-      <!-- Product 2: Low Stock -->
-      <article class="product-card">
-        <span class="stock-indicator stock-low" aria-label="Beperkte voorraad">Slechts 2 over!</span>
-        <img src="https://source.unsplash.com/800x800/?watch,luxury,gold" alt="Gouden Horloge">
-        <div class="card-body">
-          <h3 class="h5">Exclusief Gouden Horloge</h3>
-          <p class="product-price">€2.499,00</p>
-          <p class="text-muted small mb-3">Swiss made, 18k goud</p>
-          <button class="cta-context cta-low-stock w-100" aria-label="Bestel nu Exclusief Gouden Horloge - beperkte voorraad">Bestel Nu!</button>
-        </div>
-      </article>
-      
-      <!-- Product 3: Out of Stock -->
-      <article class="product-card">
-        <span class="stock-indicator stock-out" aria-label="Uitverkocht">Uitverkocht</span>
-        <img src="https://source.unsplash.com/800x800/?sneakers,luxury,designer" alt="Designer Sneakers">
-        <div class="card-body">
-          <h3 class="h5">Limited Edition Sneakers</h3>
-          <p class="product-price">€599,00</p>
-          <p class="text-muted small mb-3">Exclusieve designer collab</p>
-          <button class="cta-context cta-out-of-stock w-100" disabled aria-label="Designer Sneakers uitverkocht">Uitverkocht</button>
-        </div>
-      </article>
-    </div>
-    
-    <!-- AI Recommendations -->
-    <div class="ai-widget mt-5" role="region" aria-label="AI Aanbevelingen">
-      <div class="ai-widget-content">
-        <h3><i class="bi bi-stars"></i> AI Gepersonaliseerde Selectie</h3>
-        <p>Op basis van jouw browsegeschiedenis en voorkeuren hebben we deze items speciaal voor jou geselecteerd.</p>
-        <button class="btn-cta">Bekijk Aanbevelingen</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Trends Section -->
-<section id="trends" class="py-5">
-  <div class="container">
-    <h2 class="section-title">Trending Now</h2>
-    <div class="luxury-grid luxury-grid-3">
-      <article class="luxury-card">
-        <img src="https://source.unsplash.com/800x800/?sustainable,fashion" alt="Duurzame mode trend">
-        <div class="p-4">
-          <h3 class="h5 mb-2">Sustainable Luxury</h3>
-          <p class="text-muted mb-3">Eco-bewuste materialen zonder compromis op kwaliteit.</p>
-          <a href="#" class="btn-cta w-100">Ontdek Meer</a>
-        </div>
-      </article>
-      <article class="luxury-card">
-        <img src="https://source.unsplash.com/800x800/?minimalist,fashion" alt="Minimalistische mode">
-        <div class="p-4">
-          <h3 class="h5 mb-2">Minimalist Chic</h3>
-          <p class="text-muted mb-3">Tijdloze designs met moderne twist.</p>
-          <a href="#" class="btn-cta w-100">Shop Look</a>
-        </div>
-      </article>
-      <article class="luxury-card">
-        <img src="https://source.unsplash.com/800x800/?statement,jewelry" alt="Statement sieraden">
-        <div class="p-4">
-          <h3 class="h5 mb-2">Bold Statements</h3>
-          <p class="text-muted mb-3">Opvallende accessoires die jouw stijl definiëren.</p>
-          <a href="#" class="btn-cta w-100">Bekijk Collectie</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="section-title">Personal Shopping Service</h2>
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="luxury-card p-5">
-          <form id="contactForm">
-            <div class="row mb-4">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <label for="name" class="form-label">Naam</label>
-                <input type="text" class="form-control" id="name" placeholder="Uw naam" required aria-required="true">
-              </div>
-              <div class="col-md-6">
-                <label for="email" class="form-label">E-mailadres</label>
-                <input type="email" class="form-control" id="email" placeholder="uw@email.com" required aria-required="true">
-              </div>
+    <!-- Product Grid -->
+    <section class="product-grid">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product 1">
+            <div class="info">
+                <h3>Product 1</h3>
+                <p>Beschrijving van het product. Perfect voor dagelijks gebruik.</p>
+                <p class="price">€199,99</p>
             </div>
-            <div class="mb-4">
-              <label for="service" class="form-label">Service Type</label>
-              <select class="form-control" id="service" required aria-required="true">
-                <option value="">Selecteer een service</option>
-                <option value="personal-shopping">Personal Shopping</option>
-                <option value="style-advice">Stijladvies</option>
-                <option value="custom-order">Maatwerk Bestelling</option>
-                <option value="other">Anders</option>
-              </select>
-            </div>
-            <div class="mb-4">
-              <label for="message" class="form-label">Bericht</label>
-              <textarea class="form-control" id="message" rows="5" placeholder="Vertel ons over uw wensen..." required aria-required="true"></textarea>
-            </div>
-            <div class="d-grid">
-              <button type="submit" class="btn-cta">Verstuur Aanvraag</button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer" role="contentinfo">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-4 col-md-6">
-        <h3 class="h4 mb-3" style="color: var(--accent-gold);">BOLDYASE</h3>
-        <p>Waar luxe en innovatie samenkomen. Exclusieve mode met AI-powered personalisatie.</p>
-        <div class="social-icons mt-4">
-          <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product 2">
+            <div class="info">
+                <h3>Product 2</h3>
+                <p>Beschrijving van het product. Perfect voor dagelijks gebruik.</p>
+                <p class="price">€249,99</p>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <h4 class="h6 mb-3">Service</h4>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#">Personal Shopping</a></li>
-          <li class="mb-2"><a href="#">Levering & Retour</a></li>
-          <li class="mb-2"><a href="#">Size Guide</a></li>
-          <li class="mb-2"><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-2 col-md-6">
-        <h4 class="h6 mb-3">Over Ons</h4>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#">Ons Verhaal</a></li>
-          <li class="mb-2"><a href="#">Duurzaamheid</a></li>
-          <li class="mb-2"><a href="#">Carrière</a></li>
-          <li class="mb-2"><a href="#">Press</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <h4 class="h6 mb-3">Exclusieve Updates</h4>
-        <p class="small">Ontvang early access tot nieuwe collecties en exclusieve aanbiedingen.</p>
-        <form id="newsletterForm" class="newsletter-form">
-          <input type="email" placeholder="E-mailadres" required aria-label="E-mail voor nieuwsbrief">
-          <button type="submit">Aanmelden</button>
-        </form>
-      </div>
-    </div>
-    <div class="bottom-text">
-      <p>&copy; <span id="currentYear"></span> BOLDYASE. Alle rechten voorbehouden. | <a href="#">Privacy</a> | <a href="#">Voorwaarden</a></p>
-    </div>
-  </div>
-</footer>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/300x200" alt="Product 3">
+            <div class="info">
+                <h3>Product 3</h3>
+                <p>Beschrijving van het product. Perfect voor dagelijks gebruik.</p>
+                <p class="price">€299,99</p>
+            </div>
+        </div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  // Set current year
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
-  
-  // Sticky CTA Bar functionality
-  let lastScrollTop = 0;
-  const stickyCTA = document.getElementById('stickyCTA');
-  
-  window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Show sticky CTA after scrolling 500px
-    if (scrollTop > 500) {
-      stickyCTA.classList.add('show');
-    } else {
-      stickyCTA.classList.remove('show');
-    }
-    
-    lastScrollTop = scrollTop;
-  });
-  
-  // A/B Testing Logic (example)
-  function getABTestVariant() {
-    // In real implementation, this would check user cookies/session
-    return Math.random() > 0.5 ? 'control' : 'variant-a';
-  }
-  
-  // Context-aware CTA updates based on stock
-  function updateCTAContext(productElement, stockStatus) {
-    const ctaButton = productElement.querySelector('.cta-context');
-    
-    switch(stockStatus) {
-      case 'in-stock':
-        ctaButton.className = 'cta-context cta-in-stock w-100';
-        ctaButton.textContent = 'In Winkelwagen';
-        ctaButton.disabled = false;
-        break;
-      case 'low-stock':
-        ctaButton.className = 'cta-context cta-low-stock w-100';
-        ctaButton.textContent = 'Bestel Nu!';
-        ctaButton.disabled = false;
-        break;
-      case 'out-of-stock':
-        ctaButton.className = 'cta-context cta-out-of-stock w-100';
-        ctaButton.textContent = 'Uitverkocht';
-        ctaButton.disabled = true;
-        break;
-    }
-  }
-  
-  // Form submissions
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Bedankt voor uw aanvraag! We nemen binnen 24 uur contact met u op.');
-  });
-  
-  document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Welkom bij de BOLDYASE familie! Check uw e-mail voor een exclusieve welkomstkorting.');
-  });
-  
-  // Enhance keyboard navigation
-  document.querySelectorAll('a, button, input, select, textarea').forEach(element => {
-    element.addEventListener('focus', function() {
-      this.style.outlineOffset = '4px';
-    });
-  });
-  
-  // Animated hover effects
-  document.querySelectorAll('.luxury-card, .product-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-5px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
-  });
-</script>
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+        </div>
+        <p>&copy; 2023 BOLDYASE. Alle rechten voorbehouden.</p>
+    </footer>
+
 </body>
 </html>
