@@ -1,2639 +1,418 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>BOLDYASE | Luxe Mode & AI Shopping</title>
+  <meta name="description" content="Luxe mode, trends, AI-advies & personalisatie.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #151824;
+      --secondary: #8763ff;
+      --accent: #f7c873;
+      --bg-light: #f8fafc;
+      --surface: #fff;
+      --radius: 16px;
+      --shadow: 0 4px 36px rgba(60, 65, 120, 0.11);
+      --transition: all 0.22s cubic-bezier(.39,.53,.33,1);
+    }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--primary);
+      min-height: 100vh;
+      letter-spacing: 0.01em;
+    }
+    h1, h2, h3, h4, .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .section-title { font-size: 2.1rem; letter-spacing: -1px; margin-bottom: 2rem; }
+    .navbar {
+      background: var(--surface) !important;
+      box-shadow: 0 2px 24px rgba(90,105,180,0.09);
+      font-family: 'Montserrat', Arial, sans-serif;
+      transition: box-shadow .2s;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--secondary) !important;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      font-size: 1.08rem;
+      padding: 0.7rem 1.1rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      color: var(--primary);
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
+      background: var(--secondary);
+      color: #fff !important;
+      outline: none;
+    }
+    .btn-main {
+      background: var(--secondary);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: var(--radius);
+      padding: 0.7rem 2rem;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: 0 2px 14px rgba(135, 99, 255, 0.10);
+    }
+    .btn-main:hover, .btn-main:focus {
+      background: var(--accent);
+      color: var(--primary);
+      transform: scale(1.035);
+    }
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 74vh;
+      background: url('https://images.unsplash.com/photo-1618220179428-22790babb9bb?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 0 4px 32px rgba(20,16,30,0.22);
+    }
+    .hero-overlay {
+      position: absolute; inset:0;
+      background: linear-gradient(120deg,rgba(30,24,60,0.44),rgba(21,24,36,0.8) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      z-index: 2; position: relative;
+      text-align: center;
+      padding: 100px 10px 70px 10px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: 2.6rem; margin-bottom: .7rem; }
+    .hero .lead { font-size: 1.25rem; margin-bottom: 1.5rem; color: #eee; }
+    .category-card, .trend-card {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--surface);
+      transition: box-shadow .21s, transform .21s;
+      overflow: hidden;
+      position: relative;
+    }
+    .category-card img, .trend-card img {
+      width: 100%; aspect-ratio: 1/1; object-fit: cover;
+      transition: transform .4s cubic-bezier(.39,.53,.33,1);
+    }
+    .category-card:hover img, .trend-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.10) saturate(1.12);
+    }
+    .category-card-overlay, .trend-overlay {
+      position: absolute; left: 0; bottom: 0; width: 100%;
+      padding: 1rem 0.4rem 0.6rem 0.4rem;
+      background: linear-gradient(0deg,rgba(21,24,36,0.94),rgba(21,24,36,0.21) 95%);
+      color: #fff; text-align: center;
+      font-size: 1.2rem; font-weight: 500; font-family: 'Montserrat',sans-serif;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: box-shadow .19s, transform .19s;
+      display: flex; flex-direction: column; height: 100%; overflow: hidden;
+    }
+    .product-card:hover { box-shadow: 0 8px 36px rgba(135,99,255,0.15); transform: scale(1.017); }
+    .product-card img { width: 100%; object-fit: cover; min-height: 200px; }
+    .product-card .card-body { padding: 1.2rem 1rem 1rem 1rem; }
+    .product-card h5 { font-size: 1.1rem; font-weight: 700; }
+    .product-card .product-price { color: var(--secondary); font-weight: 600; }
+    /* AI Widget Placeholder */
+    .ai-widget-placeholder {
+      background: #f6f3ff;
+      border: 1.5px dashed var(--secondary);
+      border-radius: var(--radius);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      color: #8576a3;
+      font-size: 1.09rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 1.5px 7px rgba(135,99,255,0.06);
+      min-height: 90px;
+    }
+    /* Footer */
+    .footer {
+      background: #151824;
+      color: #fff;
+      padding: 3rem 0 1.1rem 0;
+      font-size: 1rem;
+    }
+    .footer a { color: #fff; opacity: 0.87; transition: opacity .15s;}
+    .footer a:hover { opacity: 1; text-decoration: underline;}
+    .footer .social-icons a {
+      display: inline-block; margin-right: 15px; font-size: 1.2rem;
+      color: #fff; transition: color .15s;
+    }
+    .footer .social-icons a:hover { color: var(--accent);}
+    .footer .bottom-text { margin-top: 2rem; font-size: .98em; color: #bcb9d3;}
+    @media (max-width: 767px) {
+      .hero h1 { font-size: 1.5rem; }
+      .section-title { font-size: 1.2rem;}
+      .footer { padding: 2rem 0 1.1rem 0;}
+    }
+  </style>
+</head>
+<body>
 
-<?html
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" aria-label="Hoofdmenu">
+  <div class="container">
+    <a class="navbar-brand" href="#">BOLDYASE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu openen">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#categories">Categorieën</a></li>
+        <li class="nav-item"><a class="nav-link" href="#shop">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" href="#trends">Trends</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center navbar-icons">
+        <form class="d-flex me-2" role="search">
+          <input class="form-control form-control-sm me-1" type="search" placeholder="Zoeken..." aria-label="Zoeken">
+          <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+        <a class="nav-link" href="#" title="Account"><i class="bi bi-person"></i></a>
+        <a class="nav-link position-relative" href="#" title="Winkelwagen"><i class="bi bi-cart"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-/**
- * Premium Fashion Webshop CTA System
- * 
- * A comprehensive system for generating, testing, and managing Call-to-Action elements
- * for a premium fashion e-commerce platform.
- * 
- * @author Claude AI
- * @version 1.0.0
- */
+<!-- Hero Section -->
+<section class="hero" style="position:relative;">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content position-relative z-2">
+    <h1>Welcome, Bold One</h1>
+    <p class="lead">Luxe fashion. Future ready. Ontdek BOLDYASE.</p>
+    <a href="#shop" class="btn btn-main btn-lg mt-3">Shop Direct</a>
+  </div>
+</section>
 
-namespace PremiumWebshop\CTA;
+<!-- AI Chatbot Widget Placeholder -->
+<div class="container">
+  <div class="row my-5">
+    <div class="col-lg-6 mx-auto">
+      <div class="ai-widget-placeholder" tabindex="0" aria-label="AI Chatbot integratie">
+        <strong>AI Chatbot Assistant</strong><br>
+        <span>Hier kan een AI chat widget geïntegreerd worden (zoals Chatbase, GPTBot of Ada) voor live hulp en advies.</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-// Configuration class for system-wide settings
-class CTAConfig {
-    const PRIMARY_COLORS = [
-        'default' => [
-            'background' => '#000000',
-            'text' => '#FFFFFF',
-            'border' => '#000000',
-            'hover_bg' => '#FFFFFF',
-            'hover_text' => '#000000',
-            'hover_border' => '#000000'
-        ],
-        'seasonal' => [
-            'background' => '#9C0016',
-            'text' => '#FFFFFF',
-            'border' => '#9C0016',
-            'hover_bg' => '#FFFFFF',
-            'hover_text' => '#9C0016',
-            'hover_border' => '#9C0016'
-        ],
-        'premium' => [
-            'background' => '#A37E2C',
-            'text' => '#FFFFFF',
-            'border' => '#A37E2C',
-            'hover_bg' => '#FFFFFF',
-            'hover_text' => '#A37E2C',
-            'hover_border' => '#A37E2C'
-        ]
-    ];
+<!-- Categories Section -->
+<section id="categories" class="py-5">
+  <div class="container">
+    <h2 class="text-center section-title">Ontdek Categorieën</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <a href="#" class="category-card d-block text-decoration-none" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1551803817-de0713f6888a?auto=format&fit=crop&w=600&h=600&q=80" alt="Herenmode">
+          <div class="category-card-overlay"><h5>Heren</h5></div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="category-card d-block text-decoration-none" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&h=600&q=80" alt="Damesmode">
+          <div class="category-card-overlay"><h5>Dames</h5></div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="category-card d-block text-decoration-none" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&h=600&q=80" alt="Accessoires">
+          <div class="category-card-overlay"><h5>Accessoires</h5></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const SECONDARY_COLORS = [
-        'default' => [
-            'background' => 'transparent',
-            'text' => '#000000',
-            'border' => '#000000',
-            'hover_bg' => '#000000',
-            'hover_text' => '#FFFFFF',
-            'hover_border' => '#000000'
-        ]
-    ];
+<!-- Shop Section -->
+<section id="shop" class="py-5 section-bg">
+  <div class="container">
+    <h2 class="mb-4 text-center section-title">Uitgelichte Producten</h2>
+    <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+      <div class="col">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=400&h=533&q=80" alt="Leren Jas">
+          <div class="card-body text-center">
+            <h5>Premium Leren Jas</h5>
+            <p class="product-price">€249,95</p>
+            <button class="btn btn-main w-100">Bekijk Product</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&h=533&q=80" alt="Horloge">
+          <div class="card-body text-center">
+            <h5>Elegant Horloge</h5>
+            <p class="product-price">€189,00</p>
+            <button class="btn btn-main w-100">Bekijk Product</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=400&h=533&q=80" alt="Sneakers">
+          <div class="card-body text-center">
+            <h5>Luxe Sneakers</h5>
+            <p class="product-price">€119,95</p>
+            <button class="btn btn-main w-100">Bekijk Product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AI recommendations -->
+    <div class="ai-widget-placeholder mt-5" tabindex="0" aria-label="AI Productaanbevelingen">
+      <strong>AI Productaanbevelingen</strong><br>
+      <span>Hier kun je in de toekomst dynamische aanbevelingen tonen op basis van AI (bijvoorbeeld met Qubit, PersonalizeJS).</span>
+    </div>
+  </div>
+</section>
 
-    const ANIMATION_TYPES = [
-        'bob' => 'bob-effect',
-        'fade' => 'fade-in-effect',
-        'slide' => 'slide-up-effect',
-        'none' => ''
-    ];
+<!-- Trends Section -->
+<section id="trends" class="py-5">
+  <div class="container">
+    <h2 class="text-center section-title">Spotlight op Trends</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <a href="#" class="trend-card d-block text-decoration-none" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?auto=format&fit=crop&w=600&q=80" alt="Trend: Duurzame Materialen">
+          <div class="trend-overlay">
+            <h5>Duurzame Materialen</h5>
+            <p class="mb-0 small">Eco-bewust design.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="trend-card d-block text-decoration-none" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=600&q=80" alt="Trend: Modern Tailoring">
+          <div class="trend-overlay">
+            <h5>Modern Tailoring</h5>
+            <p class="mb-0 small">Nieuwe pasvormen.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="trend-card d-block text-decoration-none" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=600&q=80" alt="Trend: Statement Accessoires">
+          <div class="trend-overlay">
+            <h5>Statement Accessoires</h5>
+            <p class="mb-0 small">Maak je look compleet.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const DEFAULT_BORDER_RADIUS = '20px';
-    const DEFAULT_FONT_FAMILY = "'Josefin Sans', sans-serif";
-    const DEFAULT_ANIMATION_DELAY = 400; // ms
-    const MINIMUM_TOUCH_TARGET = 44; // px
+<!-- AI Personalization Placeholder -->
+<div class="container">
+  <div class="ai-widget-placeholder my-5" tabindex="0" aria-label="Persoonlijke AI aanbevelingen">
+    <strong>AI Personalisatie</strong><br>
+    <span>In de toekomst kun je hier gepersonaliseerde producten of aanbiedingen tonen op basis van kijk- en koopgedrag.</span>
+  </div>
+</div>
 
-    // Database connection settings
-    public static function getDatabaseConfig() {
-        return [
-            'host' => $_ENV['DB_HOST'] ?? 'localhost',
-            'database' => $_ENV['DB_NAME'] ?? 'premium_webshop',
-            'username' => $_ENV['DB_USER'] ?? 'webshop_user',
-            'password' => $_ENV['DB_PASS'] ?? 'password',
-            'charset' => 'utf8mb4',
-            'options' => [
-                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-                \PDO::ATTR_EMULATE_PREPARES => false,
-            ]
-        ];
-    }
-}
+<!-- Contact Section -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4 text-center section-title">Blijf Verbonden</h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <form id="contactForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Naam</label>
+            <input type="text" class="form-control" id="name" placeholder="Uw naam" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mailadres</label>
+            <input type="email" class="form-control" id="email" placeholder="Uw e-mailadres" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Bericht</label>
+            <textarea class="form-control" id="message" rows="5" placeholder="Uw bericht..." required></textarea>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-main">Versturen</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-/**
- * Database handler for CTA system
- */
-class CTADatabase {
-    private $pdo;
-    
-    public function __construct() {
-        $config = CTAConfig::getDatabaseConfig();
-        
-        $dsn = "mysql:host={$config['host']};dbname={$config['database']};charset={$config['charset']}";
-        
-        try {
-            $this->pdo = new \PDO($dsn, $config['username'], $config['password'], $config['options']);
-        } catch (\PDOException $e) {
-            throw new \Exception("Database connection failed: " . $e->getMessage());
-        }
-    }
-    
-    /**
-     * Record a CTA click event
-     */
-    public function recordClick($ctaId, $userId, $sessionId, $productId, $variantId = null) {
-        $sql = "INSERT INTO cta_clicks 
-                (cta_id, user_id, session_id, product_id, variant_id, click_time, device_type, page_url) 
-                VALUES (?, ?, ?, ?, ?, NOW(), ?, ?)";
-                
-        $deviceType = $this->detectDeviceType();
-        $pageUrl = $_SERVER['REQUEST_URI'] ?? '';
-        
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute([
-                $ctaId, 
-                $userId, 
-                $sessionId, 
-                $productId, 
-                $variantId, 
-                $deviceType, 
-                $pageUrl
-            ]);
-        } catch (\PDOException $e) {
-            error_log("Error recording CTA click: " . $e->getMessage());
-            return false;
-        }
-    }
-    
-    /**
-     * Get conversion rates for specific CTA variant
-     */
-    public function getConversionRate($ctaId, $variantId = null, $dateFrom = null, $dateTo = null) {
-        // Default to last 30 days if no date range provided
-        $dateFrom = $dateFrom ?? date('Y-m-d', strtotime('-30 days'));
-        $dateTo = $dateTo ?? date('Y-m-d');
-        
-        $sql = "SELECT 
-                COUNT(DISTINCT c.click_id) AS clicks,
-                COUNT(DISTINCT o.order_id) AS conversions,
-                (COUNT(DISTINCT o.order_id) / COUNT(DISTINCT c.click_id)) * 100 AS conversion_rate
-                FROM cta_clicks c
-                LEFT JOIN orders o ON c.session_id = o.session_id 
-                    AND o.created_at BETWEEN c.click_time AND DATE_ADD(c.click_time, INTERVAL 24 HOUR)
-                WHERE c.cta_id = ?
-                AND c.click_time BETWEEN ? AND ?";
-                
-        $params = [$ctaId, $dateFrom, $dateTo];
-        
-        if ($variantId !== null) {
-            $sql .= " AND c.variant_id = ?";
-            $params[] = $variantId;
-        }
-        
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute($params);
-            return $stmt->fetch();
-        } catch (\PDOException $e) {
-            error_log("Error getting conversion rate: " . $e->getMessage());
-            return null;
-        }
-    }
-    
-    /**
-     * Get user preferences from previous interactions
-     */
-    public function getUserPreferences($userId) {
-        if (!$userId) return null;
-        
-        $sql = "SELECT 
-                preferred_colors,
-                preferred_products,
-                wishlist_items,
-                last_viewed_products,
-                preferred_categories
-                FROM user_preferences
-                WHERE user_id = ?";
-                
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$userId]);
-            $result = $stmt->fetch();
-            
-            if ($result) {
-                // Decode JSON fields
-                foreach (['preferred_colors', 'preferred_products', 'wishlist_items', 
-                          'last_viewed_products', 'preferred_categories'] as $field) {
-                    if (isset($result[$field])) {
-                        $result[$field] = json_decode($result[$field], true);
-                    }
-                }
-            }
-            
-            return $result;
-        } catch (\PDOException $e) {
-            error_log("Error retrieving user preferences: " . $e->getMessage());
-            return null;
-        }
-    }
-    
-    /**
-     * Store A/B test results
-     */
-    public function storeTestResult($testId, $variantId, $impressions, $clicks, $conversions) {
-        $sql = "INSERT INTO ab_test_results 
-                (test_id, variant_id, impressions, clicks, conversions, update_time) 
-                VALUES (?, ?, ?, ?, ?, NOW())
-                ON DUPLICATE KEY UPDATE 
-                impressions = impressions + VALUES(impressions),
-                clicks = clicks + VALUES(clicks),
-                conversions = conversions + VALUES(conversions),
-                update_time = NOW()";
-                
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute([$testId, $variantId, $impressions, $clicks, $conversions]);
-        } catch (\PDOException $e) {
-            error_log("Error storing test result: " . $e->getMessage());
-            return false;
-        }
-    }
-    
-    /**
-     * Helper method to detect device type
-     */
-    private function detectDeviceType() {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-        
-        if (preg_match('/(tablet|ipad|playbook)/i', $userAgent)) {
-            return 'tablet';
-        }
-        
-        if (preg_match('/(android|iphone|mobile|webos)/i', $userAgent)) {
-            return 'mobile';
-        }
-        
-        return 'desktop';
-    }
-}
-
-/**
- * Main CTA Generator class that handles the creation of all CTA elements
- */
-class PremiumCTAGenerator {
-    private $db;
-    private $userId;
-    private $sessionId;
-    private $deviceType;
-    private $userPreferences;
-    private $themeColor = 'default';
-    private $baseUrl;
-    
-    public function __construct($userId = null, $sessionId = null) {
-        $this->db = new CTADatabase();
-        $this->userId = $userId ?? $this->getAnonymousId();
-        $this->sessionId = $sessionId ?? session_id();
-        $this->deviceType = $this->detectDeviceType();
-        
-        if ($userId) {
-            $this->userPreferences = $this->db->getUserPreferences($userId);
-        }
-        
-        $this->baseUrl = $this->getBaseUrl();
-    }
-    
-    /**
-     * Set the theme color for CTAs
-     */
-    public function setThemeColor($colorTheme) {
-        if (array_key_exists($colorTheme, CTAConfig::PRIMARY_COLORS)) {
-            $this->themeColor = $colorTheme;
-        }
-        return $this;
-    }
-    
-    /**
-     * Generate primary CTA button
-     */
-    public function createPrimaryButton($text, $url, $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'icon' => null,
-            'animation' => 'bob',
-            'animation_delay' => CTAConfig::DEFAULT_ANIMATION_DELAY,
-            'product_id' => null,
-            'variant_id' => null,
-            'test_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta',
-            'premium-cta--primary',
-            'premium-cta--' . $this->themeColor
-        ], $options['classes']);
-        
-        // Add animation class if specified
-        if ($options['animation'] && isset(CTAConfig::ANIMATION_TYPES[$options['animation']])) {
-            $classes[] = CTAConfig::ANIMATION_TYPES[$options['animation']];
-        }
-        
-        // Build the button HTML
-        $html = $this->buildButtonHtml(
-            $text,
-            $url,
-            $options['id'],
-            $classes,
-            $options['data_attributes'],
-            $options['icon'],
-            $options['animation_delay'],
-            $options['product_id'],
-            $options['variant_id'],
-            $options['test_id'],
-            true
-        );
-        
-        return $html;
-    }
-    
-    /**
-     * Generate secondary CTA button
-     */
-    public function createSecondaryButton($text, $url, $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'icon' => null,
-            'animation' => 'fade',
-            'animation_delay' => CTAConfig::DEFAULT_ANIMATION_DELAY,
-            'product_id' => null,
-            'variant_id' => null,
-            'test_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta',
-            'premium-cta--secondary'
-        ], $options['classes']);
-        
-        // Add animation class if specified
-        if ($options['animation'] && isset(CTAConfig::ANIMATION_TYPES[$options['animation']])) {
-            $classes[] = CTAConfig::ANIMATION_TYPES[$options['animation']];
-        }
-        
-        // Build the button HTML
-        $html = $this->buildButtonHtml(
-            $text,
-            $url,
-            $options['id'],
-            $classes,
-            $options['data_attributes'],
-            $options['icon'],
-            $options['animation_delay'],
-            $options['product_id'],
-            $options['variant_id'],
-            $options['test_id'],
-            false
-        );
-        
-        return $html;
-    }
-    
-    /**
-     * Generate hover CTA for product image
-     */
-    public function createHoverCTA($text, $url, $options = []) {
-        // Default options for hover CTAs
-        $defaults = [
-            'id' => 'hover-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'icon' => null,
-            'position' => 'center', // center, top, bottom, left, right
-            'product_id' => null,
-            'variant_id' => null,
-            'test_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta',
-            'premium-cta--hover',
-            'premium-cta--hover-' . $options['position']
-        ], $options['classes']);
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'hover-target' => $options['id'] . '-target'
-        ], $options['data_attributes']);
-        
-        // Build the button HTML
-        $html = $this->buildButtonHtml(
-            $text,
-            $url,
-            $options['id'],
-            $classes,
-            $dataAttributes,
-            $options['icon'],
-            0, // No delay for hover CTAs
-            $options['product_id'],
-            $options['variant_id'],
-            $options['test_id'],
-            true
-        );
-        
-        // Add the wrapper div with hover functionality
-        $html = '<div class="premium-cta-hover-wrapper" id="' . $options['id'] . '-target">' . $html . '</div>';
-        
-        return $html;
-    }
-    
-    /**
-     * Create mobile-optimized sticky CTA bar
-     */
-    public function createMobileStickyBar($primaryCTA, $secondaryCTAs = [], $options = []) {
-        if ($this->deviceType !== 'mobile' && empty($options['force_display'])) {
-            return ''; // Only show on mobile devices by default
-        }
-        
-        // Default options
-        $defaults = [
-            'id' => 'mobile-sticky-bar-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'show_product_image' => true,
-            'show_price' => true,
-            'product' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta-mobile-bar',
-            'premium-cta-mobile-bar--' . $this->themeColor
-        ], $options['classes']);
-        
-        // Start building the HTML
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($options['data_attributes']);
-        
-        $html = '<div id="' . $options['id'] . '" class="' . $classesStr . '"' . $dataAttrStr . '>';
-        
-        // Product info section (optional)
-        if (($options['show_product_image'] || $options['show_price']) && $options['product']) {
-            $html .= '<div class="premium-cta-mobile-bar__product">';
-            
-            if ($options['show_product_image'] && !empty($options['product']['image'])) {
-                $html .= '<div class="premium-cta-mobile-bar__image">';
-                $html .= '<img src="' . htmlspecialchars($options['product']['image']) . '" alt="' . 
-                         htmlspecialchars($options['product']['name']) . '" width="50" height="50">';
-                $html .= '</div>';
-            }
-            
-            if ($options['show_price'] && isset($options['product']['price'])) {
-                $html .= '<div class="premium-cta-mobile-bar__price">';
-                
-                if (!empty($options['product']['compare_price']) && 
-                    $options['product']['compare_price'] > $options['product']['price']) {
-                    $html .= '<span class="premium-cta-mobile-bar__price-compare">' . 
-                             htmlspecialchars($options['product']['compare_price_formatted']) . '</span>';
-                }
-                
-                $html .= '<span class="premium-cta-mobile-bar__price-current">' . 
-                         htmlspecialchars($options['product']['price_formatted']) . '</span>';
-                $html .= '</div>';
-            }
-            
-            $html .= '</div>'; // End product info
-        }
-        
-        // CTAs section
-        $html .= '<div class="premium-cta-mobile-bar__actions">';
-        
-        // Primary CTA (required)
-        $html .= '<div class="premium-cta-mobile-bar__primary">' . $primaryCTA . '</div>';
-        
-        // Secondary CTAs (optional)
-        if (!empty($secondaryCTAs)) {
-            $html .= '<div class="premium-cta-mobile-bar__secondary">';
-            foreach ($secondaryCTAs as $secondaryCTA) {
-                $html .= $secondaryCTA;
-            }
-            $html .= '</div>';
-        }
-        
-        $html .= '</div>'; // End actions
-        $html .= '</div>'; // End mobile bar
-        
-        return $html;
-    }
-    
-    /**
-     * Create urgency indicator CTA
-     */
-    public function createUrgencyCTA($stockLevel, $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'urgency-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'threshold_low' => 5,
-            'threshold_medium' => 10,
-            'product_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Determine urgency level
-        $urgencyLevel = 'high';
-        if ($stockLevel > $options['threshold_medium']) {
-            $urgencyLevel = 'normal';
-        } elseif ($stockLevel > $options['threshold_low']) {
-            $urgencyLevel = 'medium';
-        }
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta-urgency',
-            'premium-cta-urgency--' . $urgencyLevel
-        ], $options['classes']);
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'stock-level' => $stockLevel
-        ], $options['data_attributes']);
-        
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($dataAttributes);
-        
-        // Determine the message based on stock level
-        if ($stockLevel <= $options['threshold_low']) {
-            $message = "Only {$stockLevel} left in stock!";
-        } elseif ($stockLevel <= $options['threshold_medium']) {
-            $message = "Low stock - {$stockLevel} available";
-        } else {
-            $message = "In stock";
-        }
-        
-        // Build the HTML
-        $html = '<div id="' . $options['id'] . '" class="' . $classesStr . '"' . $dataAttrStr . '>';
-        
-        if ($urgencyLevel === 'high') {
-            $html .= '<span class="premium-cta-urgency__icon">⚠️</span>';
-        } elseif ($urgencyLevel === 'medium') {
-            $html .= '<span class="premium-cta-urgency__icon">⏱️</span>';
-        } else {
-            $html .= '<span class="premium-cta-urgency__icon">✓</span>';
-        }
-        
-        $html .= '<span class="premium-cta-urgency__text">' . htmlspecialchars($message) . '</span>';
-        $html .= '</div>';
-        
-        return $html;
-    }
-    
-    /**
-     * Create countdown timer CTA
-     */
-    public function createCountdownCTA($endTime, $message, $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'countdown-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'show_days' => true,
-            'show_hours' => true,
-            'show_minutes' => true,
-            'show_seconds' => true,
-            'end_message' => 'Offer expired',
-            'product_id' => null,
-            'campaign_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta-countdown',
-            'premium-cta-countdown--' . $this->themeColor
-        ], $options['classes']);
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'end-time' => $endTime,
-            'end-message' => $options['end_message'],
-            'show-days' => $options['show_days'] ? 'true' : 'false',
-            'show-hours' => $options['show_hours'] ? 'true' : 'false',
-            'show-minutes' => $options['show_minutes'] ? 'true' : 'false',
-            'show-seconds' => $options['show_seconds'] ? 'true' : 'false',
-        ], $options['data_attributes']);
-        
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($dataAttributes);
-        
-        // Build the HTML
-        $html = '<div id="' . $options['id'] . '" class="' . $classesStr . '"' . $dataAttrStr . '>';
-        $html .= '<div class="premium-cta-countdown__message">' . htmlspecialchars($message) . '</div>';
-        $html .= '<div class="premium-cta-countdown__timer">';
-        
-        if ($options['show_days']) {
-            $html .= $this->createCountdownUnit('days', 'DD');
-        }
-        
-        if ($options['show_hours']) {
-            $html .= $this->createCountdownUnit('hours', 'HH');
-        }
-        
-        if ($options['show_minutes']) {
-            $html .= $this->createCountdownUnit('minutes', 'MM');
-        }
-        
-        if ($options['show_seconds']) {
-            $html .= $this->createCountdownUnit('seconds', 'SS');
-        }
-        
-        $html .= '</div>'; // End timer
-        $html .= '</div>'; // End countdown
-        
-        return $html;
-    }
-    
-    /**
-     * Create personalized product recommendation CTA
-     */
-    public function createPersonalizedCTA($products, $title = 'Recommended for you', $options = []) {
-        if (empty($products)) {
-            return ''; // No products to show
-        }
-        
-        // Default options
-        $defaults = [
-            'id' => 'personalized-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'max_products' => 4,
-            'show_price' => true,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Limit the number of products
-        $products = array_slice($products, 0, $options['max_products']);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta-personalized',
-            'premium-cta-personalized--' . $this->themeColor
-        ], $options['classes']);
-        
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($options['data_attributes']);
-        
-        // Build the HTML
-        $html = '<div id="' . $options['id'] . '" class="' . $classesStr . '"' . $dataAttrStr . '>';
-        $html .= '<h3 class="premium-cta-personalized__title">' . htmlspecialchars($title) . '</h3>';
-        $html .= '<div class="premium-cta-personalized__products">';
-        
-        foreach ($products as $product) {
-            $html .= '<div class="premium-cta-personalized__product">';
-            
-            // Product image
-            $html .= '<div class="premium-cta-personalized__image">';
-            $html .= '<a href="' . htmlspecialchars($product['url']) . '">';
-            $html .= '<img src="' . htmlspecialchars($product['image']) . '" alt="' . 
-                     htmlspecialchars($product['name']) . '" width="150" height="150">';
-            $html .= '</a>';
-            $html .= '</div>';
-            
-            // Product info
-            $html .= '<div class="premium-cta-personalized__info">';
-            $html .= '<h4 class="premium-cta-personalized__name">';
-            $html .= '<a href="' . htmlspecialchars($product['url']) . '">' . 
-                     htmlspecialchars($product['name']) . '</a>';
-            $html .= '</h4>';
-            
-            if ($options['show_price'] && isset($product['price'])) {
-                $html .= '<div class="premium-cta-personalized__price">';
-                
-                if (!empty($product['compare_price']) && $product['compare_price'] > $product['price']) {
-                    $html .= '<span class="premium-cta-personalized__price-compare">' . 
-                             htmlspecialchars($product['compare_price_formatted']) . '</span>';
-                }
-                
-                $html .= '<span class="premium-cta-personalized__price-current">' . 
-                         htmlspecialchars($product['price_formatted']) . '</span>';
-                $html .= '</div>';
-            }
-            
-            // Quick add button
-            $html .= '<div class="premium-cta-personalized__action">';
-            $html .= $this->createPrimaryButton(
-                'Quick Add',
-                'javascript:void(0);',
-                [
-                    'classes' => ['premium-cta--compact'],
-                    'data_attributes' => [
-                        'product-id' => $product['id'],
-                        'action' => 'quick-add'
-                    ],
-                    'product_id' => $product['id']
-                ]
-            );
-            $html .= '</div>'; // End action
-            
-            $html .= '</div>'; // End product info
-            $html .= '</div>'; // End product
-        }
-        
-        $html .= '</div>'; // End products
-        $html .= '</div>'; // End personalized CTA
-        
-        return $html;
-    }
-    
-    /**
-     * Create social media shareable CTA
-     */
-    public function createSocialCTA($platform, $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'social-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'product_id' => null,
-            'product_name' => '',
-            'product_url' => '',
-            'image_url' => '',
-            'custom_text' => '',
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Validate platform
-        $validPlatforms = ['instagram', 'tiktok', 'facebook', 'pinterest', 'twitter'];
-        if (!in_array($platform, $validPlatforms)) {
-            $platform = 'instagram'; // Default to Instagram
-        }
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta-social',
-            'premium-cta-social--' . $platform
-        ], $options['classes']);
-        
-        // Generate the appropriate CTA text and share URL
-        $ctaText = $this->generateSocialCTAText($platform, $options);
-        $shareUrl = $this->generateSocialShareUrl($platform, $options);
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'platform' => $platform,
-            'share-url' => $shareUrl
-        ], $options['data_attributes']);
-        
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($dataAttributes);
-        
-        // Platform-specific icon
-        $icons = [
-            'instagram' => '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>',
-            'tiktok' => '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>',
-            'facebook' => '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385h-3.047v-3.47h3.047v-2.642c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953h-1.514c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385c5.737-.9 10.125-5.864 10.125-11.854z"/></svg>',
-            'pinterest' => '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 0c-6.627 0-12 5.373-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>',
-            'twitter' => '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>',
-        ];
-        
-        $icon = $icons[$platform] ?? '';
-        
-        // Build the HTML
-        $html = '<div id="' . $options['id'] . '" class="' . $classesStr . '"' . $dataAttrStr . '>';
-        $html .= '<div class="premium-cta-social__content">';
-        $html .= '<div class="premium-cta-social__icon">' . $icon . '</div>';
-        $html .= '<div class="premium-cta-social__text">' . htmlspecialchars($ctaText) . '</div>';
-        $html .= '</div>';
-        $html .= '<div class="premium-cta-social__button">';
-        $html .= '<a href="' . htmlspecialchars($shareUrl) . '" target="_blank" rel="noopener" ';
-        $html .= 'class="premium-cta-social__share" onclick="window.open(this.href, \'share-dialog\', ';
-        $html .= '\'width=626,height=436\'); return false;">Share</a>';
-        $html .= '</div>';
-        $html .= '</div>'; // End social CTA
-        
-        return $html;
-    }
-    
-    /**
-     * Create quick view modal trigger button
-     */
-    public function createQuickViewCTA($productId, $buttonText = 'Quick View', $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'quickview-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'icon' => '<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>',
-            'animation' => 'fade',
-            'variant_id' => null,
-            'test_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta',
-            'premium-cta--secondary',
-            'premium-cta--quickview'
-        ], $options['classes']);
-        
-        // Add animation class if specified
-        if ($options['animation'] && isset(CTAConfig::ANIMATION_TYPES[$options['animation']])) {
-            $classes[] = CTAConfig::ANIMATION_TYPES[$options['animation']];
-        }
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'product-id' => $productId,
-            'action' => 'quickview'
-        ], $options['data_attributes']);
-        
-        // Build the button HTML (using JavaScript action instead of URL)
-        $html = $this->buildButtonHtml(
-            $buttonText,
-            'javascript:void(0);',
-            $options['id'],
-            $classes,
-            $dataAttributes,
-            $options['icon'],
-            CTAConfig::DEFAULT_ANIMATION_DELAY,
-            $productId,
-            $options['variant_id'],
-            $options['test_id'],
-            false
-        );
-        
-        return $html;
-    }
-    
-    /**
-     * Create size guide CTA
-     */
-    public function createSizeGuideCTA($categoryId = null, $buttonText = 'Size Guide', $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'size-guide-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'icon' => '<svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>',
-            'animation' => 'fade',
-            'modal_id' => 'size-guide-modal',
-            'product_id' => null,
-            'test_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta',
-            'premium-cta--secondary',
-            'premium-cta--size-guide'
-        ], $options['classes']);
-        
-        // Add animation class if specified
-        if ($options['animation'] && isset(CTAConfig::ANIMATION_TYPES[$options['animation']])) {
-            $classes[] = CTAConfig::ANIMATION_TYPES[$options['animation']];
-        }
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'category-id' => $categoryId,
-            'modal-target' => $options['modal_id'],
-            'action' => 'size-guide'
-        ], $options['data_attributes']);
-        
-        // Build the button HTML (using JavaScript action)
-        $html = $this->buildButtonHtml(
-            $buttonText,
-            'javascript:void(0);',
-            $options['id'],
-            $classes,
-            $dataAttributes,
-            $options['icon'],
-            CTAConfig::DEFAULT_ANIMATION_DELAY,
-            $options['product_id'],
-            null,
-            $options['test_id'],
-            false
-        );
-        
-        return $html;
-    }
-    
-    /**
-     * Create wishlist toggle CTA
-     */
-    public function createWishlistCTA($productId, $inWishlist = false, $options = []) {
-        // Default options
-        $defaults = [
-            'id' => 'wishlist-cta-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'icon_add' => '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>',
-            'icon_remove' => '<svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
-            'text_add' => 'Add to Wishlist',
-            'text_remove' => 'Remove from Wishlist',
-            'animation' => 'fade',
-            'test_id' => null,
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Set the initial state based on wishlist status
-        $buttonText = $inWishlist ? $options['text_remove'] : $options['text_add'];
-        $buttonIcon = $inWishlist ? $options['icon_remove'] : $options['icon_add'];
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-cta',
-            'premium-cta--secondary',
-            'premium-cta--wishlist',
-            $inWishlist ? 'premium-cta--wishlist-active' : ''
-        ], $options['classes']);
-        
-        // Add animation class if specified
-        if ($options['animation'] && isset(CTAConfig::ANIMATION_TYPES[$options['animation']])) {
-            $classes[] = CTAConfig::ANIMATION_TYPES[$options['animation']];
-        }
-        
-        // Build data attributes
-        $dataAttributes = array_merge([
-            'product-id' => $productId,
-            'in-wishlist' => $inWishlist ? 'true' : 'false',
-            'text-add' => $options['text_add'],
-            'text-remove' => $options['text_remove'],
-            'action' => 'toggle-wishlist'
-        ], $options['data_attributes']);
-        
-        // Build the button HTML
-        $html = $this->buildButtonHtml(
-            $buttonText,
-            'javascript:void(0);',
-            $options['id'],
-            $classes,
-            $dataAttributes,
-            $buttonIcon,
-            CTAConfig::DEFAULT_ANIMATION_DELAY,
-            $productId,
-            null,
-            $options['test_id'],
-            false
-        );
-        
-        return $html;
-    }
-    
-    /**
-     * Create responsive product grid with CTAs
-     */
-    public function createProductGrid($products, $options = []) {
-        if (empty($products)) {
-            return ''; // No products to show
-        }
-        
-        // Default options
-        $defaults = [
-            'id' => 'product-grid-' . uniqid(),
-            'classes' => [],
-            'data_attributes' => [],
-            'columns_desktop' => 4,
-            'columns_tablet' => 3,
-            'columns_mobile' => 2,
-            'show_hover_cta' => true,
-            'primary_cta_text' => 'Add to Cart',
-            'secondary_cta_text' => 'Quick View',
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Add default classes
-        $classes = array_merge([
-            'premium-product-grid',
-            'premium-product-grid--' . $this->themeColor,
-            'premium-product-grid--desktop-' . $options['columns_desktop'],
-            'premium-product-grid--tablet-' . $options['columns_tablet'],
-            'premium-product-grid--mobile-' . $options['columns_mobile']
-        ], $options['classes']);
-        
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($options['data_attributes']);
-        
-        // Build the HTML
-        $html = '<div id="' . $options['id'] . '" class="' . $classesStr . '"' . $dataAttrStr . '>';
-        
-        foreach ($products as $product) {
-            $html .= $this->createProductGridItem($product, $options);
-        }
-        
-        $html .= '</div>'; // End product grid
-        
-        return $html;
-    }
-    
-    /**
-     * Helper method to generate individual product grid item
-     */
-    private function createProductGridItem($product, $options) {
-        $html = '<div class="premium-product-grid__item" data-product-id="' . $product['id'] . '">';
-        
-        // Product image container with hover CTAs
-        $html .= '<div class="premium-product-grid__image-container">';
-        $html .= '<a href="' . htmlspecialchars($product['url']) . '" class="premium-product-grid__link">';
-        $html .= '<img src="' . htmlspecialchars($product['image']) . '" alt="' . 
-                 htmlspecialchars($product['name']) . '" class="premium-product-grid__image">';
-        $html .= '</a>';
-        
-        // Hover CTA layer
-        if ($options['show_hover_cta']) {
-            $html .= '<div class="premium-product-grid__hover-layer">';
-            
-            // Primary hover CTA
-            $html .= $this->createPrimaryButton(
-                $options['primary_cta_text'],
-                'javascript:void(0);',
-                [
-                    'id' => 'grid-primary-' . $product['id'],
-                    'classes' => ['premium-cta--grid-primary'],
-                    'data_attributes' => [
-                        'product-id' => $product['id'],
-                        'action' => 'add-to-cart'
-                    ],
-                    'product_id' => $product['id'],
-                    'animation' => 'fade'
-                ]
-            );
-            
-            // Secondary hover CTA
-            $html .= $this->createQuickViewCTA(
-                $product['id'],
-                $options['secondary_cta_text'],
-                [
-                    'id' => 'grid-secondary-' . $product['id'],
-                    'classes' => ['premium-cta--grid-secondary']
-                ]
-            );
-            
-            $html .= '</div>'; // End hover layer
-        }
-        
-        // Add badges/labels
-        if (!empty($product['badges'])) {
-            $html .= '<div class="premium-product-grid__badges">';
-            
-            foreach ($product['badges'] as $badge) {
-                $badgeClass = 'premium-product-grid__badge--' . strtolower($badge['type']);
-                $html .= '<span class="premium-product-grid__badge ' . $badgeClass . '">';
-                $html .= htmlspecialchars($badge['text']);
-                $html .= '</span>';
-            }
-            
-            $html .= '</div>'; // End badges
-        }
-        
-        $html .= '</div>'; // End image container
-        
-        // Product info
-        $html .= '<div class="premium-product-grid__info">';
-        
-        // Product name
-        $html .= '<h3 class="premium-product-grid__name">';
-        $html .= '<a href="' . htmlspecialchars($product['url']) . '">' . 
-                 htmlspecialchars($product['name']) . '</a>';
-        $html .= '</h3>';
-        
-        // Product price
-        $html .= '<div class="premium-product-grid__price">';
-        
-        if (!empty($product['compare_price']) && $product['compare_price'] > $product['price']) {
-            $html .= '<span class="premium-product-grid__price-compare">' . 
-                     htmlspecialchars($product['compare_price_formatted']) . '</span>';
-        }
-        
-        $html .= '<span class="premium-product-grid__price-current">' . 
-                 htmlspecialchars($product['price_formatted']) . '</span>';
-        $html .= '</div>';
-        
-        $html .= '</div>'; // End product info
-        $html .= '</div>'; // End product grid item
-        
-        return $html;
-    }
-    
-    /**
-     * Helper method to build button HTML
-     */
-    private function buildButtonHtml(
-        $text, 
-        $url, 
-        $id, 
-        $classes, 
-        $dataAttributes, 
-        $icon, 
-        $animationDelay, 
-        $productId, 
-        $variantId, 
-        $testId, 
-        $isPrimary
-    ) {
-        $classesStr = implode(' ', $classes);
-        $dataAttrStr = $this->buildDataAttributes($dataAttributes);
-        $style = '';
-        
-        if ($animationDelay > 0) {
-            $style = ' style="animation-delay: ' . $animationDelay . 'ms"';
-        }
-        
-        // Add tracking attributes
-        if ($productId) {
-            $dataAttrStr .= ' data-product-id="' . htmlspecialchars($productId) . '"';
-        }
-        
-        if ($variantId) {
-            $dataAttrStr .= ' data-variant-id="' . htmlspecialchars($variantId) . '"';
-        }
-        
-        if ($testId) {
-            $dataAttrStr .= ' data-test-id="' . htmlspecialchars($testId) . '"';
-        }
-        
-        // Start building HTML
-        $html = '<a href="' . htmlspecialchars($url) . '" id="' . $id . '" ';
-        $html .= 'class="' . $classesStr . '"' . $dataAttrStr . $style . ' ';
-        $html .= 'onclick="return premiumCTA.trackClick(this)">';
-        
-        // Icon (if provided)
-        if ($icon) {
-            $html .= '<span class="premium-cta__icon">' . $icon . '</span>';
-        }
-        
-        // Button text
-        $html .= '<span class="premium-cta__text">' . htmlspecialchars($text) . '</span>';
-        
-        // Add loading spinner for primary buttons
-        if ($isPrimary) {
-            $html .= '<span class="premium-cta__loading">';
-            $html .= '<svg viewBox="0 0 24 24" width="16" height="16">';
-            $html .= '<circle cx="12" cy="12" r="10" fill="none" stroke-width="4" stroke-dasharray="31.4 31.4">';
-            $html .= '<animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/>';
-            $html .= '</circle>';
-            $html .= '</svg>';
-            $html .= '</span>';
-        }
-        
-        $html .= '</a>';
-        
-        return $html;
-    }
-    
-    /**
-     * Helper method to build data attributes string
-     */
-    private function buildDataAttributes($attributes) {
-        $result = '';
-        
-        foreach ($attributes as $name => $value) {
-            $result .= ' data-' . $name . '="' . htmlspecialchars($value) . '"';
-        }
-        
-        return $result;
-    }
-    
-    /**
-     * Helper method to create countdown timer units
-     */
-    private function createCountdownUnit($unit, $placeholder) {
-        $html = '<div class="premium-cta-countdown__unit premium-cta-countdown__' . $unit . '">';
-        $html .= '<span class="premium-cta-countdown__value" data-unit="' . $unit . '">' . $placeholder . '</span>';
-        $html .= '<span class="premium-cta-countdown__label">' . ucfirst($unit) . '</span>';
-        $html .= '</div>';
-        
-        return $html;
-    }
-    
-    /**
-     * Helper method to generate social media CTA text
-     */
-    private function generateSocialCTAText($platform, $options) {
-        $productName = $options['product_name'] ?? 'this product';
-        
-        // If custom text is provided, use it
-        if (!empty($options['custom_text'])) {
-            return $options['custom_text'];
-        }
-        
-        // Platform-specific default texts
-        $texts = [
-            'instagram' => [
-                'Swipe up to shop this look 👆',
-                'Link in bio for instant shopping ✨',
-                'Double tap if you need this in your closet 🛍️'
-            ],
-            'tiktok' => [
-                'Link in bio to shop this style 🔥',
-                'Shop this look in our bio 👀',
-                'Run, don\'t walk to get this look 💫'
-            ],
-            'facebook' => [
-                'Shop now for exclusive styles 👗',
-                'Click to discover the perfect addition to your wardrobe ✨',
-                'Limited time offer - click to shop now 🛒'
-            ],
-            'pinterest' => [
-                'Save for later shopping inspo ✨',
-                'Pin now, shop later 📌',
-                'Perfect for your style board 🤩'
-            ],
-            'twitter' => [
-                'Just discovered the perfect ' . $productName . ' 😍',
-                'Need this in my life right now! 💯',
-                'This is definitely on my wish list now ✅'
-            ]
-        ];
-        
-        // Randomly select one of the texts for the platform
-        $platformTexts = $texts[$platform] ?? $texts['instagram'];
-        $randomIndex = array_rand($platformTexts);
-        
-        return $platformTexts[$randomIndex];
-    }
-    
-    /**
-     * Helper method to generate social media share URLs
-     */
-    private function generateSocialShareUrl($platform, $options) {
-        $url = urlencode($options['product_url'] ?: $this->baseUrl);
-        $title = urlencode($options['product_name'] ?? 'Check out this amazing product');
-        $image = urlencode($options['image_url'] ?? '');
-        
-        // Platform-specific share URLs
-        switch ($platform) {
-            case 'facebook':
-                return "https://www.facebook.com/sharer/sharer.php?u={$url}";
-                
-            case 'twitter':
-                return "https://twitter.com/intent/tweet?url={$url}&text={$title}";
-                
-            case 'pinterest':
-                if ($image) {
-                    return "https://pinterest.com/pin/create/button/?url={$url}&media={$image}&description={$title}";
-                }
-                return "https://pinterest.com/pin/create/button/?url={$url}&description={$title}";
-                
-            case 'instagram':
-                // Instagram doesn't have a direct share URL, return the product URL
-                return urldecode($url);
-                
-            case 'tiktok':
-                // TikTok doesn't have a direct share URL, return the product URL
-                return urldecode($url);
-                
-            default:
-                return urldecode($url);
-        }
-    }
-    
-    /**
-     * Helper method to detect device type
-     */
-    private function detectDeviceType() {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-        
-        if (preg_match('/(tablet|ipad|playbook)/i', $userAgent)) {
-            return 'tablet';
-        }
-        
-        if (preg_match('/(android|iphone|mobile|webos)/i', $userAgent)) {
-            return 'mobile';
-        }
-        
-        return 'desktop';
-    }
-    
-    /**
-     * Helper method to get anonymous user ID
-     */
-    private function getAnonymousId() {
-        if (!isset($_COOKIE['premium_anon_id'])) {
-            $anonId = uniqid('anon_', true);
-            setcookie('premium_anon_id', $anonId, time() + (86400 * 365), '/');
-            return $anonId;
-        }
-        
-        return $_COOKIE['premium_anon_id'];
-    }
-    
-    /**
-     * Helper method to get base URL
-     */
-    private function getBaseUrl() {
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || 
-                    $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
-                    
-        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-        
-        return $protocol . $host;
-    }
-}
-
-/**
- * A/B Testing engine for CTA system
- */
-class CTATestingEngine {
-    private $db;
-    private $userId;
-    private $sessionId;
-    private $deviceType;
-    private $testConfig;
-    private $activeTests = [];
-    
-    public function __construct($userId = null, $sessionId = null) {
-        $this->db = new CTADatabase();
-        $this->userId = $userId;
-        $this->sessionId = $sessionId ?? session_id();
-        $this->deviceType = $this->detectDeviceType();
-        $this->loadActiveTests();
-    }
-    
-    /**
-     * Load active tests from database
-     */
-    private function loadActiveTests() {
-        // In a real application, this would fetch from database
-        // For this example, we're defining tests directly
-        $this->activeTests = [
-            'button_text_test' => [
-                'id' => 1,
-                'name' => 'Product CTA Button Text',
-                'status' => 'active',
-                'variants' => [
-                    ['id' => 1, 'name' => 'Add to Cart', 'weight' => 33],
-                    ['id' => 2, 'name' => 'Add to Bag', 'weight' => 33],
-                    ['id' => 3, 'name' => 'Shop Now', 'weight' => 34]
-                ]
-            ],
-            'button_style_test' => [
-                'id' => 2,
-                'name' => 'Button Style Test',
-                'status' => 'active',
-                'variants' => [
-                    ['id' => 1, 'name' => 'filled', 'weight' => 50],
-                    ['id' => 2, 'name' => 'outlined', 'weight' => 50]
-                ]
-            ],
-            'animation_test' => [
-                'id' => 3,
-                'name' => 'Animation Effect Test',
-                'status' => 'active',
-                'variants' => [
-                    ['id' => 1, 'name' => 'bob', 'weight' => 33],
-                    ['id' => 2, 'name' => 'fade', 'weight' => 33],
-                    ['id' => 3, 'name' => 'slide', 'weight' => 34]
-                ]
-            ]
-        ];
-    }
-    
-    /**
-     * Get a variant for a specific test
-     */
-    public function getVariant($testId) {
-        if (!isset($this->activeTests[$testId]) || $this->activeTests[$testId]['status'] !== 'active') {
-            return null;
-        }
-        
-        // Check if user already has an assigned variant
-        $assignedVariant = $this->getUserAssignedVariant($testId);
-        if ($assignedVariant !== null) {
-            return $assignedVariant;
-        }
-        
-        // Assign a new variant based on weights
-        $variants = $this->activeTests[$testId]['variants'];
-        $total = 0;
-        $weights = [];
-        
-        foreach ($variants as $variant) {
-            $weights[$variant['id']] = $variant['weight'];
-            $total += $variant['weight'];
-        }
-        
-        $rand = mt_rand(1, $total);
-        $runningTotal = 0;
-        
-        foreach ($weights as $variantId => $weight) {
-            $runningTotal += $weight;
-            if ($rand <= $runningTotal) {
-                $selectedVariantId = $variantId;
-                break;
-            }
-        }
-        
-        // Find the selected variant
-        $selectedVariant = null;
-        foreach ($variants as $variant) {
-            if ($variant['id'] == $selectedVariantId) {
-                $selectedVariant = $variant;
-                break;
-            }
-        }
-        
-        // Store the user's assignment
-        $this->storeUserVariantAssignment($testId, $selectedVariantId);
-        
-        // Record impression
-        $this->recordImpression($this->activeTests[$testId]['id'], $selectedVariantId);
-        
-        return $selectedVariant;
-    }
-    
-    /**
-     * Record click conversion for a variant
-     */
-    public function recordClick($testId, $variantId) {
-        if (!isset($this->activeTests[$testId])) {
-            return false;
-        }
-        
-        return $this->db->storeTestResult(
-            $this->activeTests[$testId]['id'],
-            $variantId,
-            0,
-            1,
-            0
-        );
-    }
-    
-    /**
-     * Record purchase conversion for a variant
-     */
-    public function recordConversion($testId, $variantId) {
-        if (!isset($this->activeTests[$testId])) {
-            return false;
-        }
-        
-        return $this->db->storeTestResult(
-            $this->activeTests[$testId]['id'],
-            $variantId,
-            0,
-            0,
-            1
-        );
-    }
-    
-    /**
-     * Get statistical significance of a test
-     */
-    public function getTestSignificance($testId) {
-        // In a real application, this would perform chi-square or other
-        // statistical analysis to determine if results are significant
-        // For this example, we'll return a placeholder
-        return [
-            'status' => 'running',
-            'confidence' => 80, // percent
-            'leader' => [
-                'variant_id' => 2,
-                'improvement' => 15.4, // percent
-                'is_significant' => false
-            ]
-        ];
-    }
-    
-    /**
-     * Helper method to record impression
-     */
-    private function recordImpression($dbTestId, $variantId) {
-        return $this->db->storeTestResult($dbTestId, $variantId, 1, 0, 0);
-    }
-    
-    /**
-     * Helper method to get user's assigned variant
-     */
-    private function getUserAssignedVariant($testId) {
-        // In a real application, this would check a database or cookie
-        // For this example, we'll check a cookie
-        $cookieName = 'ab_test_' . $testId;
-        
-        if (isset($_COOKIE[$cookieName])) {
-            $variantId = (int)$_COOKIE[$cookieName];
-            
-            // Find the variant
-            foreach ($this->activeTests[$testId]['variants'] as $variant) {
-                if ($variant['id'] == $variantId) {
-                    return $variant;
-                }
-            }
-        }
-        
-        return null;
-    }
-    
-    /**
-     * Helper method to store user's variant assignment
-     */
-    private function storeUserVariantAssignment($testId, $variantId) {
-        $cookieName = 'ab_test_' . $testId;
-        setcookie($cookieName, $variantId, time() + (86400 * 30), '/'); // 30 days
-        
-        // In a real application, also store in database for logged-in users
-        if ($this->userId) {
-            // Store in database code would go here
-        }
-    }
-    
-    /**
-     * Helper method to detect device type
-     */
-    private function detectDeviceType() {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-        
-        if (preg_match('/(tablet|ipad|playbook)/i', $userAgent)) {
-            return 'tablet';
-        }
-        
-        if (preg_match('/(android|iphone|mobile|webos)/i', $userAgent)) {
-            return 'mobile';
-        }
-        
-        return 'desktop';
-    }
-}
-
-/**
- * Social media CTA generator
- */
-class SocialCTABuilder {
-    private $db;
-    private $userId;
-    private $platform;
-    
-    public function __construct($userId = null, $platform = 'instagram') {
-        $this->db = new CTADatabase();
-        $this->userId = $userId;
-        $this->platform = $platform;
-    }
-    
-    /**
-     * Set the social media platform
-     */
-    public function setPlatform($platform) {
-        $validPlatforms = ['instagram', 'tiktok', 'facebook', 'pinterest', 'twitter'];
-        if (in_array($platform, $validPlatforms)) {
-            $this->platform = $platform;
-        }
-        return $this;
-    }
-    
-    /**
-     * Generate social media CTA text
-     */
-    public function generateCTAText($productName = null, $options = []) {
-        $defaults = [
-            'style' => 'casual',
-            'emoji' => true,
-            'include_link' => true,
-            'custom_suffix' => '',
-        ];
-        
-        $options = array_merge($defaults, $options);
-        $productName = $productName ?: 'this product';
-        
-        // Text templates based on platform and style
-        $templates = [
-            'instagram' => [
-                'casual' => [
-                    'Swipe up to shop this look 👆',
-                    'Link in bio for instant shopping ✨',
-                    'Double tap if you need this in your closet 🛍️',
-                    'Tap to shop ' . $productName . ' 🔥',
-                    'Obsessed with ' . $productName . '? Shop now via link in bio 💯'
-                ],
-                'elegant' => [
-                    'Discover ' . $productName . ' in our collection',
-                    'Elevate your style with ' . $productName . ' ✨',
-                    'Shop this curated look via link in bio',
-                    'Experience premium quality with ' . $productName,
-                    'Link in bio to shop our luxury collection'
-                ],
-                'urgent' => [
-                    'Limited stock! Shop ' . $productName . ' before it\'s gone ⏱️',
-                    'Don\'t miss out - tap to shop now!',
-                    'Last chance to get ' . $productName . ' - link in bio',
-                    'Selling fast! Shop this exclusive style today',
-                    'Final pieces remaining - secure yours now!'
-                ]
-            ],
-            'tiktok' => [
-                'casual' => [
-                    'Link in bio to shop this style 🔥',
-                    'Run, don\'t walk to get this look 💫',
-                    'POV: Everyone asks where you got ' . $productName . ' 👀',
-                    'This ' . $productName . ' is giving main character energy ✨',
-                    'TikTok made me buy it - now it\'s your turn!'
-                ],
-                'elegant' => [
-                    'Discover ' . $productName . ' - link in bio',
-                    'Elevate your wardrobe with this premium piece',
-                    'Curated luxury available now',
-                    'Experience the quality - shop via bio',
-                    'The perfect addition to your collection'
-                ],
-                'urgent' => [
-                    'Going viral! Shop ' . $productName . ' before it sells out ⏱️',
-                    'This is selling FAST - link in bio!',
-                    'When it\'s gone, it\'s gone! Shop now!',
-                    'Limited edition ' . $productName . ' - don\'t wait!',
-                    'Last chance to join the trend! Shop today!'
-                ]
-            ],
-            'facebook' => [
-                'casual' => [
-                    'Just added ' . $productName . ' to my cart! 💕',
-                    'Click to shop this amazing find ✨',
-                    'Tag someone who needs ' . $productName . ' in their life 👀',
-                    'Officially obsessed with this new arrival!',
-                    'Weekend vibes with ' . $productName . ' 🙌'
-                ],
-                'elegant' => [
-                    'Discover our latest luxury addition: ' . $productName,
-                    'Elevate your style with this premium piece',
-                    'Introducing the perfect statement piece for your collection',
-                    'Crafted for distinction - shop our premium ' . $productName,
-                    'Refined elegance, available now'
-                ],
-                'urgent' => [
-                    'Limited stock alert! ' . $productName . ' is almost sold out',
-                    'Don\'t miss your chance to own this exclusive piece',
-                    'Final 24 hours to shop this collection',
-                    'Act fast - this ' . $productName . ' won\'t be restocked!',
-                    'Last chance to secure your ' . $productName
-                ]
-            ]
-        ];
-        
-        // Default to Instagram if platform not found
-        $platformTemplates = $templates[$this->platform] ?? $templates['instagram'];
-        $styleTemplates = $platformTemplates[$options['style']] ?? $platformTemplates['casual'];
-        
-        // Pick a random template
-        $text = $styleTemplates[array_rand($styleTemplates)];
-        
-        // Remove emojis if not wanted
-        if (!$options['emoji']) {
-            $text = preg_replace('/[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{1F700}-\x{1F77F}\x{1F780}-\x{1F7FF}\x{1F800}-\x{1F8FF}\x{1F900}-\x{1F9FF}\x{1FA00}-\x{1FA6F}\x{1FA70}-\x{1FAFF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}]/u', '', $text);
-        }
-        
-        // Add link text if requested
-        if ($options['include_link']) {
-            $linkTexts = [
-                'instagram' => 'Link in bio',
-                'tiktok' => 'Link in bio',
-                'facebook' => 'Click the link',
-                'pinterest' => 'Click for details',
-                'twitter' => 'Click the link'
-            ];
-            
-            $linkText = $linkTexts[$this->platform] ?? 'Link in bio';
-            
-            // Check if the text already mentions a link
-            if (stripos($text, 'link') === false && stripos($text, 'shop') === false) {
-                $text .= ' ' . $linkText . '!';
-            }
-        }
-        
-        // Add custom suffix if provided
-        if (!empty($options['custom_suffix'])) {
-            $text .= ' ' . $options['custom_suffix'];
-        }
-        
-        return $text;
-    }
-    
-    /**
-     * Generate hashtagset for social posts
-     */
-    public function generateHashtags($category = null, $brandName = null, $count = 5) {
-        $commonHashtags = [
-            'fashion' => ['fashion', 'style', 'ootd', 'outfitoftheday', 'instafashion', 'fashionstyle'],
-            'shoes' => ['shoes', 'shoesaddict', 'instashoes', 'shoestagram', 'heels', 'sneakers'],
-            'accessories' => ['accessories', 'jewelry', 'bags', 'watchesofinstagram', 'sunglasses'],
-            'premium' => ['luxury', 'luxurylifestyle', 'premium', 'designer', 'highfashion', 'luxuryfashion'],
-            'seasonal' => ['summeroutfit', 'winterfashion', 'springstyle', 'fallfashion', 'holidaystyle']
-        ];
-        
-        // Start with some general fashion hashtags
-        $hashtags = $commonHashtags['fashion'];
-        
-        // Add category-specific hashtags
-        if ($category && isset($commonHashtags[$category])) {
-            $hashtags = array_merge($hashtags, $commonHashtags[$category]);
-        }
-        
-        // Add premium hashtags
-        $hashtags = array_merge($hashtags, $commonHashtags['premium']);
-        
-        // Add brand-specific hashtag if provided
-        if ($brandName) {
-            $brandHashtag = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $brandName));
-            $hashtags[] = $brandHashtag;
-            $hashtags[] = 'shop' . $brandHashtag;
-        }
-        
-        // Shuffle and take requested count
-        shuffle($hashtags);
-        $hashtags = array_slice($hashtags, 0, $count);
-        
-        // Format as hashtags
-        foreach ($hashtags as &$tag) {
-            $tag = '#' . $tag;
-        }
-        
-        return implode(' ', $hashtags);
-    }
-    
-    /**
-     * Create a complete social media post
-     */
-    public function createSocialPost($productName, $options = []) {
-        $defaults = [
-            'style' => 'casual',
-            'category' => null,
-            'brand_name' => null,
-            'include_hashtags' => true,
-            'hashtag_count' => 5,
-            'emoji' => true
-        ];
-        
-        $options = array_merge($defaults, $options);
-        
-        // Generate CTA text
-        $ctaText = $this->generateCTAText($productName, [
-            'style' => $options['style'],
-            'emoji' => $options['emoji']
-        ]);
-        
-        $post = $ctaText;
-        
-        // Add hashtags if requested
-        if ($options['include_hashtags']) {
-            $hashtags = $this->generateHashtags(
-                $options['category'],
-                $options['brand_name'],
-                $options['hashtag_count']
-            );
-            
-            $post .= "\n\n" . $hashtags;
-        }
-        
-        return $post;
-    }
-}
-
-/**
- * Personalization engine for CTA system
- */
-class PersonalizedCTA {
-    private $db;
-    private $userId;
-    private $sessionId;
-    private $preferences;
-    private $ctaGenerator;
-    
-    public function __construct($userId = null, $sessionId = null) {
-        $this->db = new CTADatabase();
-        $this->userId = $userId;
-        $this->sessionId = $sessionId ?? session_id();
-        $this->ctaGenerator = new PremiumCTAGenerator($userId, $sessionId);
-        
-        if ($userId) {
-            $this->preferences = $this->db->getUserPreferences($userId);
-        }
-    }
-    
-    /**
-     * Generate personalized CTA text
-     */
-    public function generatePersonalizedText($defaultText, $context = []) {
-        // If no user preferences or not logged in, return default
-        if (!$this->preferences || !$this->userId) {
-            return $defaultText;
-        }
-        
-        // Context can include: product_type, is_returning_customer, previous_purchase_count
-        $personalizedTexts = [
-            // For returning customers with multiple purchases
-            'loyal_customer' => [
-                'Add to Your Collection',
-                'Complete Your Look',
-                'Exclusive for You',
-                'Add to Favorites'
-            ],
-            // For users who have items in wishlist
-            'wishlist_user' => [
-                'Add to Cart',
-                'Buy Now',
-                'Secure Yours Today',
-                'Add to Your Selection'
-            ],
-            // For first-time visitors
-            'new_visitor' => [
-                'Shop Now',
-                'Discover More',
-                'Explore Now',
-                'Start Shopping'
-            ]
-        ];
-        
-        // Determine which category of personalization to use
-        $personalizationType = 'new_visitor'; // Default
-        
-        if (!empty($context['is_returning_customer']) && 
-            (!empty($context['previous_purchase_count']) && $context['previous_purchase_count'] > 1)) {
-            $personalizationType = 'loyal_customer';
-        } else if (!empty($this->preferences['wishlist_items']) && count($this->preferences['wishlist_items']) > 0) {
-            $personalizationType = 'wishlist_user';
-        }
-        
-        // Select a personalized text
-        $texts = $personalizedTexts[$personalizationType];
-        $selectedText = $texts[array_rand($texts)];
-        
-        return $selectedText;
-    }
-    
-    /**
-     * Get recommended products based on user preferences
-     */
-    public function getRecommendedProducts($limit = 4, $context = []) {
-        // In a real application, this would query the database for personalized recommendations
-        // For this example, we'll return placeholder products
-        
-        return [
-            [
-                'id' => 101,
-                'name' => 'Premium Cotton T-Shirt',
-                'price' => 39.99,
-                'price_formatted' => '$39.99',
-                'image' => '/assets/images/products/tshirt.jpg',
-                'url' => '/products/premium-cotton-tshirt'
-            ],
-            [
-                'id' => 102,
-                'name' => 'Designer Slim Jeans',
-                'price' => 89.99,
-                'price_formatted' => '$89.99',
-                'compare_price' => 119.99,
-                'compare_price_formatted' => '$119.99',
-                'image' => '/assets/images/products/jeans.jpg',
-                'url' => '/products/designer-slim-jeans'
-            ],
-            [
-                'id' => 103,
-                'name' => 'Leather Weekend Bag',
-                'price' => 199.99,
-                'price_formatted' => '$199.99',
-                'image' => '/assets/images/products/bag.jpg',
-                'url' => '/products/leather-weekend-bag'
-            ],
-            [
-                'id' => 104,
-                'name' => 'Cashmere Scarf',
-                'price' => 79.99,
-                'price_formatted' => '$79.99',
-                'image' => '/assets/images/products/scarf.jpg',
-                'url' => '/products/cashmere-scarf'
-            ]
-        ];
-    }
-    
-    /**
-     * Get frequently bought together products
-     */
-    public function getFrequentlyBoughtTogether($productId, $limit = 3) {
-        // In a real application, this would query the database for co-purchased products
-        // For this example, we'll return placeholder products
-        
-        return [
-            [
-                'id' => 201,
-                'name' => 'Leather Belt',
-                'price' => 49.99,
-                'price_formatted' => '$49.99',
-                'image' => '/assets/images/products/belt.jpg',
-                'url' => '/products/leather-belt'
-            ],
-            [
-                'id' => 202,
-                'name' => 'Classic Sunglasses',
-                'price' => 129.99,
-                'price_formatted' => '$129.99',
-                'image' => '/assets/images/products/sunglasses.jpg',
-                'url' => '/products/classic-sunglasses'
-            ],
-            [
-                'id' => 203,
-                'name' => 'Silver Watch',
-                'price' => 299.99,
-                'price_formatted' => '$299.99',
-                'image' => '/assets/images/products/watch.jpg',
-                'url' => '/products/silver-watch'
-            ]
-        ];
-    }
-    
-    /**
-     * Create personalized recommendation section
-     */
-    public function createRecommendationSection($title = 'Recommended for You', $options = []) {
-        // Get recommended products
-        $products = $this->getRecommendedProducts(4, $options);
-        
-        // Use the main CTA generator to create the section
-        return $this->ctaGenerator->createPersonalizedCTA($products, $title, $options);
-    }
-    
-    /**
-     * Create frequently bought together section
-     */
-    public function createFrequentlyBoughtTogether($productId, $options = []) {
-        // Get co-purchased products
-        $products = $this->getFrequentlyBoughtTogether($productId, 3);
-        
-        // Use the main CTA generator to create the section
-        return $this->ctaGenerator->createPersonalizedCTA(
-            $products,
-            'Frequently Bought Together',
-            $options
-        );
-    }
-    
-    /**
-     * Check if product is in user's wishlist
-     */
-    public function isInWishlist($productId) {
-        if (!$this->userId || !$this->preferences) {
-            return false;
-        }
-        
-        $wishlistItems = $this->preferences['wishlist_items'] ?? [];
-        
-        return in_array($productId, $wishlistItems);
-    }
-}
-
-/**
- * Admin dashboard for CTA management and analytics
- */
-class CTADashboard {
-    private $db;
-    
-    public function __construct() {
-        $this->db = new CTADatabase();
-    }
-    
-    /**
-     * Get conversion analytics for a date range
-     */
-    public function getConversionAnalytics($dateFrom = null, $dateTo = null, $filters = []) {
-        // In a real application, this would query the database
-        // For this example, we'll return placeholder data
-        
-        return [
-            'summary' => [
-                'total_views' => 45872,
-                'total_clicks' => 6893,
-                'total_conversions' => 892,
-                'click_rate' => 15.03, // percent
-                'conversion_rate' => 12.94, // percent
-            ],
-            'by_cta_type' => [
-                [
-                    'type' => 'primary',
-                    'views' => 45872,
-                    'clicks' => 5231,
-                    'conversions' => 765,
-                    'click_rate' => 11.40,
-                    'conversion_rate' => 14.62
-                ],
-                [
-                    'type' => 'secondary',
-                    'views' => 45872,
-                    'clicks' => 1662,
-                    'conversions' => 127,
-                    'click_rate' => 3.62,
-                    'conversion_rate' => 7.64
-                ]
-            ],
-            'by_device' => [
-                [
-                    'device' => 'desktop',
-                    'views' => 21756,
-                    'clicks' => 3025,
-                    'conversions' => 498,
-                    'click_rate' => 13.90,
-                    'conversion_rate' => 16.46
-                ],
-                [
-                    'device' => 'mobile',
-                    'views' => 19854,
-                    'clicks' => 3214,
-                    'conversions' => 326,
-                    'click_rate' => 16.19,
-                    'conversion_rate' => 10.14
-                ],
-                [
-                    'device' => 'tablet',
-                    'views' => 4262,
-                    'clicks' => 654,
-                    'conversions' => 68,
-                    'click_rate' => 15.34,
-                    'conversion_rate' => 10.40
-                ]
-            ],
-            'by_category' => [
-                [
-                    'category' => 'Clothing',
-                    'views' => 22936,
-                    'clicks' => 3587,
-                    'conversions' => 492,
-                    'click_rate' => 15.64,
-                    'conversion_rate' => 13.72
-                ],
-                [
-                    'category' => 'Shoes',
-                    'views' => 11468,
-                    'clicks' => 1829,
-                    'conversions' => 215,
-                    'click_rate' => 15.95,
-                    'conversion_rate' => 11.76
-                ],
-                [
-                    'category' => 'Accessories',
-                    'views' => 11468,
-                    'clicks' => 1477,
-                    'conversions' => 185,
-                    'click_rate' => 12.88,
-                    'conversion_rate' => 12.53
-                ]
-            ],
-            'trend' => [
-                [
-                    'date' => '2023-07-01',
-                    'views' => 1485,
-                    'clicks' => 225,
-                    'conversions' => 29
-                ],
-                [
-                    'date' => '2023-07-02',
-                    'views' => 1527,
-                    'clicks' => 238,
-                    'conversions' => 32
-                ],
-                [
-                    'date' => '2023-07-03',
-                    'views' => 1421,
-                    'clicks' => 219,
-                    'conversions' => 27
-                ]
-                // Additional dates would be included here
-            ]
-        ];
-    }
-    
-    /**
-     * Get A/B test results
-     */
-    public function getABTestResults($testId = null) {
-        // In a real application, this would query the database
-        // For this example, we'll return placeholder data
-        
-        if ($testId) {
-            return [
-                'id' => $testId,
-                'name' => 'Button Text Test',
-                'start_date' => '2023-06-15',
-                'status' => 'active',
-                'total_impressions' => 25684,
-                'total_conversions' => 458,
-                'significance' => 95.2, // percent
-                'variants' => [
-                    [
-                        'id' => 1,
-                        'name' => 'Add to Cart',
-                        'impressions' => 8562,
-                        'clicks' => 1285,
-                        'conversions' => 137,
-                        'click_rate' => 15.01,
-                        'conversion_rate' => 10.66
-                    ],
-                    [
-                        'id' => 2,
-                        'name' => 'Add to Bag',
-                        'impressions' => 8561,
-                        'clicks' => 1302,
-                        'conversions' => 148,
-                        'click_rate' => 15.21,
-                        'conversion_rate' => 11.37
-                    ],
-                    [
-                        'id' => 3,
-                        'name' => 'Shop Now',
-                        'impressions' => 8561,
-                        'clicks' => 1422,
-                        'conversions' => 173,
-                        'click_rate' => 16.61,
-                        'conversion_rate' => 12.17
-                    ]
-                ]
-            ];
-        }
-        
-        // Return all tests if no specific test ID is provided
-        return [
-            [
-                'id' => 1,
-                'name' => 'Button Text Test',
-                'start_date' => '2023-06-15',
-                'status' => 'active',
-                'impressions' => 25684,
-                'conversions' => 458,
-                'leading_variant' => 'Shop Now',
-                'improvement' => 14.2, // percent
-                'significance' => 95.2 // percent
-            ],
-            [
-                'id' => 2,
-                'name' => 'Button Style Test',
-                'start_date' => '2023-06-22',
-                'status' => 'active',
-                'impressions' => 18392,
-                'conversions' => 312,
-                'leading_variant' => 'filled',
-                'improvement' => 8.7, // percent
-                'significance' => 82.4 // percent
-            ],
-            [
-                'id' => 3,
-                'name' => 'Animation Effect Test',
-                'start_date' => '2023-06-29',
-                'status' => 'active',
-                'impressions' => 12845,
-                'conversions' => 215,
-                'leading_variant' => 'bob',
-                'improvement' => 5.3, // percent
-                'significance' => 68.7 // percent
-            ]
-        ];
-    }
-    
-    /**
-     * Create A/B test
-     */
-    public function createABTest($testData) {
-        // In a real application, this would insert into the database
-        // For this example, we'll return a success indicator
-        
-        return [
-            'success' => true,
-            'test_id' => 4,
-            'message' => 'Test created successfully'
-        ];
-    }
-    
-    /**
-     * Update A/B test
-     */
-    public function updateABTest($testId, $testData) {
-        // In a real application, this would update the database
-        // For this example, we'll return a success indicator
-        
-        return [
-            'success' => true,
-            'test_id' => $testId,
-            'message' => 'Test updated successfully'
-        ];
-    }
-    
-    /**
-     * Get available CTA configurations
-     */
-    public function getCTAConfigurations() {
-        // In a real application, this would query the database
-        // For this example, we'll return placeholder data
-        
-        return [
-            'color_themes' => [
-                'default' => [
-                    'primary' => '#000000',
-                    'secondary' => '#FFFFFF',
-                    'accent' => '#000000'
-                ],
-                'seasonal' => [
-                    'primary' => '#9C0016',
-                    'secondary' => '#FFFFFF',
-                    'accent' => '#9C0016'
-                ],
-                'premium' => [
-                    'primary' => '#A37E2C',
-                    'secondary' => '#FFFFFF',
-                    'accent' => '#A37E2C'
-                ]
-            ],
-            'button_styles' => [
-                'filled' => [
-                    'background' => true,
-                    'border' => true,
-                    'invert_on_hover' => true
-                ],
-                'outlined' => [
-                    'background' => false,
-                    'border' => true,
-                    'invert_on_hover' => true
-                ],
-                'text' => [
-                    'background' => false,
-                    'border' => false,
-                    'invert_on_hover' => false
-                ]
-            ],
-            'animation_effects' => [
-                'bob' => [
-                    'name' => 'Bob Effect (Bounce)',
-                    'duration' => '400ms'
-                ],
-                'fade' => [
-                    'name' => 'Fade In',
-                    'duration' => '300ms'
-                ],
-                'slide' => [
-                    'name' => 'Slide Up',
-                    'duration' => '350ms'
-                ],
-                'none' => [
-                    'name' => 'No Animation',
-                    'duration' => '0ms'
-                ]
-            ],
-            'cta_texts' => [
-                'primary' => [
-                    'Add to Cart',
-                    'Shop Now',
-                    'Quick Buy',
-                    'Add to Bag'
-                ],
-                'secondary' => [
-                    'Add to Wishlist',
-                    'Size Guide',
-                    'Quick View',
-                    'Notify Me'
-                ]
-            ]
-        ];
-    }
-}
-
-/**
- * JavaScript helpers for CTA system
- * Generate these on the server side to include in the page
- */
-function generateCTAJavaScript() {
-    ob_start();
-?>
-/**
- * Premium Fashion Webshop CTA System JavaScript
- */
-const premiumCTA = {
-    // Initialize the CTA system
-    init: function() {
-        // Set up event listeners
-        this.setupEventListeners();
-        
-        // Initialize countdown timers
-        this.initCountdownTimers();
-        
-        // Initialize hover effects
-        this.initHoverEffects();
-        
-        // Initialize sticky mobile bar
-        this.initStickyMobileBar();
-        
-        console.log('Premium CTA system initialized');
-    },
-    
-    // Set up event listeners for CTA interactions
-    setupEventListeners: function() {
-        // Click tracking for all CTAs
-        document.addEventListener('click', function(e) {
-            const cta = e.target.closest('.premium-cta');
-            if (cta) {
-                premiumCTA.handleCTAClick(cta, e);
-            }
-        });
-        
-        // Setup wishlist toggle functionality
-        document.addEventListener('click', function(e) {
-            const wishlistCTA = e.target.closest('.premium-cta--wishlist');
-            if (wishlistCTA) {
-                premiumCTA.toggleWishlist(wishlistCTA);
-                e.preventDefault();
-            }
-        });
-        
-        // Setup quick view functionality
-        document.addEventListener('click', function(e) {
-            const quickViewCTA = e.target.closest('[data-action="quickview"]');
-            if (quickViewCTA) {
-                const productId = quickViewCTA.getAttribute('data-product-id');
-                premiumCTA.openQuickView(productId);
-                e.preventDefault();
-            }
-        });
-        
-        // Size guide functionality
-        document.addEventListener('click', function(e) {
-            const sizeGuideCTA = e.target.closest('[data-action="size-guide"]');
-            if (sizeGuideCTA) {
-                const modalTarget = sizeGuideCTA.getAttribute('data-modal-target');
-                premiumCTA.openSizeGuide(modalTarget);
-                e.preventDefault();
-            }
-        });
-        
-        // Add to cart functionality
-        document.addEventListener('click', function(e) {
-            const addToCartCTA = e.target.closest('[data-action="add-to-cart"]');
-            if (addToCartCTA) {
-                const productId = addToCartCTA.getAttribute('data-product-id');
-                premiumCTA.addToCart(productId, addToCartCTA);
-                e.preventDefault();
-            }
-        });
-        
-        // Quick add functionality
-        document.addEventListener('click', function(e) {
-            const quickAddCTA = e.target.closest('[data-action="quick-add"]');
-            if (quickAddCTA) {
-                const productId = quickAddCTA.getAttribute('data-product-id');
-                premiumCTA.addToCart(productId, quickAddCTA);
-                e.preventDefault();
-            }
-        });
-        
-        // Social media share functionality
-        document.addEventListener('click', function(e) {
-            const socialShareCTA = e.target.closest('.premium-cta-social__share');
-            if (socialShareCTA) {
-                // The default link behavior is already set up to open a share dialog
-            }
-        });
-    },
-    
-    // Handle CTA click
-    handleCTAClick: function(cta, event) {
-        // Track the click
-        this.trackClick(cta);
-        
-        // Handle loading state if it's a primary CTA
-        if (cta.classList.contains('premium-cta--primary')) {
-            cta.classList.add('premium-cta--loading');
-            
-            // Remove loading state after action completes
-            setTimeout(function() {
-                cta.classList.remove('premium-cta--loading');
-            }, 2000);
-        }
-    },
-    
-    // Track CTA click for analytics
-    trackClick: function(cta) {
-        // Get CTA data
-        const ctaId = cta.getAttribute('id');
-        const productId = cta.getAttribute('data-product-id');
-        const variantId = cta.getAttribute('data-variant-id');
-        const testId = cta.getAttribute('data-test-id');
-        
-        // Send analytics data to the server
-        if (window.fetch) {
-            fetch('/api/cta/track', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    cta_id: ctaId,
-                    product_id: productId,
-                    variant_id: variantId,
-                    test_id: testId,
-                    url: window.location.href,
-                    timestamp: new Date().toISOString()
-                }),
-                // Using no-cors mode for analytics to prevent CORS issues
-                mode: 'no-cors'
-            }).catch(function(error) {
-                console.log('CTA tracking error:', error);
-            });
-        }
-        
-        // Return true to allow the default action
-        return true;
-    },
-    
-    // Initialize countdown timers
-    initCountdownTimers: function() {
-        const countdowns = document.querySelectorAll('.premium-cta-countdown');
-        
-        countdowns.forEach(function(countdown) {
-            const endTime = new Date(countdown.getAttribute('data-end-time')).getTime();
-            const endMessage = countdown.getAttribute('data-end-message');
-            const showDays = countdown.getAttribute('data-show-days') === 'true';
-            const showHours = countdown.getAttribute('data-show-hours') === 'true';
-            const showMinutes = countdown.getAttribute('data-show-minutes') === 'true';
-            const showSeconds = countdown.getAttribute('data-show-seconds') === 'true';
-            
-            const daysElement = countdown.querySelector('[data-unit="days"]');
-            const hoursElement = countdown.querySelector('[data-unit="hours"]');
-            const minutesElement = countdown.querySelector('[data-unit="minutes"]');
-            const secondsElement = countdown.querySelector('[data-unit="seconds"]');
-            
-            // Update the countdown every 1 second
-            const interval = setInterval(function() {
-                // Get current date and time
-                const now = new Date().getTime();
-                
-                // Find the distance between now and the countdown date
-                const distance = endTime - now;
-                
-                // Time calculations for days, hours, minutes and seconds
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
-                // Update the countdown display
-                if (showDays && daysElement) {
-                    daysElement.textContent = days.toString().padStart(2, '0');
-                }
-                if (showHours && hoursElement) {
-                    hoursElement.textContent = hours.toString().padStart(2, '0');
-                }
-                if (showMinutes && minutesElement) {
-                    minutesElement.textContent = minutes.toString().padStart(2, '0');
-                }
-                if (showSeconds && secondsElement) {
-                    secondsElement.textContent = seconds.toString().padStart(2, '0');
-                }
-                
-                // If the countdown is finished, display the end message
-                if (distance < 0) {
-                    clearInterval(interval);
-                    
-                    // Hide the timer units
-                    const timerElement = countdown.querySelector('.premium-cta-countdown__timer');
-                    if (timerElement) {
-                        timerElement.style.display = 'none';
-                    }
-                    
-                    // Display the end message
-                    const messageElement = countdown.querySelector('.premium-cta-countdown__message');
-                    if (messageElement) {
-                        messageElement.textContent = endMessage;
-                    }
-                    
-                    countdown.classList.add('premium-cta-countdown--ended');
-                }
-            }, 1000);
-        });
-    },
-    
-    // Initialize hover effects
-    initHoverEffects: function() {
-        const hoverCTAs = document.querySelectorAll('.premium-cta--hover');
-        
-        hoverCTAs.forEach(function(cta) {
-            const hoverTarget = document.getElementById(cta.getAttribute('data-hover-target'));
-            
-            if (hoverTarget) {
-                // Show CTA on hover
-                hoverTarget.addEventListener('mouseenter', function() {
-                    cta.classList.add('premium-cta--visible');
-                });
-                
-                // Hide CTA when mouse leaves
-                hoverTarget.addEventListener('mouseleave', function() {
-                    cta.classList.remove('premium-cta--visible');
-                });
-                
-                // Touch support for mobile
-                hoverTarget.addEventListener('touchstart', function(e) {
-                    if (!cta.classList.contains('premium-cta--visible')) {
-                        e.preventDefault();
-                        cta.classList.add('premium-cta--visible');
-                    }
-                });
-            }
-        });
-    },
-    
-    // Initialize sticky mobile bar
-    initStickyMobileBar: function() {
-        const mobileBar = document.querySelector('.premium-cta-mobile-bar');
-        
-        if (mobileBar) {
-            let lastScrollTop = 0;
-            const scrollThreshold = 100; // Scroll amount before showing/hiding
-            
-            window.addEventListener('scroll', function() {
-                const st = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // If scrolled past threshold and scrolling down, hide the bar
-                if (st > lastScrollTop && st > scrollThreshold) {
-                    mobileBar.classList.add('premium-cta-mobile-bar--hidden');
-                } 
-                // If scrolling up, show the bar
-                else if (st < lastScrollTop) {
-                    mobileBar.classList.remove('premium-cta-mobile-bar--hidden');
-                }
-                
-                lastScrollTop = st <= 0 ? 0 : st;
-            }, false);
-        }
-    },
-    
-    // Toggle wishlist status
-    toggleWishlist: function(wishlistCTA) {
-        const productId = wishlistCTA.getAttribute('data-product-id');
-        const inWishlist = wishlistCTA.getAttribute('data-in-wishlist') === 'true';
-        const textAdd = wishlistCTA.getAttribute('data-text-add');
-        const textRemove = wishlistCTA.getAttribute('data-text-remove');
-        const textElement = wishlistCTA.querySelector('.premium-cta__text');
-        
-        // Toggle the wishlist state
-        const newState = !inWishlist;
-        wishlistCTA.setAttribute('data-in-wishlist', newState ? 'true' : 'false');
-        
-        // Update the button appearance
-        if (newState) {
-            wishlistCTA.classList.add('premium-cta--wishlist-active');
-            if (textElement) {
-                textElement.textContent = textRemove;
-            }
-        } else {
-            wishlistCTA.classList.remove('premium-cta--wishlist-active');
-            if (textElement) {
-                textElement.textContent = textAdd;
-            }
-        }
-        
-        // Send update to the server
-        if (window.fetch) {
-            fetch('/api/wishlist/toggle', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    product_id: productId,
-                    action: newState ? 'add' : 'remove'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    // Revert the change if server update failed
-                    wishlistCTA.setAttribute('data-in-wishlist', inWishlist ? 'true' : 'false');
-                    
-                    if (inWishlist) {
-                        wishlistCTA.classList.add('premium-cta--wishlist-active');
-                        if (textElement) {
-                            textElement.textContent = textRemove;
-                        }
-                    } else {
-                        wishlistCTA.classList.remove('premium-cta--wishlist-active');
-                        if (textElement) {
-                            textElement.textContent = textAdd;
-                        }
-                    }
-                }
-            })
-            .catch(error => {
-                console.log('Wishlist update error:', error);
-                // Revert the change if there was an error
-                wishlistCTA.setAttribute('data-in-wishlist', inWishlist ? 'true' : 'false');
-                
-                if (inWishlist) {
-                    wishlistCTA.classList.add('premium-cta--wishlist-active');
-                    if (textElement) {
-                        textElement.textContent = textRemove;
-                    }
-                } else {
-                    wishlistCTA.classList.remove('premium-cta--wishlist-active');
-                    if (textElement) {
-                        textElement.textContent = textAdd;
-                    }
-                }
-            });
-        }
-    },
-    
-    // Open quick view modal
-    openQuickView: function(productId) {
-        // Create modal container if it doesn't exist
-        let modal = document.getElementById('premium-quickview-modal');
-        
-        if (!modal) {
-            modal = document.createElement('div');
-            modal.id = 'premium-quickview-modal';
-            modal.className = 'premium-modal premium-quickview-modal';
-            
-            // Create modal content
-            modal.innerHTML = `
-                <div class="premium-modal__overlay"></div>
-                <div class="premium-modal__container">
-                    <div class="premium-modal__content">
-                        <div class="premium-modal__header">
-                            <h3 class="premium-modal__title">Quick View</h3>
-                            <button class="premium-modal__close"
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <h5>BOLDYASE</h5>
+        <p>Moderne luxe, duurzaam design. <br> AI-powered shopping experience.</p>
+        <div class="social-icons mt-4">
+          <a href="#" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" title="Pinterest"><i class="bi bi-pinterest"></i></a>
+          <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h6>Service</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Levering</a></li>
+          <li><a href="#">Retourneren</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h6>Info</h6>
+        <ul class="list-unstyled">
+          <li><a href="#">Over Ons</a></li>
+          <li><a href="#">Duurzaamheid</a></li>
+          <li><a href="#">Vacatures</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h6>Nieuwsbrief</h6>
+        <form id="newsletterForm" class="d-flex mt-2">
+          <input type="email" class="form-control me-2" placeholder="E-mailadres" required>
+          <button type="submit" class="btn btn-outline-light">Aanmelden</button>
+        </form>
+      </div>
+    </div>
+    <div class="bottom-text mt-3">
+      <p>&copy; <span id="currentYear"></span> BOLDYASE. Alle rechten voorbehouden.</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
