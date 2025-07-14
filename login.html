@@ -1,47 +1,285 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <title>Onderhoud | BOLDYASE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow"> <!-- Vertelt zoekmachines deze pagina niet te indexeren -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif; /* Gebruik hetzelfde lettertype als je site */
-            background-color: #F3F4F6; /* Of je site's achtergrondkleur */
-            color: #1F2937; /* Je site's tekstkleur */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 1rem;
-            box-sizing: border-box;
-        }
-        .maintenance-box {
-            background-color: white;
-            padding: 2rem 3rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            max-width: 600px;
-        }
-        .maintenance-box h1 {
-            font-size: 2rem;
-            color: #4F46E5; /* Je primaire kleur */
-            margin-bottom: 1rem;
-        }
-        .maintenance-box p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>BOLDYASE | Luxe Mode & AI Shopping</title>
+  <meta name="description" content="Luxe mode, trends, AI-advies & personalisatie.">
+  <!-- Voeg hier je CSS-frameworks toe, zoals Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      /* Luxe Styling: Zwart, wit, goud palet */
+      --primary: #111111;
+      --secondary: #FFFFFF;
+      --accent: #C9B068; /* Goud accent */
+      --bg-light: #FDFDFD;
+      --surface: #FFFFFF;
+      /* Luxe Styling: 20px radius */
+      --radius: 20px;
+      --shadow: 0 6px 40px rgba(60, 65, 120, 0.1);
+      --transition: all 0.25s cubic-bezier(.39,.53,.33,1);
+    }
+
+    /* Animated Hover States: "Bob" animatie */
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .hover-bob:hover {
+      animation: bob 0.8s ease-in-out;
+    }
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--primary);
+      min-height: 100vh;
+      letter-spacing: 0.01em;
+      padding-bottom: 80px; /* Ruimte voor sticky bar */
+    }
+    h1, h2, h3, h4, .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .section-title { font-size: 2.1rem; letter-spacing: -1px; margin-bottom: 2rem; }
+    .navbar {
+      background: rgba(255, 255, 255, 0.8) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 24px rgba(90,105,180,0.09);
+      font-family: 'Montserrat', Arial, sans-serif;
+      transition: box-shadow .2s;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--primary) !important;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      font-size: 1.08rem;
+      padding: 0.7rem 1.1rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      color: var(--primary);
+    }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
+      background: var(--accent);
+      color: var(--primary) !important;
+      outline: none;
+    }
+    .btn-main {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 0.8rem 2.2rem;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: 0 2px 14px rgba(201, 176, 104, 0.2);
+    }
+    .btn-main:hover, .btn-main:focus {
+      background: var(--primary);
+      color: var(--secondary);
+      border-color: var(--primary);
+      transform: scale(1.035);
+    }
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 74vh;
+      background: url('https://images.unsplash.com/photo-1581338834612-26ba48393563?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 0 4px 32px rgba(20,16,30,0.22);
+    }
+    .hero-overlay {
+      position: absolute; inset:0;
+      background: linear-gradient(120deg,rgba(0,0,0,0.3),rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      z-index: 2; position: relative;
+      text-align: center;
+      padding: 100px 10px 70px 10px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .hero h1 { font-size: 2.8rem; margin-bottom: .7rem; color: #fff; }
+    .hero .lead { font-size: 1.25rem; margin-bottom: 1.5rem; color: #eee; }
+    .category-card, .trend-card, .product-card {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--surface);
+      transition: box-shadow .21s, transform .21s;
+      overflow: hidden;
+      position: relative;
+    }
+    .category-card:hover, .trend-card:hover, .product-card:hover {
+       box-shadow: 0 10px 45px rgba(135,99,255,0.18);
+    }
+
+    .category-card img, .trend-card img, .product-card img {
+      width: 100%; aspect-ratio: 1/1; object-fit: cover;
+      transition: transform .4s cubic-bezier(.39,.53,.33,1);
+    }
+    .category-card:hover img, .trend-card:hover img, .product-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.10) saturate(1.12);
+    }
+    .category-card-overlay, .trend-overlay {
+      position: absolute; left: 0; bottom: 0; width: 100%;
+      padding: 1rem 0.4rem 0.6rem 0.4rem;
+      background: linear-gradient(0deg,rgba(10,10,10,0.95),rgba(10,10,10,0.21) 95%);
+      color: #fff; text-align: center;
+      font-size: 1.2rem; font-weight: 500; font-family: 'Montserrat',sans-serif;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .product-card { display: flex; flex-direction: column; height: 100%; }
+    .product-card .card-body { padding: 1.2rem; }
+    .product-card h5 { font-size: 1.1rem; font-weight: 700; }
+    .product-card .product-price { color: var(--primary); font-weight: 600; opacity: 0.8; }
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      color: var(--secondary);
+      padding: 3rem 0 1.1rem 0;
+      font-size: 1rem;
+    }
+    .footer a { color: var(--secondary); opacity: 0.87; transition: opacity .15s;}
+    .footer a:hover { opacity: 1; text-decoration: underline; color: var(--accent);}
+    .footer .social-icons a:hover { color: var(--accent);}
+
+    /* Sticky CTA Bar: Unmissable conversion point */
+    .sticky-cta-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: var(--surface);
+      padding: 1rem;
+      box-shadow: 0 -5px 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid #eee;
+    }
+     /* Mobile Optimized: Grotere, duimvriendelijke sticky bar */
+    @media (max-width: 767px) {
+      .sticky-cta-bar { flex-direction: column; text-align: center; }
+      .sticky-cta-bar .cta-text { margin-bottom: 0.75rem; }
+    }
+    .sticky-cta-bar .cta-text { margin-right: 1.5rem; font-size: 1.1rem; font-weight: 500;}
+
+    /* Mobile Optimized: Floating Action Button */
+    .floating-action-button {
+        position: fixed;
+        bottom: 110px; /* Boven de sticky bar */
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: var(--accent);
+        color: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        z-index: 1001;
+        transition: transform 0.2s ease-in-out;
+    }
+    .floating-action-button:hover {
+        transform: scale(1.1);
+        color: var(--primary);
+    }
+  </style>
 </head>
 <body>
-    <div class="maintenance-box">
-        <h1>🛠️ We zijn even bezig met iets moois!</h1>
-        <p>BOLDYASE.COM is momenteel in onderhoud om je binnenkort een nog betere ervaring te bieden. Kom snel terug!</p>
-        <p>Bedankt voor je geduld.</p>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Hoofdmenu">
+  <!-- ... (navbar content remains the same) ... -->
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1>Welcome, Bold One</h1>
+    <p class="lead">Luxe fashion. Future ready. Ontdek BOLDYASE.</p>
+    <!-- A/B Testing Idea: Probeer andere CTA teksten zoals "Ontdek de Collectie" of "Word Geïnspireerd" -->
+    <a href="#shop" class="btn btn-main btn-lg mt-3">Shop Direct</a>
+  </div>
+</section>
+
+<!-- Sections: Categories, Shop, Trends... -->
+<div id="categories" class="container py-5">
+    <h2 class="text-center section-title">Ontdek Categorieën</h2>
+    <div class="row g-4">
+        <!-- Voeg de 'hover-bob' class toe aan de kaarten -->
+        <div class="col-md-4"><a href="#" class="category-card d-block text-decoration-none hover-bob">...</a></div>
+        <div class="col-md-4"><a href="#" class="category-card d-block text-decoration-none hover-bob">...</a></div>
+        <div class="col-md-4"><a href="#" class="category-card d-block text-decoration-none hover-bob">...</a></div>
     </div>
+</div>
+
+<section id="shop" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="mb-4 text-center section-title">Uitgelichte Producten</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="product-card hover-bob">
+                    <!-- Context Awareness Idea: Voeg een class toe zoals 'product-status'. 
+                         Met JavaScript kun je de inhoud van de knop aanpassen.
+                         if (product.stock === 0) { button.textContent = "Niet op voorraad"; button.disabled = true; }
+                    -->
+                    <img src="https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?q=80&w=1996&auto=format&fit=crop" alt="Leren Jas">
+                    <div class="card-body text-center">
+                        <h5>Premium Leren Jas</h5>
+                        <p class="product-price">€249,95</p>
+                        <button class="btn btn-main w-100">Bekijk Product</button>
+                    </div>
+                </div>
+            </div>
+             <!-- ... other products ... -->
+        </div>
+    </div>
+</section>
+
+<!-- ... (Rest of your sections remain here) ... -->
+
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+  <!-- ... (footer content remains the same) ... -->
+</footer>
+
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta-bar" role="complementary" aria-label="Speciale aanbieding">
+  <div class="cta-text">
+    <strong>Exclusieve Deal:</strong> Gratis verzending bij besteding vanaf €100.
+  </div>
+  <!-- A/B Testing Idea: Test knoptekst "Shop Nu" vs "Profiteer Nu" -->
+  <a href="#shop" class="btn btn-main">Bekijk Collectie</a>
+</div>
+
+<!-- Floating Action Button (FAB) -->
+<a href="#" class="floating-action-button" title="Start AI Assistent" aria-label="Start AI Assistent">
+  <i class="bi bi-chat-dots-fill"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
