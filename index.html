@@ -3,165 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOLDYASE - Luxe Webshop</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <title>BOLDYASE - Ervaar Luxe</title>
+    <!-- SEO Verbetering: Toevoegen van een meta-beschrijving -->
+    <meta name="description" content="Ontdek de exclusieve collectie van BOLDYASE. Luxe producten, ontworpen voor de moderne en verfijnde levensstijl.">
+    
+    <!-- Fonts en Iconen -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Toevoeging: Iconen voor social media en UI-elementen -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        /* CSS Variabelen voor makkelijk beheer van kleurenschema */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f3f3f3;
+            --accent-color: #d4af37; /* Goud-accent voor luxe gevoel */
+            --text-color: #333;
+            --light-gray: #777;
+            --font-primary: 'Playfair Display', serif;
+            --font-secondary: 'Roboto', sans-serif;
+        }
+
         /* Algemene stijlen */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: var(--font-secondary);
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            -webkit-font-smoothing: antialiased; /* Vloeiendere fonts */
         }
 
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-primary);
             font-weight: 700;
-            color: #222;
+            color: var(--primary-color);
         }
 
         a {
             text-decoration: none;
             color: inherit;
+            transition: color 0.3s ease;
         }
 
         /* Header */
         header {
             background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 5%; /* Gebruik % voor betere schaalbaarheid */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky; /* Sticky header voor betere navigatie */
+            top: 0;
+            z-index: 1000;
         }
 
         header .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            color: #000;
+            color: var(--primary-color);
+            letter-spacing: 1px;
         }
 
         header nav a {
-            margin-left: 20px;
+            margin-left: 25px;
             font-weight: 500;
-            color: #555;
+            color: var(--light-gray);
+            position: relative; /* Voor de hover-animatie */
+        }
+
+        header nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
         }
 
         header nav a:hover {
-            color: #000;
+            color: var(--primary-color);
+        }
+
+        header nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* NIEUW: Mobiele Navigatie */
+        .mobile-nav-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* Hero Sectie */
         .hero {
-            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
-            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?q=80&w=1965&auto=format&fit=crop') no-repeat center center/cover;
+            height: 80vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: #fff;
             text-align: center;
+            padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 5vw; /* Schaalbare lettergrootte */
+            color: #fff;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 1.5vw;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.5s;
+            animation-fill-mode: both; /* Zorgt dat de stijl na animatie blijft */
+        }
+        
+        /* NIEUW: Call-to-Action Knop */
+        .cta-button {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1s ease 1s;
+            animation-fill-mode: both;
+        }
+
+        .cta-button:hover {
+            background-color: #c5a230; /* Iets donkerder goud */
+            transform: scale(1.05);
         }
 
         /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 60px 5%;
         }
 
         .product-card {
             background-color: #fff;
-            border-radius: 10px;
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
+        .product-card .img-container {
+            width: 100%;
+            height: 350px; /* Meer ruimte voor productfoto */
+            overflow: hidden;
+        }
+        
         .product-card img {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .product-card:hover img {
+            transform: scale(1.05); /* Zoom-effect op hover */
         }
 
         .product-card .info {
-            padding: 20px;
+            padding: 25px;
         }
 
         .product-card h3 {
-            font-size: 20px;
+            font-size: 22px;
+            margin-top: 0;
             margin-bottom: 10px;
         }
 
         .product-card p {
-            font-size: 14px;
-            color: #777;
+            font-size: 15px;
+            color: var(--light-gray);
+            line-height: 1.6;
         }
 
         .product-card .price {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            color: #000;
-            margin-top: 10px;
+            color: var(--primary-color);
+            margin-top: 15px;
+        }
+
+        /* NIEUW: Testimonials Sectie */
+        .testimonials {
+            background-color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+        }
+        .testimonials h2 {
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+        .testimonial-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .testimonial-card blockquote {
+            font-family: var(--font-primary);
+            font-size: 22px;
+            font-style: italic;
+            margin: 0 0 20px 0;
+            color: #555;
+        }
+        .testimonial-card cite {
+            font-weight: 500;
+            color: var(--primary-color);
         }
 
         /* Footer */
         footer {
-            background-color: #222;
+            background-color: var(--primary-color);
             color: #fff;
-            padding: 40px;
+            padding: 50px 5%;
             text-align: center;
         }
 
         footer .social-links a {
-            margin: 0 10px;
+            margin: 0 15px;
             color: #fff;
-            font-size: 18px;
+            font-size: 22px;
         }
 
         footer .social-links a:hover {
-            color: #ccc;
+            color: var(--accent-color);
         }
 
         footer p {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 14px;
             color: #aaa;
+        }
+        
+        /* Keyframe Animaties */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
-                padding: 20px;
+                padding: 15px 20px;
+            }
+            header nav {
+                display: none; /* Verberg desktop nav */
+                flex-direction: column;
+                position: absolute;
+                top: 68px; /* Hoogte van header */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+            }
+            header nav.active {
+                display: flex; /* Toon mobiele nav */
+            }
+            header nav a {
+                margin: 0;
+                padding: 15px 20px;
+                border-bottom: 1px solid var(--secondary-color);
+            }
+            .mobile-nav-toggle {
+                display: block; /* Toon hamburger icoon */
             }
 
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
+            .hero h1 { font-size: 8vw; }
+            .hero p { font-size: 3vw; }
 
             .product-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                padding: 20px;
+                grid-template-columns: 1fr; /* 1 kolom op mobiel */
+                padding: 40px 20px;
             }
         }
     </style>
@@ -171,59 +309,112 @@
     <!-- Header -->
     <header>
         <div class="logo">BOLDYASE</div>
-        <nav>
+        <nav id="main-nav">
             <a href="#">Home</a>
             <a href="#">Shop</a>
+            <a href="#">Collecties</a>
             <a href="#">Over Ons</a>
             <a href="#">Contact</a>
         </nav>
+        <!-- NIEUW: Hamburger icoon voor mobiel -->
+        <div class="mobile-nav-toggle" id="mobile-nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
 
-    <!-- Hero Sectie -->
-    <section class="hero">
-        <div>
-            <h1>Welkom bij BOLDYASE</h1>
-            <p>Ontdek onze exclusieve collectie van luxe producten, ontworpen voor de moderne levensstijl.</p>
-        </div>
-    </section>
+    <main>
+        <!-- Hero Sectie -->
+        <section class="hero">
+            <div>
+                <h1>Ervaar Ware Elegantie</h1>
+                <p>Ontdek onze exclusieve collectie, zorgvuldig samengesteld voor de moderne en verfijnde levensstijl.</p>
+                <!-- NIEUW: Call-to-Action Knop -->
+                <a href="#" class="cta-button">Ontdek de collectie</a>
+            </div>
+        </section>
 
-    <!-- Product Grid -->
-    <section class="product-grid">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300x200" alt="Product 1">
-            <div class="info">
-                <h3>Product 1</h3>
-                <p>Beschrijving van het product. Perfect voor dagelijks gebruik.</p>
-                <p class="price">€199,99</p>
+        <!-- Product Grid -->
+        <section class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1999&auto=format&fit=crop" alt="Luxe Horloge">
+                </div>
+                <div class="info">
+                    <h3>Tijdloos Horloge</h3>
+                    <p>Een meesterwerk van precisie en stijl. Vervaardigd met saffierglas en een roestvrijstalen kast.</p>
+                    <p class="price">€1.299,99</p>
+                </div>
             </div>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300x200" alt="Product 2">
-            <div class="info">
-                <h3>Product 2</h3>
-                <p>Beschrijving van het product. Perfect voor dagelijks gebruik.</p>
-                <p class="price">€249,99</p>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=2016&auto=format&fit=crop" alt="Exclusief Parfum">
+                </div>
+                <div class="info">
+                    <h3>Exclusief Parfum</h3>
+                    <p>Een verleidelijke geur met noten van sandelhout en vanille. Een onvergetelijke indruk.</p>
+                    <p class="price">€249,99</p>
+                </div>
             </div>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300x200" alt="Product 3">
-            <div class="info">
-                <h3>Product 3</h3>
-                <p>Beschrijving van het product. Perfect voor dagelijks gebruik.</p>
-                <p class="price">€299,99</p>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop" alt="Handgemaakte Schoenen">
+                </div>
+                <div class="info">
+                    <h3>Handgemaakte Schoenen</h3>
+                    <p>Gemaakt van het fijnste kalfsleer voor ultiem comfort en een onberispelijke uitstraling.</p>
+                    <p class="price">€799,99</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <!-- NIEUW: Testimonials Sectie -->
+        <section class="testimonials">
+            <h2>Wat Onze Klanten Zeggen</h2>
+            <div class="testimonial-card">
+                <blockquote>"De kwaliteit en het oog voor detail bij BOLDYASE zijn ongeëvenaard. Elk product voelt speciaal."</blockquote>
+                <cite>- Alex van der Berg</cite>
+            </div>
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Twitter</a>
+            <!-- NIEUW: Font Awesome iconen -->
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>&copy; 2023 BOLDYASE. Alle rechten voorbehouden.</p>
+        <p>&copy; <span id="current-year"></span> BOLDYASE. Alle rechten voorbehouden.</p>
     </footer>
+
+    <!-- NIEUW: JavaScript voor interactiviteit -->
+    <script>
+        // Mobiele navigatie toggle
+        const navToggle = document.getElementById('mobile-nav-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            // Verander icoon van hamburger naar kruisje en terug
+            const icon = navToggle.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Copyright jaar automatisch bijwerken
+        const yearSpan = document.getElementById('current-year');
+        yearSpan.textContent = new Date().getFullYear();
+    </script>
 
 </body>
 </html>
