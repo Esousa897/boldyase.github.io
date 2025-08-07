@@ -1,1958 +1,701 @@
-/**
- * Home page component for BOLDYASE premium fashion webshop
- * Features: 4K-ready design, Retina-display optimization, luxury aesthetics, AI recommendations
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLDYASE - Modern E-commerce Theme Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-import React, { useState, useEffect } from 'react';
-import ShoppingCart from '../components/ShoppingCart';
-import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
-import { 
-  ShoppingBag, 
-  Heart, 
-  Search, 
-  User, 
-  Menu,
-  Star,
-  TrendingUp,
-  Sparkles,
-  ArrowRight,
-  Filter,
-  Grid,
-  List,
-  Shield,
-  Truck,
-  Award,
-  Clock,
-  Globe,
-  Zap,
-  Crown,
-  Gem,
-  ChevronRight,
-  Play,
-  X,
-  Camera,
-  MessageCircle,
-  Bot
-} from 'lucide-react';
+        :root {
+            --color-primary: #2563EB;
+            --color-secondary: #7C3AED;
+            --color-accent: #F59E0B;
+            --color-text: #1F2937;
+            --color-text-light: #6B7280;
+            --color-background: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-border: #E5E7EB;
+            --color-success: #10B981;
+            --color-error: #EF4444;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --container-width: 1200px;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-/**
- * Product interface for type safety
- */
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  hoverImage: string;
-  category: string;
-  subcategory: string;
-  rating: number;
-  isNew?: boolean;
-  isPersonalized?: boolean;
-  isBestseller?: boolean;
-  isExclusive?: boolean;
-  sizes: string[];
-  colors: string[];
-  description: string;
-}
+        body {
+            font-family: var(--font-family);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
 
-/**
- * Subcategory structure for shop organization
- */
-interface CategoryStructure {
-  [key: string]: {
-    name: string;
-    subcategories: string[];
-  };
-}
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-const categoryStructure: CategoryStructure = {
-  women: {
-    name: 'Women',
-    subcategories: [
-      'Blazers & Jassen',
-      'Tops & Truien', 
-      'Jurken',
-      'Broeken',
-      'Rokken',
-      'Lingerie',
-      'Tassen',
-      'Sieraden'
-    ]
-  },
-  men: {
-    name: 'Men',
-    subcategories: [
-      'Blazers & Jassen',
-      'Tops & Truien',
-      'Overhemden', 
-      'Broeken',
-      'Pakken',
-      'Tassen',
-      'Accessoires'
-    ]
-  },
-  shoes: {
-    name: 'Shoes',
-    subcategories: [
-      'Sneakers',
-      'Pumps',
-      'Laarzen',
-      'Loafers',
-      'Sandalen',
-      'Sportschoenen',
-      'Formele Schoenen'
-    ]
-  },
-  accessories: {
-    name: 'Accessories',
-    subcategories: [
-      'Tassen',
-      'Horloges',
-      'Riemen',
-      'Sieraden',
-      'Zonnebrillen',
-      'Sjaals',
-      'Hoeden'
-    ]
-  }
-};
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-/**
- * Format price utility function
- */
-/**
- * Format price utility function
- */
-const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0
-  }).format(price);
-};
+        .announcement-bar {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+        }
 
-/**
- * Function to automatically determine subcategory based on product name and category
- */
-const determineSubcategory = (productName: string, category: string): string => {
-  const name = productName.toLowerCase();
-  
-  switch (category) {
-    case 'women':
-      if (name.includes('blazer') || name.includes('jacket') || name.includes('coat')) return 'Blazers & Jassen';
-      if (name.includes('dress') || name.includes('jurk')) return 'Jurken';
-      if (name.includes('sweater') || name.includes('trui') || name.includes('turtleneck')) return 'Tops & Truien';
-      if (name.includes('bag') || name.includes('handbag') || name.includes('tas')) return 'Tassen';
-      if (name.includes('skirt') || name.includes('rok')) return 'Rokken';
-      if (name.includes('pants') || name.includes('broek')) return 'Broeken';
-      if (name.includes('earring') || name.includes('necklace') || name.includes('ring')) return 'Sieraden';
-      return 'Tops & Truien'; // Default
-      
-    case 'men':
-      if (name.includes('blazer') || name.includes('jacket') || name.includes('coat') || name.includes('overcoat')) return 'Blazers & Jassen';
-      if (name.includes('suit') || name.includes('pak')) return 'Pakken';
-      if (name.includes('shirt') || name.includes('overhemd')) return 'Overhemden';
-      if (name.includes('sweater') || name.includes('trui') || name.includes('pullover')) return 'Tops & Truien';
-      if (name.includes('briefcase') || name.includes('bag') || name.includes('tas')) return 'Tassen';
-      if (name.includes('pants') || name.includes('broek')) return 'Broeken';
-      return 'Overhemden'; // Default
-      
-    case 'shoes':
-      if (name.includes('sneaker') || name.includes('trainer')) return 'Sneakers';
-      if (name.includes('pump') || name.includes('heel')) return 'Pumps';
-      if (name.includes('boot') || name.includes('laars')) return 'Laarzen';
-      if (name.includes('loafer') || name.includes('moccasin')) return 'Loafers';
-      if (name.includes('sandal') || name.includes('sandaal')) return 'Sandalen';
-      return 'Sneakers'; // Default
-      
-    case 'accessories':
-      if (name.includes('watch') || name.includes('horloge')) return 'Horloges';
-      if (name.includes('bag') || name.includes('handbag') || name.includes('briefcase') || name.includes('tas')) return 'Tassen';
-      if (name.includes('belt') || name.includes('riem')) return 'Riemen';
-      if (name.includes('scarf') || name.includes('sjaal')) return 'Sjaals';
-      if (name.includes('earring') || name.includes('necklace') || name.includes('ring') || name.includes('diamond')) return 'Sieraden';
-      if (name.includes('sunglasses') || name.includes('glasses')) return 'Zonnebrillen';
-      return 'Accessoires'; // Default
-      
-    default:
-      return 'Algemeen';
-  }
-};
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+        }
 
-/**
- * Complete product catalog with all categories
- */
-const allProducts: Product[] = [
-  // WOMEN'S COLLECTION
-  {
-    id: 'w1',
-    name: 'Silk Evening Dress',
-    price: 899,
-    originalPrice: 1199,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/2179613e-7401-40a8-9b02-770a40b648ac.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/ee24a76e-1d60-44d1-94b7-2dae44b9a5e3.jpg',
-    category: 'women',
-    rating: 4.8,
-    isExclusive: true,
-    isPersonalized: true,
-    sizes: ['XS', 'S', 'M', 'L'],
-    colors: ['Black', 'Midnight Blue', 'Champagne'],
-    description: 'Hand-finished silk evening dress with intricate beadwork'
-  },
-  {
-    id: 'w2',
-    name: 'Cashmere Turtleneck',
-    price: 459,
-    originalPrice: 599,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/111056eb-0680-44b9-a0f5-bfd715a6b0d0.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/fd48aec8-2390-4356-a2eb-597001adf3c3.jpg',
-    category: 'women',
-    rating: 4.9,
-    isNew: true,
-    isBestseller: true,
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    colors: ['Cream', 'Black', 'Camel'],
-    description: 'Premium cashmere turtleneck with Italian craftsmanship'
-  },
-  {
-    id: 'w3',
-    name: 'Tailored Blazer',
-    price: 699,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/511d2f63-178c-47a8-8a6a-984f4247ea8a.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/c9009c22-329b-4246-b5fe-f0e30088572d.jpg',
-    category: 'women',
-    rating: 4.7,
-    isPersonalized: true,
-    sizes: ['XS', 'S', 'M', 'L'],
-    colors: ['Navy', 'Black', 'Charcoal'],
-    description: 'Perfectly tailored blazer with premium wool blend'
-  },
-  {
-    id: 'w4',
-    name: 'Leather Handbag',
-    price: 1299,
-    originalPrice: 1599,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/26581dea-f6f6-45a9-b38f-eb164d5632d4.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/81ca7fd4-4a49-4f53-be31-76d318127718.jpg',
-    category: 'women',
-    rating: 4.9,
-    isExclusive: true,
-    sizes: ['One Size'],
-    colors: ['Black', 'Cognac', 'Burgundy'],
-    description: 'Handcrafted Italian leather handbag with gold hardware'
-  },
-  
-  // MEN'S COLLECTION
-  {
-    id: 'm1',
-    name: 'Cashmere Overcoat',
-    price: 1299,
-    originalPrice: 1599,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/148f8588-3105-4cec-8418-87200f8fb869.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/85ac5cb0-5143-42ad-940c-04c1e484d1b8.jpg',
-    category: 'men',
-    rating: 4.9,
-    isNew: true,
-    isBestseller: true,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Camel', 'Black', 'Navy'],
-    description: 'Luxurious cashmere blend overcoat with Italian craftsmanship'
-  },
-  {
-    id: 'm2',
-    name: 'Wool Suit',
-    price: 1899,
-    originalPrice: 2399,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/3ba23cc5-1bbe-4a41-a726-f66afb2b3e3d.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/a18f24cf-895b-451c-b11c-4ac11794a749.jpg',
-    category: 'men',
-    rating: 4.8,
-    isExclusive: true,
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['Charcoal', 'Navy', 'Black'],
-    description: 'Hand-tailored wool suit with perfect fit guarantee'
-  },
-  {
-    id: 'm3',
-    name: 'Silk Dress Shirt',
-    price: 299,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/e976a801-8a59-4e35-bebc-8e1bba8c4a4c.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/e5ac18c0-2b97-4868-bc99-e33066d4db4b.jpg',
-    category: 'men',
-    rating: 4.7,
-    isPersonalized: true,
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['White', 'Light Blue', 'Charcoal'],
-    description: 'Premium silk dress shirt with mother-of-pearl buttons'
-  },
-  {
-    id: 'm4',
-    name: 'Leather Briefcase',
-    price: 899,
-    originalPrice: 1199,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/741d508f-cbc1-4550-a200-03043efadd02.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/2c57781e-8676-45aa-8037-b03951e7bc37.jpg',
-    category: 'men',
-    rating: 4.9,
-    isNew: true,
-    sizes: ['One Size'],
-    colors: ['Black', 'Brown', 'Cognac'],
-    description: 'Handcrafted leather briefcase with lifetime warranty'
-  },
-  
-  // SHOES COLLECTION
-  {
-    id: 's1',
-    name: 'Italian Leather Loafers',
-    price: 659,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/ca733ad9-b13e-4139-a80d-e6d5132983d7.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/8cb48cb5-6449-4c47-8c8b-76a3bd01464b.jpg',
-    category: 'shoes',
-    rating: 4.9,
-    isNew: true,
-    isBestseller: true,
-    sizes: ['38', '39', '40', '41', '42', '43', '44'],
-    colors: ['Black', 'Brown', 'Cognac'],
-    description: 'Handcrafted Italian leather loafers with premium finish'
-  },
-  {
-    id: 's2',
-    name: 'High Heel Pumps',
-    price: 549,
-    originalPrice: 699,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/47396ae7-dbf4-40b6-8912-b80582a6bc2c.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/b74c960a-5ed2-4792-b807-a12c7fd52fc0.jpg',
-    category: 'shoes',
-    rating: 4.8,
-    isExclusive: true,
-    sizes: ['35', '36', '37', '38', '39', '40', '41'],
-    colors: ['Black', 'Red', 'Nude'],
-    description: 'Elegant high heel pumps with superior comfort technology'
-  },
-  {
-    id: 's3',
-    name: 'Leather Sneakers',
-    price: 399,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/32c703a3-2820-4c39-bfaa-92174888f3cb.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/5912758f-0a48-42b0-a9b7-d24061a20113.jpg',
-    category: 'shoes',
-    rating: 4.7,
-    isPersonalized: true,
-    sizes: ['36', '37', '38', '39', '40', '41', '42', '43'],
-    colors: ['White', 'Black', 'Navy'],
-    description: 'Premium leather sneakers with handcrafted details'
-  },
-  {
-    id: 's4',
-    name: 'Suede Ankle Boots',
-    price: 799,
-    originalPrice: 999,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/46cd42b0-affa-46dc-96d0-38a046c5cb9e.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/3f2e6203-26a2-4892-a657-2c3f0bd50c15.jpg',
-    category: 'shoes',
-    rating: 4.9,
-    isNew: true,
-    sizes: ['35', '36', '37', '38', '39', '40', '41'],
-    colors: ['Tan', 'Black', 'Gray'],
-    description: 'Luxurious suede ankle boots with Italian craftsmanship'
-  },
-  
-  // ACCESSORIES COLLECTION
-  {
-    id: 'a1',
-    name: 'Swiss Gold Watch',
-    price: 2499,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/877e5626-3ea3-42cf-b182-5221d2377c39.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/876436e4-354b-445e-99b8-805a9edcfdc1.jpg',
-    category: 'accessories',
-    rating: 5.0,
-    isExclusive: true,
-    sizes: ['One Size'],
-    colors: ['Gold', 'Rose Gold', 'Silver'],
-    description: 'Swiss-made luxury timepiece with 18k gold case'
-  },
-  {
-    id: 'a2',
-    name: 'Silk Scarf',
-    price: 299,
-    originalPrice: 399,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/b9952b78-a5ee-4ff1-831d-8bac56635a35.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/31284825-5cc9-4bd8-80ef-30478d4c5fac.jpg',
-    category: 'accessories',
-    rating: 4.8,
-    isPersonalized: true,
-    sizes: ['One Size'],
-    colors: ['Floral', 'Geometric', 'Abstract'],
-    description: 'Hand-printed silk scarf with exclusive designer patterns'
-  },
-  {
-    id: 'a3',
-    name: 'Leather Belt',
-    price: 199,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/7533c9f4-0127-4eed-b1c5-90c62180f3c6.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/413f1dac-8b5d-4561-bb85-971bec600f87.jpg',
-    category: 'accessories',
-    rating: 4.7,
-    isBestseller: true,
-    sizes: ['S', 'M', 'L', 'XL'],
-    colors: ['Black', 'Brown', 'Cognac'],
-    description: 'Premium leather belt with hand-polished buckle'
-  },
-  {
-    id: 'a4',
-    name: 'Diamond Earrings',
-    price: 1899,
-    originalPrice: 2399,
-    image: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/5ffc6805-5116-4df4-9acb-72691ee354c5.jpg',
-    hoverImage: 'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/dcf36c91-14e2-4ef1-b086-862a4544d057.jpg',
-    category: 'accessories',
-    rating: 5.0,
-    isExclusive: true,
-    isNew: true,
-    sizes: ['One Size'],
-    colors: ['White Gold', 'Yellow Gold', 'Rose Gold'],
-    description: 'Brilliant cut diamond earrings with premium setting'
-  }
-];
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
 
-/**
- * Header component props
- */
-interface HeaderProps {
-  isCartOpen: boolean;
-  setIsCartOpen: (open: boolean) => void;
-  activeCategory: string;
-  setActiveCategory: (category: string) => void;
-}
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
 
-/**
- * EASY TOUCH MINIMAL HEADER - Clean, unobtrusive navigation
- */
-const Header: React.FC<HeaderProps> = ({ isCartOpen, setIsCartOpen, activeCategory, setActiveCategory }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [cartItemCount, setCartItemCount] = useState(3);
+        .nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+        .nav a:hover {
+            color: var(--color-primary);
+        }
 
-  // Only show header when scrolled or not on home page
-  if (activeCategory === 'home' && !isScrolled) {
-    return null;
-  }
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
 
-  return (
-    <header 
-      className={`w-full fixed top-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-soft border-b border-gray-100' 
-          : 'bg-transparent'
-      }`}
-      role="banner"
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16">
-          {/* Minimal Logo */}
-          <button 
-            onClick={() => setActiveCategory('home')}
-            className="flex items-center group"
-          >
-            <img 
-              src="https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/62f13070-5f66-4d01-a075-812fabe96c2d.png"
-              alt="BOLDYASE"
-              className="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-            <span className="ml-3 text-xl font-light text-gray-900 tracking-wide">BOLDYASE</span>
-          </button>
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
 
-          {/* Minimal Navigation - Hidden on mobile */}
-          <nav className="hidden md:flex items-center space-x-8" role="navigation">
-            {[
-              { name: 'Women', category: 'women' },
-              { name: 'Men', category: 'men' },
-              { name: 'Shoes', category: 'shoes' },
-              { name: 'Accessories', category: 'accessories' }
-            ].map((item) => (
-              <button 
-                key={item.name}
-                onClick={() => setActiveCategory(item.category)}
-                className={`text-sm font-medium transition-all duration-300 ${
-                  activeCategory === item.category 
-                    ? 'text-black border-b-2 border-black pb-1' 
-                    : 'text-gray-600 hover:text-black'
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
 
-          {/* Essential Icons Only */}
-          <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="relative hover:bg-gray-50 transition-colors duration-200"
-              onClick={() => setIsCartOpen(!isCartOpen)}
-            >
-              <ShoppingBag className="h-5 w-5" />
-              {cartItemCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-black text-white text-xs font-bold">
-                  {cartItemCount}
-                </Badge>
-              )}
-            </Button>
-            
-            {/* Hamburger Menu - Only for account, orders, contact */}
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="hover:bg-gray-50 transition-colors duration-200"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </div>
+        .btn-primary:hover {
+            background: #1D4ED8;
+            transform: translateY(-2px);
+        }
 
-      {/* Minimal Mobile/Account Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-xl">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-12">
-              <span className="text-xl font-light text-gray-900 tracking-wide">BOLDYASE</span>
-              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
-            
-            {/* Account & Essential Links */}
-            <nav className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-lg font-medium text-gray-900 border-b border-gray-200 pb-2">Account</h3>
-                <button className="block w-full text-left text-gray-700 hover:text-black transition-colors">
-                  Sign In
-                </button>
-                <button className="block w-full text-left text-gray-700 hover:text-black transition-colors">
-                  My Orders
-                </button>
-                <button className="block w-full text-left text-gray-700 hover:text-black transition-colors">
-                  Wishlist
-                </button>
-              </div>
-              
-              <div className="space-y-6">
-                <h3 className="text-lg font-medium text-gray-900 border-b border-gray-200 pb-2">Support</h3>
-                <button className="block w-full text-left text-gray-700 hover:text-black transition-colors">
-                  Contact Us
-                </button>
-                <button className="block w-full text-left text-gray-700 hover:text-black transition-colors">
-                  Size Guide
-                </button>
-                <button className="block w-full text-left text-gray-700 hover:text-black transition-colors">
-                  Returns
-                </button>
-              </div>
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
 
-              {/* Mobile Category Navigation */}
-              <div className="md:hidden space-y-6">
-                <h3 className="text-lg font-medium text-gray-900 border-b border-gray-200 pb-2">Shop</h3>
-                {[
-                  { name: 'Women', category: 'women' },
-                  { name: 'Men', category: 'men' },
-                  { name: 'Shoes', category: 'shoes' },
-                  { name: 'Accessories', category: 'accessories' }
-                ].map((item) => (
-                  <button
-                    key={item.category}
-                    onClick={() => {
-                      setActiveCategory(item.category);
-                      setIsMenuOpen(false);
-                    }}
-                    className={`block w-full text-left transition-colors ${
-                      activeCategory === item.category 
-                        ? 'text-black font-medium' 
-                        : 'text-gray-700 hover:text-black'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </div>
-            </nav>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-};
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
 
-/**
- * EASY TOUCH HERO SECTION - Conversational Shopping Experience
- */
-const HeroSection: React.FC = () => {
-  const [chatInput, setChatInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  const [messages, setMessages] = useState<Array<{type: 'user' | 'ai', content: string, products?: any[]}>>([]);
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(37, 99, 235, 0.1) 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
 
-  // Cursor blinking animation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-    return () => clearInterval(interval);
-  }, []);
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-  const handleInspiration = (prompt: string) => {
-    setChatInput(prompt);
-    handleChatSubmit(prompt);
-  };
+        .hero p {
+            font-size: 20px;
+            color: var(--color-text-light);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-  const handleChatSubmit = (input: string = chatInput) => {
-    if (!input.trim()) return;
-    
-    setMessages(prev => [...prev, { type: 'user', content: input }]);
-    setChatInput('');
-    setIsTyping(true);
-    
-    // Simulate AI response
-    setTimeout(() => {
-      const response = getAIResponse(input);
-      setMessages(prev => [...prev, response]);
-      setIsTyping(false);
-    }, 1200);
-  };
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
 
-  const getAIResponse = (input: string): {type: 'ai', content: string, products?: any[]} => {
-    const lowerInput = input.toLowerCase();
-    
-    if (lowerInput.includes('jurk') || lowerInput.includes('dress')) {
-      return {
-        type: 'ai',
-        content: 'Prachtige keuze! Hier zijn onze mooiste jurken. Heb je voorkeur voor kleur of gelegenheid?',
-        products: allProducts.filter(p => p.subcategory === 'Jurken').slice(0, 3)
-      };
-    } else if (lowerInput.includes('blazer') || lowerInput.includes('jacket')) {
-      return {
-        type: 'ai',
-        content: 'Perfecte timing! Onze blazer collectie is net uitgebreid. Welke stijl spreekt je aan?',
-        products: allProducts.filter(p => p.subcategory === 'Blazers & Jassen').slice(0, 3)
-      };
-    } else if (lowerInput.includes('schoenen') || lowerInput.includes('shoes')) {
-      return {
-        type: 'ai',
-        content: 'Geweldige keuze! Van sneakers tot elegante pumps, we hebben alles. Wat past bij jouw stijl?',
-        products: allProducts.filter(p => p.category === 'shoes').slice(0, 3)
-      };
-    } else {
-      return {
-        type: 'ai',
-        content: 'Ik help je graag! Hier zijn onze nieuwste arrivals die perfect bij jouw stijl passen.',
-        products: allProducts.filter(p => p.isNew).slice(0, 3)
-      };
-    }
-  };
+        .hero-image {
+            max-width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
 
-  return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
-      {/* Subtle Background Video Loop */}
-      <div className="absolute inset-0 opacity-5">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="w-full h-full object-cover"
-        >
-          <source src="https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/634958b2-5fb9-4ab9-8880-59e43b9be5fe.jpg" type="video/mp4" />
-        </video>
-      </div>
+        /* Featured Collection */
+        .section {
+            padding: 80px 0;
+        }
 
-      {/* Clean, Minimal Layout */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 lg:px-12">
-        
-        {/* Logo - Subtle and Clean */}
-        <div className="mb-16 text-center">
-          <img 
-            src="https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/62f13070-5f66-4d01-a075-812fabe96c2d.png"
-            alt="BOLDYASE"
-            className="h-12 w-12 mx-auto mb-4 opacity-60"
-          />
-          <div className="text-2xl font-light text-gray-600 tracking-wide">BOLDYASE</div>
-        </div>
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
 
-        {/* Conversational Prompt */}
-        <div className="max-w-2xl w-full mb-12">
-          <h1 className="text-4xl md:text-5xl font-light text-gray-800 text-center mb-8 leading-relaxed">
-            Waar kan ik je vandaag 
-            <br />
-            <span className="font-medium">mee helpen?</span>
-            <span className={`ml-2 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
-          </h1>
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
 
-          {/* Chat Input */}
-          <div className="relative mb-8">
-            <input
-              type="text"
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleChatSubmit()}
-              placeholder="Typ hier of kies een inspiratie hieronder..."
-              className="w-full px-8 py-6 text-lg bg-white/80 backdrop-blur-sm border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-black transition-all duration-300 shadow-lg"
-            />
-            <Button 
-              onClick={() => handleChatSubmit()}
-              className="absolute right-3 top-3 bg-black hover:bg-gray-800 text-white rounded-xl px-6 py-3"
-            >
-              <ArrowRight className="h-5 w-5" />
-            </Button>
-          </div>
+        .section-description {
+            font-size: 18px;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-          {/* Inspiration Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button 
-              onClick={() => handleInspiration('Laat me de nieuwe collectie zien')}
-              className="bg-white/90 hover:bg-white text-gray-800 border-2 border-gray-200 hover:border-black rounded-xl px-6 py-4 text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              <Sparkles className="h-5 w-5 mr-2" />
-              Nieuwe Collectie
-            </Button>
-            <Button 
-              onClick={() => handleInspiration('Ik zoek iets elegant voor een speciale gelegenheid')}
-              className="bg-white/90 hover:bg-white text-gray-800 border-2 border-gray-200 hover:border-black rounded-xl px-6 py-4 text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              <Heart className="h-5 w-5 mr-2" />
-              Zoek op Mood
-            </Button>
-            <Button 
-              onClick={() => handleInspiration('Heb je iets vergelijkbaars met deze foto?')}
-              className="bg-white/90 hover:bg-white text-gray-800 border-2 border-gray-200 hover:border-black rounded-xl px-6 py-4 text-base font-medium transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              <Camera className="h-5 w-5 mr-2" />
-              Zoek met Foto
-            </Button>
-          </div>
-        </div>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
 
-        {/* Chat Messages */}
-        {messages.length > 0 && (
-          <div className="max-w-4xl w-full space-y-6">
-            {messages.map((message, index) => (
-              <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-md px-6 py-4 rounded-2xl ${
-                  message.type === 'user' 
-                    ? 'bg-black text-white' 
-                    : 'bg-white/90 text-gray-800 border-2 border-gray-200'
-                } shadow-lg`}>
-                  <p className="text-base leading-relaxed">{message.content}</p>
-                  
-                  {/* AI Response with Products */}
-                  {message.type === 'ai' && message.products && (
-                    <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {message.products.map((product) => (
-                        <div 
-                          key={product.id}
-                          className="group cursor-pointer bg-white rounded-xl p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
-                        >
-                          <div className="relative overflow-hidden rounded-lg mb-3">
-                            <img 
-                              src={product.image} 
-                              alt={product.name}
-                              className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <Button 
-                                variant="ghost" 
-                                size="icon" 
-                                className="bg-white/90 hover:bg-white border-0 shadow-lg backdrop-blur-sm w-8 h-8"
-                              >
-                                <Heart className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </div>
-                          <h3 className="font-medium text-gray-900 mb-1">{product.name}</h3>
-                          <p className="text-sm text-gray-600 mb-2">{product.subcategory}</p>
-                          <div className="flex items-center justify-between">
-                            <span className="font-bold text-gray-900">{formatPrice(product.price)}</span>
-                            <Button 
-                              size="sm" 
-                              className="bg-black hover:bg-gray-800 text-white rounded-lg px-4 py-2 text-sm"
-                            >
-                              Add to Cart
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-            
-            {/* Typing Indicator */}
-            {isTyping && (
-              <div className="flex justify-start">
-                <div className="bg-white/90 text-gray-800 border-2 border-gray-200 rounded-2xl px-6 py-4 shadow-lg">
-                  <div className="flex items-center space-x-2">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                    </div>
-                    <span className="text-sm text-gray-600">AI stylist is aan het denken...</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
 
-      {/* Proactive Help Balloon */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-2xl border border-gray-200 max-w-xs">
-          <div className="flex items-start space-x-3">
-            <div className="w-2 h-2 bg-green-500 rounded-full mt-2 animate-pulse"></div>
-            <div>
-              <p className="text-sm font-medium text-gray-900 mb-1">Persoonlijke stylist</p>
-              <p className="text-xs text-gray-600">Kan je perfecte item niet vinden? Omschrijf het, dan zoek ik direct!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
 
-/**
- * Premium AI-powered personalization section
- */
-const PersonalizedSection: React.FC = () => {
-  const [user] = useState({ name: 'Sarah', preferences: ['minimalist', 'premium', 'sustainable'] });
-  
-  const personalizedSections = [
-    {
-      title: "Curated For Your Style",
-      description: "AI-selected pieces that match your aesthetic",
-      image: "https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/0a73bb44-c534-48f6-8f0b-9366ec65b778.jpg",
-      cta: "View My Collection",
-      badge: "98% Match"
-    },
-    {
-      title: "Trending in Your Size",
-      description: "Popular items available in your preferred size",
-      image: "https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/bdb8a5c5-67e6-4dda-ac5e-791a7d35dafc.jpg",
-      cta: "Shop Trending",
-      badge: "Size M"
-    },
-    {
-      title: "Sustainable Luxury",
-      description: "Eco-conscious pieces from premium brands",
-      image: "https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/b68f41c8-a3e0-48bf-8850-25b9a61859af.jpg",
-      cta: "Shop Sustainable",
-      badge: "Eco-Friendly"
-    }
-  ];
-  
-  return (
-    <section className="py-32 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-20">
-          <Badge className="bg-black text-white mb-6 px-6 py-2 text-sm font-medium">
-            <Sparkles className="h-4 w-4 mr-2" />
-            AI Curated For You
-          </Badge>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-serif">
-            Hello, {user.name}
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
-            Our AI analyzes your style preferences to curate the perfect luxury collection
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {personalizedSections.map((section, index) => (
-            <article className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg overflow-hidden bg-white/95 backdrop-blur-sm rounded-xl" key={index}>
-              <div className="p-0">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={section.image}
-                    alt={section.title}
-                    className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                  <Badge className="absolute top-6 right-6 bg-white/90 text-black backdrop-blur-sm">
-                    {section.badge}
-                  </Badge>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 font-serif">{section.title}</h3>
-                  <p className="text-gray-600 mb-6 text-lg leading-relaxed">{section.description}</p>
-                  <Button className="w-full bg-black text-white hover:bg-gray-900 py-5 font-semibold tracking-wide transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl">
-                    {section.cta}
-                    <ArrowRight className="ml-3 h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: 16px;
+        }
 
-/**
- * Category section component for displaying filtered products
- */
-interface CategorySectionProps {
-  category: string;
-  products: Product[];
-}
+        .product-info {
+            padding: 20px;
+        }
 
-const CategorySection: React.FC<CategorySectionProps> = ({ category, products }) => {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<'price' | 'rating' | 'newest'>('newest');
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000]);
-  const [selectedSubcategory, setSelectedSubcategory] = useState<string>('all');
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [showFilters, setShowFilters] = useState(false);
-  const [onlyInStock, setOnlyInStock] = useState(false);
-  const [onlyOnSale, setOnlyOnSale] = useState(false);
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
 
-  const getCategoryTitle = (cat: string) => {
-    const titles = {
-      'women': 'Women\'s Collection',
-      'men': 'Men\'s Collection', 
-      'shoes': 'Luxury Footwear',
-      'accessories': 'Premium Accessories',
-      'sale': 'Exclusive Sale'
-    };
-    return titles[cat as keyof typeof titles] || 'Featured Products';
-  };
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
 
-  const getCategoryDescription = (cat: string) => {
-    const descriptions = {
-      'women': 'Elegant pieces that define feminine sophistication',
-      'men': 'Refined essentials for the modern gentleman',
-      'shoes': 'Handcrafted footwear with uncompromising quality',
-      'accessories': 'Luxury accessories to complete your look',
-      'sale': 'Limited time offers on premium luxury items'
-    };
-    return descriptions[cat as keyof typeof descriptions] || 'Carefully curated luxury items';
-  };
+        .product-price .original {
+            color: var(--color-text-light);
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
 
-  // Advanced filter and sort products
-  const filteredProducts = products
-    .filter(product => product.price >= priceRange[0] && product.price <= priceRange[1])
-    .filter(product => category === 'sale' ? product.originalPrice : true) // Only show sale items for sale category
-    .filter(product => selectedSubcategory === 'all' || product.subcategory === selectedSubcategory)
-    .filter(product => selectedColors.length === 0 || product.colors.some(color => selectedColors.includes(color)))
-    .filter(product => selectedSizes.length === 0 || product.sizes.some(size => selectedSizes.includes(size)))
-    .filter(product => !onlyOnSale || product.originalPrice)
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'price':
-          return a.price - b.price;
-        case 'rating':
-          return b.rating - a.rating;
-        case 'newest':
-          return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
-        default:
-          return 0;
-      }
-    });
+        /* Stats Section */
+        .stats {
+            background: var(--color-surface);
+        }
 
-  // Get unique subcategories, colors, and sizes for current category
-  const availableSubcategories = [...new Set(products.map(product => product.subcategory))];
-  const availableColors = [...new Set(products.flatMap(product => product.colors))];
-  const availableSizes = [...new Set(products.flatMap(product => product.sizes))];
-  const currentCategoryStructure = categoryStructure[category] || { subcategories: [] };
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
 
-  // Quick stats
-  const totalProducts = products.length;
-  const saleProducts = products.filter(p => p.originalPrice).length;
-  const newProducts = products.filter(p => p.isNew).length;
-  const exclusiveProducts = products.filter(p => p.isExclusive).length;
+        .stat-item h3 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+        }
 
-  return (
-    <section className="py-32 bg-white" role="region" aria-label={`${category} products`}>
-      {/* Special Sale Banner */}
-      {category === 'sale' && (
-        <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-8 mb-16">
-          <div className="max-w-[1920px] mx-auto px-6 lg:px-12 text-center">
-            <div className="flex items-center justify-center space-x-4 mb-4">
-              <Clock className="h-6 w-6" />
-              <span className="text-2xl font-bold">LUXURY SALE</span>
-              <Clock className="h-6 w-6" />
-            </div>
-            <p className="text-lg font-light">
-              Up to 40% off on selected premium items • Limited time only
-            </p>
-          </div>
-        </div>
-      )}
-      
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-        {/* Breadcrumbs */}
-        <div className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <button 
-            onClick={() => window.location.href = '#'}
-            className="hover:text-black transition-colors"
-          >
-            Home
-          </button>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-black font-medium">{getCategoryTitle(category)}</span>
-        </div>
+        .stat-item p {
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
 
-        {/* Enhanced Category Header */}
-        <div className="mb-16">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8">
-            <div className="mb-8 lg:mb-0">
-              <Badge className={`mb-6 px-6 py-2 text-sm font-medium ${
-                category === 'sale' 
-                  ? 'bg-red-100 text-red-800' 
-                  : 'bg-gray-100 text-gray-800'
-              }`}>
-                <Gem className="h-4 w-4 mr-2" />
-                {getCategoryTitle(category)}
-              </Badge>
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-serif">
-                {getCategoryTitle(category)}
-              </h2>
-              <p className="text-xl md:text-2xl text-gray-600 font-light mb-6">
-                {getCategoryDescription(category)}
-              </p>
-            </div>
-            
-            {/* Advanced Controls */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center space-x-2"
-              >
-                <Filter className="h-4 w-4" />
-                <span>Filters</span>
-                {(selectedColors.length > 0 || selectedSizes.length > 0 || onlyOnSale || onlyInStock) && (
-                  <Badge className="ml-2 bg-red-100 text-red-600">
-                    {selectedColors.length + selectedSizes.length + (onlyOnSale ? 1 : 0) + (onlyInStock ? 1 : 0)}
-                  </Badge>
-                )}
-              </Button>
-              
-              <select 
-                value={sortBy} 
-                onChange={(e) => setSortBy(e.target.value as 'price' | 'rating' | 'newest')}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              >
-                <option value="newest">Newest First</option>
-                <option value="price">Price: Low to High</option>
-                <option value="rating">Highest Rated</option>
-              </select>
-              
-              <div className="flex border border-gray-200 rounded-lg overflow-hidden">
-                <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('grid')}
-                  className="rounded-none"
-                >
-                  <Grid className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => setViewMode('list')}
-                  className="rounded-none"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            text-align: center;
+        }
 
-          {/* Product Statistics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-            <div className="text-center p-4 bg-gray-50 rounded-lg">
-              <div className="text-2xl font-bold text-gray-900">{totalProducts}</div>
-              <div className="text-sm text-gray-600">Total Products</div>
-            </div>
-            <div className="text-center p-4 bg-red-50 rounded-lg">
-              <div className="text-2xl font-bold text-red-600">{saleProducts}</div>
-              <div className="text-sm text-gray-600">On Sale</div>
-            </div>
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">{newProducts}</div>
-              <div className="text-sm text-gray-600">New Arrivals</div>
-            </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-2xl font-bold text-purple-600">{exclusiveProducts}</div>
-              <div className="text-sm text-gray-600">Exclusive</div>
-            </div>
-          </div>
-        </div>
+        .newsletter-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            gap: 16px;
+        }
 
-        {/* Geavanceerde Subcategorie Filter */}
-        <div className="mb-8 p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-4 lg:mb-0">
-              Subcategorieën
-            </h3>
-            <div className="text-sm text-gray-600">
-              {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'producten'} gevonden
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
-            <button
-              onClick={() => setSelectedSubcategory('all')}
-              className={`group relative px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                selectedSubcategory === 'all' 
-                  ? 'bg-black text-white shadow-lg transform scale-105' 
-                  : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 hover:border-gray-300 hover:shadow-md'
-              }`}
-            >
-              <div className="flex flex-col items-center space-y-1">
-                <span>Alle</span>
-                <span className="text-xs opacity-75">
-                  {products.length}
-                </span>
-              </div>
-            </button>
-            
-            {availableSubcategories.map(subcategory => {
-              const count = products.filter(p => p.subcategory === subcategory).length;
-              return (
-                <button
-                  key={subcategory}
-                  onClick={() => setSelectedSubcategory(subcategory)}
-                  className={`group relative px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    selectedSubcategory === subcategory 
-                      ? 'bg-black text-white shadow-lg transform scale-105' 
-                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 hover:border-gray-300 hover:shadow-md'
-                  }`}
-                >
-                  <div className="flex flex-col items-center space-y-1">
-                    <span className="text-center leading-tight">{subcategory}</span>
-                    <span className="text-xs opacity-75">
-                      {count}
-                    </span>
-                  </div>
-                  {selectedSubcategory === subcategory && (
-                    <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-black rounded-full"></div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
 
-        {/* Advanced Filters Panel */}
-        {showFilters && (
-          <div className="mb-12 p-6 bg-white border-2 border-gray-200 rounded-xl shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              
-              {/* Price Range Filter */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
-                  <span className="mr-2">💰</span>
-                  Price Range
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-600">$0</span>
-                    <div className="flex-1 relative">
-                      <input
-                        type="range"
-                        min="0"
-                        max="5000"
-                        step="100"
-                        value={priceRange[1]}
-                        onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-                      />
-                    </div>
-                    <span className="text-sm text-gray-600">$5,000</span>
-                  </div>
-                  <div className="text-center text-sm font-medium text-gray-700">
-                    Up to ${priceRange[1].toLocaleString()}
-                  </div>
-                </div>
-              </div>
+        .newsletter-btn {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-              {/* Color Filter */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
-                  <span className="mr-2">🎨</span>
-                  Colors
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {availableColors.slice(0, 8).map(color => (
-                    <button
-                      key={color}
-                      onClick={() => {
-                        setSelectedColors(prev => 
-                          prev.includes(color) 
-                            ? prev.filter(c => c !== color)
-                            : [...prev, color]
-                        );
-                      }}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                        selectedColors.includes(color)
-                          ? 'bg-black text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      {color}
-                    </button>
-                  ))}
-                </div>
-              </div>
+        /* Footer */
+        .footer {
+            background: var(--color-text);
+            color: white;
+            padding: 60px 0 20px;
+        }
 
-              {/* Size Filter */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
-                  <span className="mr-2">📏</span>
-                  Sizes
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {availableSizes.slice(0, 8).map(size => (
-                    <button
-                      key={size}
-                      onClick={() => {
-                        setSelectedSizes(prev => 
-                          prev.includes(size) 
-                            ? prev.filter(s => s !== size)
-                            : [...prev, size]
-                        );
-                      }}
-                      className={`w-10 h-10 rounded-lg text-xs font-medium transition-all ${
-                        selectedSizes.includes(size)
-                          ? 'bg-black text-white'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
 
-            {/* Quick Filters */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-semibold mb-4">Quick Filters</h3>
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => setOnlyOnSale(!onlyOnSale)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    onlyOnSale
-                      ? 'bg-red-600 text-white'
-                      : 'bg-red-100 text-red-600 hover:bg-red-200'
-                  }`}
-                >
-                  🏷️ Only Sale Items
-                </button>
-                <button
-                  onClick={() => setOnlyInStock(!onlyInStock)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    onlyInStock
-                      ? 'bg-green-600 text-white'
-                      : 'bg-green-100 text-green-600 hover:bg-green-200'
-                  }`}
-                >
-                  ✅ In Stock Only
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedColors([]);
-                    setSelectedSizes([]);
-                    setOnlyOnSale(false);
-                    setOnlyInStock(false);
-                    setPriceRange([0, 5000]);
-                  }}
-                  className="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all"
-                >
-                  🔄 Clear All Filters
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
 
-        {/* Basic Price Range (always visible) */}
-        <div className="mb-12 p-6 bg-gray-50 rounded-xl">
-          <h3 className="text-lg font-semibold mb-4">Price Range</h3>
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">$0</span>
-            <div className="flex-1 relative">
-              <input
-                type="range"
-                min="0"
-                max="5000"
-                step="100"
-                value={priceRange[1]}
-                onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
-            <span className="text-sm text-gray-600">$5,000</span>
-            <div className="ml-4 text-sm font-medium">
-              Up to ${priceRange[1].toLocaleString()}
-            </div>
-          </div>
-        </div>
+        .footer-section ul {
+            list-style: none;
+        }
 
-        {/* Products Grid */}
-        <div className={`grid gap-12 ${
-          viewMode === 'grid' 
-            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
-            : 'grid-cols-1 lg:grid-cols-2'
-        }`}>
-          {filteredProducts.map((product) => (
-            <article 
-              key={product.id} 
-              className={`group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg overflow-hidden bg-white/95 backdrop-blur-sm transform hover:scale-[1.02] rounded-xl ${
-                viewMode === 'list' ? 'flex' : ''
-              }`}
-              onMouseEnter={() => setHoveredProduct(product.id)}
-              onMouseLeave={() => setHoveredProduct(null)}
-            >
-              <div className={`${viewMode === 'list' ? 'flex' : 'p-0'}`}>
-                <div className={`relative overflow-hidden ${viewMode === 'list' ? 'w-64' : ''}`}>
-                  <img 
-                    src={hoveredProduct === product.id ? product.hoverImage : product.image}
-                    alt={product.name}
-                    className={`object-cover transition-all duration-700 ${
-                      viewMode === 'list' ? 'w-full h-64' : 'w-full h-96'
-                    }`}
-                  />
-                  
-                  {/* Premium Badges */}
-                  <div className="absolute top-6 left-6 flex flex-col space-y-2">
-                    {product.isNew && (
-                      <Badge className="bg-black text-white backdrop-blur-sm">NEW</Badge>
-                    )}
-                    {product.isBestseller && (
-                      <Badge className="bg-yellow-600 text-white backdrop-blur-sm">
-                        <Award className="h-3 w-3 mr-1" />
-                        BESTSELLER
-                      </Badge>
-                    )}
-                    {product.isExclusive && (
-                      <Badge className="bg-purple-600 text-white backdrop-blur-sm">
-                        <Crown className="h-3 w-3 mr-1" />
-                        EXCLUSIVE
-                      </Badge>
-                    )}
-                    {product.isPersonalized && (
-                      <Badge className="bg-blue-600 text-white backdrop-blur-sm">
-                        <Sparkles className="h-3 w-3 mr-1" />
-                        FOR YOU
-                      </Badge>
-                    )}
-                    {product.originalPrice && (
-                      <Badge className="bg-red-600 text-white backdrop-blur-sm">
-                        -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  {/* Quick Actions */}
-                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <Button variant="ghost" size="icon" className="bg-white/95 hover:bg-white border-0 shadow-xl backdrop-blur-md">
-                      <Heart className="h-5 w-5" />
-                    </Button>
-                  </div>
-                  
-                  {/* Quick Shop Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-12">
-                    <Button className="bg-white/95 text-black hover:bg-white border-0 shadow-2xl font-semibold px-12 py-4">
-                      Quick Shop
-                    </Button>
-                  </div>
-                </div>
-                
-                <div className={`p-8 ${viewMode === 'list' ? 'flex-1' : ''}`}>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">
-                      {getCategoryTitle(category)}
-                    </span>
-                    <div className="flex items-center">
-                      <Star className="h-4 w-4 fill-current text-yellow-400" />
-                      <span className="ml-1 text-sm text-gray-600 font-medium">{product.rating}</span>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 font-serif">{product.name}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{product.description}</p>
-                  
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-gray-900">{formatPrice(product.price)}</span>
-                      {product.originalPrice && (
-                        <span className="text-lg text-gray-500 line-through">{formatPrice(product.originalPrice)}</span>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Colors and Sizes */}
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-gray-700">Colors</span>
-                      <span className="text-sm font-medium text-gray-700">
-                        {product.sizes.length} sizes
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex space-x-2">
-                        {product.colors.slice(0, 3).map((color, index) => (
-                          <div
-                            key={index}
-                            className={`w-6 h-6 rounded-full border-2 border-gray-300 ${
-                              color === 'Black' ? 'bg-black' : 
-                              color === 'White' ? 'bg-white' : 
-                              color === 'Navy' ? 'bg-blue-900' : 
-                              color === 'Camel' ? 'bg-amber-200' : 
-                              color === 'Brown' ? 'bg-amber-800' : 
-                              color === 'Cognac' ? 'bg-amber-700' : 
-                              color === 'Gold' ? 'bg-yellow-400' : 
-                              'bg-gray-200'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    className="w-full bg-black text-white hover:bg-gray-900 font-semibold py-5 tracking-wide transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
-                    onClick={() => window.location.href = `#/product/${product.id}`}
-                  >
-                    View Details • {formatPrice(product.price)}
-                  </Button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        
-        {/* Load More */}
-        <div className="text-center mt-16">
-          <Button variant="outline" size="lg" className="px-12 py-4 font-medium tracking-wide border-2 hover:bg-black hover:text-white">
-            Load More {getCategoryTitle(category)}
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-    </section>
-  );
-};
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
 
-/**
- * Premium featured products with luxury presentation and semantic structure
- */
-const FeaturedProducts: React.FC = () => {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
-  
-  // Featured products selection (first 8 from all categories)
-  const featuredProducts = allProducts.slice(0, 8);
+        .footer-section a {
+            color: #D1D5DB;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-  return (
-    <section 
-      className="py-32 bg-white" 
-      role="region"
-      aria-label="Featured products"
-    >
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-        {/* Premium Header */}
-        <div className="flex items-center justify-between mb-20">
-          <div>
-            <Badge className="bg-gray-100 text-gray-800 mb-6 px-6 py-2 text-sm font-medium">
-              <Gem className="h-4 w-4 mr-2" />
-              Featured Collection
-            </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-serif">
-              Luxury Essentials
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 font-light">
-              Carefully curated pieces that define timeless elegance
-            </p>
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            <Button variant="outline" size="icon" className="hover:bg-gray-50">
-              <Filter className="h-5 w-5" />
-            </Button>
-            <div className="flex border border-gray-200 rounded-lg overflow-hidden">
-              <Button
-                variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setViewMode('grid')}
-                className="rounded-none"
-              >
-                <Grid className="h-4 w-4" />
-              </Button>
-              <Button
-                variant={viewMode === 'list' ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setViewMode('list')}
-                className="rounded-none"
-              >
-                <List className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
+        .footer-section a:hover {
+            color: white;
+        }
 
-        {/* Premium Products Grid */}
-        <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
-          role="region"
-          aria-label="Product grid"
-        >
-          {featuredProducts.map((product) => (
-            <article 
-              key={product.id} 
-              className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg overflow-hidden bg-white/95 backdrop-blur-sm transform hover:scale-[1.02] rounded-xl"
-              onMouseEnter={() => setHoveredProduct(product.id)}
-              onMouseLeave={() => setHoveredProduct(null)}
-              role="article"
-              aria-label={`${product.name} - ${formatPrice(product.price)}`}
-            >
-              <div className="p-0">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={hoveredProduct === product.id ? product.hoverImage : product.image}
-                    alt={product.name}
-                    className="w-full h-96 object-cover transition-all duration-700"
-                  />
-                  
-                  {/* Premium Badges */}
-                  <div className="absolute top-6 left-6 flex flex-col space-y-2">
-                    {product.isNew && (
-                      <Badge className="bg-black text-white backdrop-blur-sm">NEW</Badge>
-                    )}
-                    {product.isBestseller && (
-                      <Badge className="bg-yellow-600 text-white backdrop-blur-sm">
-                        <Award className="h-3 w-3 mr-1" />
-                        BESTSELLER
-                      </Badge>
-                    )}
-                    {product.isExclusive && (
-                      <Badge className="bg-purple-600 text-white backdrop-blur-sm">
-                        <Crown className="h-3 w-3 mr-1" />
-                        EXCLUSIVE
-                      </Badge>
-                    )}
-                    {product.isPersonalized && (
-                      <Badge className="bg-blue-600 text-white backdrop-blur-sm">
-                        <Sparkles className="h-3 w-3 mr-1" />
-                        FOR YOU
-                      </Badge>
-                    )}
-                    {product.originalPrice && (
-                      <Badge className="bg-red-600 text-white backdrop-blur-sm">
-                        -{Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
-                      </Badge>
-                    )}
-                  </div>
-                  
-                  {/* Minimalistic Quick Actions */}
-                  <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                    <Button variant="ghost" size="icon" className="bg-white/95 hover:bg-white border-0 shadow-xl backdrop-blur-md transform hover:scale-110 transition-all duration-300 w-12 h-12">
-                      <Heart className="h-5 w-5" />
-                    </Button>
-                  </div>
-                  
-                  {/* Elegant Minimalistic Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out flex items-end justify-center pb-12">
-                    <Button className="bg-white/95 text-black hover:bg-white border-0 shadow-2xl font-semibold px-12 py-4 text-base tracking-wide backdrop-blur-md transform hover:scale-105 transition-all duration-300">
-                      Quick Shop
-                    </Button>
-                  </div>
-                </div>
-                
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-gray-500 uppercase tracking-wider font-medium">{product.category}</span>
-                    <div className="flex items-center">
-                      <Star className="h-4 w-4 fill-current text-yellow-400" />
-                      <span className="ml-1 text-sm text-gray-600 font-medium">{product.rating}</span>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 font-serif">{product.name}</h3>
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{product.description}</p>
-                  
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-2xl font-bold text-gray-900">{formatPrice(product.price)}</span>
-                      {product.originalPrice && (
-                        <span className="text-lg text-gray-500 line-through">{formatPrice(product.originalPrice)}</span>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Size & Color Options */}
-                  <div className="mb-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-gray-700">Colors</span>
-                      <span className="text-sm font-medium text-gray-700">Sizes</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex space-x-2">
-                        {product.colors.slice(0, 3).map((color, index) => (
-                          <div
-                            key={index}
-                            className={`w-6 h-6 rounded-full border-2 border-gray-300 ${
-                              color === 'Black' ? 'bg-black' : 
-                              color === 'Camel' ? 'bg-amber-200' : 
-                              color === 'Navy' ? 'bg-blue-900' : 
-                              color === 'Midnight Blue' ? 'bg-blue-900' : 
-                              color === 'Champagne' ? 'bg-yellow-100' : 
-                              color === 'Brown' ? 'bg-amber-800' : 
-                              color === 'Cognac' ? 'bg-amber-700' : 
-                              color === 'Gold' ? 'bg-yellow-400' : 
-                              color === 'Rose Gold' ? 'bg-pink-300' : 
-                              color === 'Silver' ? 'bg-gray-300' : 
-                              color === 'White' ? 'bg-white' : 
-                              color === 'Cream' ? 'bg-yellow-50' : 
-                              'bg-gray-200'
-                            }`}
-                          ></div>
-                        ))}
-                      </div>
-                      <span className="text-sm text-gray-600">{product.sizes.length} sizes</span>
-                    </div>
-                  </div>
-                  
-                  {/* Elegant Minimalistic CTA */}
-                  <Button 
-                    className="w-full bg-black text-white hover:bg-gray-900 font-semibold py-5 tracking-wide transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
-                    onClick={() => window.location.href = `#/product/${product.id}`}
-                  >
-                    View Details • {formatPrice(product.price)}
-                  </Button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        
-        {/* Load More */}
-        <div className="text-center mt-16">
-          <Button variant="outline" size="lg" className="px-12 py-4 font-medium tracking-wide border-2 hover:bg-black hover:text-white transition-all duration-300">
-            Load More Products
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-    </section>
-  );
-};
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 20px;
+            text-align: center;
+            color: #9CA3AF;
+        }
 
-/**
- * Premium trust indicators section with semantic structure
- */
-const TrustSection: React.FC = () => {
-  const trustIndicators = [
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Lifetime Warranty",
-      description: "Premium protection for your investment"
-    },
-    {
-      icon: <Truck className="h-8 w-8" />,
-      title: "White Glove Delivery",
-      description: "Complimentary premium shipping worldwide"
-    },
-    {
-      icon: <Award className="h-8 w-8" />,
-      title: "Master Craftsmen",
-      description: "Handcrafted by skilled artisans"
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Global Boutiques",
-      description: "50+ exclusive locations worldwide"
-    }
-  ];
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+            }
 
-  return (
-    <section 
-      className="py-32 bg-gray-50" 
-      role="region"
-      aria-label="Trust indicators and guarantees"
-    >
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-20">
-          <Badge className="bg-black text-white mb-6 px-6 py-2 text-sm font-medium">
-            <Crown className="h-4 w-4 mr-2" />
-            The BOLDYASE Promise
-          </Badge>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-serif">
-            Luxury Redefined
-          </h2>
-        </div>
-        
-        <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
-          role="list"
-          aria-label="Trust indicators"
-        >
-          {trustIndicators.map((indicator, index) => (
-            <div 
-              key={index} 
-              className="text-center group"
-              role="listitem"
-            >
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 text-gray-700 group-hover:text-black transition-colors duration-300">
-                {indicator.icon}
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 font-serif">{indicator.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{indicator.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+            .nav {
+                gap: 20px;
+            }
 
-/**
- * Premium newsletter section with semantic structure
- */
-const NewsletterSection: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  
-  const handleSubscribe = () => {
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      alert('Please enter a valid email address');
-      return;
-    }
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubscribed(true);
-      setEmail('');
-      setTimeout(() => setIsSubscribed(false), 3000);
-    }, 500);
-  };
-  
-  return (
-    <section 
-      className="py-32 bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white relative overflow-hidden"
-      role="region"
-      aria-label="Newsletter signup"
-    >
-      <div className="absolute inset-0 bg-[url('https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/abb14086-a4bc-4b27-ab43-6a87d0127c4e.jpg')] opacity-10"></div>
-      
-      <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center relative z-10">
-        <div className="mb-12">
-          <Badge className="bg-white/20 text-white border-white/30 mb-6 px-6 py-2 text-sm font-medium backdrop-blur-sm">
-            <Sparkles className="h-4 w-4 mr-2" />
-            Exclusive Access
-          </Badge>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 font-serif">
-            Join The Elite
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
-            Be first to discover new collections, exclusive events, and insider luxury insights
-          </p>
-        </div>
-        
-        <form 
-          className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-8"
-          onSubmit={(e) => { e.preventDefault(); handleSubscribe(); }}
-          role="form"
-          aria-label="Newsletter subscription"
-        >
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 backdrop-blur-sm"
-            required
-            aria-label="Email address"
-          />
-          <Button 
-            type="submit"
-            className="bg-white text-black hover:bg-gray-100 px-8 py-4 font-medium tracking-wide transition-all duration-300"
-            aria-label={isSubscribed ? 'Successfully subscribed' : 'Subscribe to newsletter'}
-          >
-            {isSubscribed ? 'Subscribed!' : 'Subscribe'}
-          </Button>
-        </form>
-        
-        <p className="text-sm text-gray-400 mb-8">
-          Join 100,000+ luxury enthusiasts. Unsubscribe anytime.
-        </p>
-        
-        <div className="flex justify-center space-x-8 text-sm text-gray-400">
-          <span>• Private Sales</span>
-          <span>• Style Insights</span>
-          <span>• Exclusive Events</span>
-        </div>
-      </div>
-    </section>
-  );
-};
+            .hero h1 {
+                font-size: 36px;
+            }
 
-/**
- * Premium footer component with semantic structure
- */
-const Footer: React.FC = () => {
-  return (
-    <footer 
-      className="bg-gray-900 text-white py-20"
-      role="contentinfo"
-      aria-label="Site footer"
-    >
-      <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-        <div 
-          className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12"
-          role="navigation"
-          aria-label="Footer navigation"
-        >
-          <div>
-            <div className="flex items-center mb-6">
-              <img 
-                src="https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/62f13070-5f66-4d01-a075-812fabe96c2d.png"
-                alt="BOLDYASE Logo"
-                className="h-12 w-12 object-contain"
-              />
-              <span className="ml-3 text-2xl font-bold tracking-tight font-serif">BOLDYASE</span>
-            </div>
-            <p className="text-gray-400 leading-relaxed">
-              Redefining luxury fashion with timeless elegance and contemporary design.
-            </p>
-          </div>
-          
-          <nav>
-            <h4 className="text-lg font-bold mb-6">Shop</h4>
-            <ul className="space-y-3 text-gray-400" role="list">
-              <li><a href="#" className="hover:text-white transition-colors">Women</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Men</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Shoes</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Accessories</a></li>
-            </ul>
-          </nav>
-          
-          <nav>
-            <h4 className="text-lg font-bold mb-6">Support</h4>
-            <ul className="space-y-3 text-gray-400" role="list">
-              <li><a href="#" className="hover:text-white transition-colors">Customer Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Size Guide</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Returns</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Shipping</a></li>
-            </ul>
-          </nav>
-          
-          <nav>
-            <h4 className="text-lg font-bold mb-6">Company</h4>
-            <ul className="space-y-3 text-gray-400" role="list">
-              <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Sustainability</a></li>
-            </ul>
-          </nav>
-        </div>
-        
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 BOLDYASE. All rights reserved. Premium Fashion Redefined.</p>
-        </div>
-      </div>
-    </footer>
-  );
-};
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
 
-/**
- * Main Home component with luxury enhancements
- */
-const Home: React.FC = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<string>('home');
-  
-  useEffect(() => {
-    // Performance optimization for 4K images
-    const preloadImages = () => {
-      const images = [
-        'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/ee2dad8f-aac3-4b09-9921-99dd2344d8a2.jpg',
-        'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/a6cd0f1c-21e9-4f73-b4de-986b588436c8.jpg',
-        'https://pub-cdn.sider.ai/u/U0E5HLL3YKO/web-coder/68757064b1dac45b18d6c7ef/resource/0d65b5e4-8773-4599-861d-d8fcffdbffb0.jpg'
-      ];
-      
-      images.forEach(src => {
-        const img = new Image();
-        img.src = src;
-      });
-    };
-    
-    preloadImages();
-  }, []);
+            .newsletter-form {
+                flex-direction: column;
+            }
 
-  // Filter products based on active category
-  const getProductsByCategory = (category: string) => {
-    if (category === 'home') return allProducts.slice(0, 8); // Show mixed products on home
-    return allProducts.filter(product => product.category === category);
-  };
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
 
-  const renderContent = () => {
-    if (activeCategory === 'home') {
-      return (
-        <>
-          <HeroSection />
-          <PersonalizedSection />
-          <FeaturedProducts />
-          <TrustSection />
-          <NewsletterSection />
-        </>
-      );
-    } else {
-      return (
-        <CategorySection 
-          category={activeCategory} 
-          products={getProductsByCategory(activeCategory)}
-        />
-      );
-    }
-  };
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  return (
-    <div className="min-h-screen bg-white">
-      <Header 
-        isCartOpen={isCartOpen} 
-        setIsCartOpen={setIsCartOpen}
-        activeCategory={activeCategory}
-        setActiveCategory={setActiveCategory}
-      />
-      {renderContent()}
-      <Footer />
-      <ShoppingCart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Shopping Cart Icon */
+        .cart-icon {
+            position: relative;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge {
+            background: var(--color-success);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+        }
+
+        .sale-badge {
+            background: var(--color-error);
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        ✨ Free shipping on orders over $75! Limited time offer 🚚
     </div>
-  );
-};
 
-export default Home;
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">BOLDYASE</a>
+                
+                <nav>
+                    <ul class="nav">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#collections">Collections</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
 
+                <div class="header-actions">
+                    <a href="#search" style="color: var(--color-text); font-size: 20px;">🔍</a>
+                    <a href="#account" style="color: var(--color-text); font-size: 20px;">👤</a>
+                    <a href="#wishlist" style="color: var(--color-text); font-size: 20px;">❤️</a>
+                    <a href="#cart" class="cart-icon">
+                        🛒
+                        <span class="cart-count">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="animate-fade-in">
+                <h1>Modern E-commerce Experience</h1>
+                <p>Discover amazing products with our sleek, fast, and user-friendly shopping platform. Built for the modern consumer.</p>
+                
+                <div class="hero-actions">
+                    <a href="#shop" class="btn btn-primary">Shop Now</a>
+                    <a href="#collections" class="btn btn-secondary">Browse Collections</a>
+                </div>
+
+                <div class="hero-image">
+                    🎨 Beautiful Product Showcase
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section class="section" id="shop">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-description">Discover our carefully curated selection of premium products</p>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-image">
+                        <span class="badge">New</span>
+                        📱 Product Image
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Wireless Headphones</h3>
+                        <div class="product-price">
+                            <span class="original">$199.99</span>
+                            $149.99
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <span class="badge sale-badge">Sale</span>
+                        💻 Product Image
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Minimalist Laptop Stand</h3>
+                        <div class="product-price">
+                            <span class="original">$89.99</span>
+                            $69.99
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        ⌚ Product Image
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Smart Fitness Tracker</h3>
+                        <div class="product-price">$129.99</div>
+                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Popular</span>
+                        📷 Product Image
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Professional Camera Lens</h3>
+                        <div class="product-price">$299.99</div>
+                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50K+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>Products</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99%</h3>
+                    <p>Satisfaction Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Customer Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section newsletter">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Stay Updated</h2>
+                <p class="section-description">Get the latest news about new products and special offers</p>
+            </div>
+            
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>BOLDYASE</h4>
+                    <p>Your trusted partner for premium e-commerce experiences. Quality products, exceptional service.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#electronics">Electronics</a></li>
+                        <li><a href="#fashion">Fashion</a></li>
+                        <li><a href="#home">Home & Garden</a></li>
+                        <li><a href="#sports">Sports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#facebook">Facebook</a></li>
+                        <li><a href="#instagram">Instagram</a></li>
+                        <li><a href="#twitter">Twitter</a></li>
+                        <li><a href="#pinterest">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 BOLDYASE. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add to cart simulation
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                if (btn.textContent === 'Add to Cart') {
+                    btn.addEventListener('click', function() {
+                        this.textContent = 'Added! ✓';
+                        this.style.background = 'var(--color-success)';
+                        
+                        // Update cart count
+                        const cartCount = document.querySelector('.cart-count');
+                        const currentCount = parseInt(cartCount.textContent);
+                        cartCount.textContent = currentCount + 1;
+                        
+                        setTimeout(() => {
+                            this.textContent = 'Add to Cart';
+                            this.style.background = 'var(--color-primary)';
+                        }, 2000);
+                    });
+                }
+            });
+
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('.newsletter-btn');
+                    const input = this.querySelector('.newsletter-input');
+                    
+                    btn.textContent = 'Subscribed! ✓';
+                    btn.style.background = 'var(--color-success)';
+                    input.value = '';
+                    
+                    setTimeout(() => {
+                        btn.textContent = 'Subscribe';
+                        btn.style.background = 'var(--color-accent)';
+                    }, 3000);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
