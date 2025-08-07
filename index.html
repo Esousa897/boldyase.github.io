@@ -10,6 +10,58 @@
             padding: 0;
             box-sizing: border-box;
         }
+:root {
+    /* Neutrale kleuren */
+    --color-primary: #4B5563;
+    --color-secondary: #6B7280; 
+    --color-accent: #9CA3AF;
+    --color-text: #1F2937;
+    --color-text-light: #6B7280;
+    --color-background: #F9FAFB;
+    --color-surface: #F3F4F6;
+    --color-border: #E5E7EB;
+    --color-success: #059669;
+    --color-error: #DC2626;
+
+    /* 4K optimalisaties */
+    --container-width: 1920px;
+    --border-radius: 16px;
+    --shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
+    
+    /* Robuustere componenten */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --spacing-unit: 24px;
+}
+
+/* Extra HD optimalisaties */
+.hero-image {
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-image {
+    height: 400px;
+}
+
+/* Gevaceerde layout */
+.section {
+    padding: var(--spacing-unit) * 4 0;
+}
+
+.product-grid {
+    gap: var(--spacing-unit) * 2;
+}
+
+/* Robuustere hover effecten */
+.product-card {
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow);
+}
 
         :root {
             --color-primary: #2563EB;
