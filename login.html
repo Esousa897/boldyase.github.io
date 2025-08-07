@@ -1,71 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully optimized login page with lazy loading for images, minimized CSS and JS, and various functionalities.">
+    <meta name="description" content="BOLDYASE.com – Premium fashion platform met stijlvolle, unieke kleding voor heren en dames.">
+    <meta name="keywords" content="fashion, mode, kleding, premium, heren, dames, BOLDYASE">
+    <meta property="og:title" content="BOLDYASE.com – Premium Fashion">
+    <meta property="og:description" content="Ontdek stijlvolle, unieke kleding bij BOLDYASE.com.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80">
     <meta name="theme-color" content="#ffffff">
-    <title>Login</title>
-    
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Login Page",
-      "description": "User login page with enhanced features"
-    }
-    </script>
-    
-    <!-- Minimized CSS -->
-    <link rel="stylesheet" href="styles.min.css">
-    <!-- Dark Mode Styles -->
-    <link rel="stylesheet" href="dark-mode.css">
-    
-    <!-- Analytics Tracking Code (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+    <title>BOLDYASE Login</title>
+    <!-- Google Analytics 4 (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'YOUR_GA4_ID');
+      gtag('config', 'G-XXXXXXX');
     </script>
+    <!-- Schema.org voor producten -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Luxe Trui",
+      "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80",
+      "description": "Zachte premium trui met moderne fit, perfect voor elk seizoen.",
+      "brand": { "@type": "Brand", "name": "BOLDYASE" },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": "79",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      :root {
+        --primary: #111827;
+        --accent: #ef4444;
+        --radius: 8px;
+        --shadow: 0 2px 8px rgba(0,0,0,0.08);
+      }
+      .dark-mode {
+        --primary: #F9FAFB;
+        --accent: #ef4444;
+        --white: #1F2937;
+        background: var(--white);
+        color: var(--primary);
+      }
+      .nav-search {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-search input {
+        padding: 0.5rem;
+        border: 1px solid #ececec;
+        border-radius: var(--radius);
+        font-family: 'Inter', sans-serif;
+      }
+      .nav-cart {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .nav-link:focus, .hero-btn:focus, .btn:focus, .quickview-btn:focus, .wishlist-btn:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      @media (max-width: 600px) {
+        .mobile-only { display: block; }
+      }
+    </style>
 </head>
 <body>
+    <nav class="nav">
+      <a href="#" class="nav-link active" aria-label="Home pagina">Home</a>
+      <div class="nav-search">
+        <input type="text" id="search-input" placeholder="Zoeken..." aria-label="Zoek producten">
+        <button aria-label="Zoek">🔍</button>
+      </div>
+      <div class="nav-cart">
+        <span>🛒</span>
+        <span id="cart-count">0</span>
+      </div>
+      <select id="language-switch" aria-label="Kies taal">
+        <option value="nl">NL</option>
+        <option value="en">EN</option>
+      </select>
+      <button id="theme-switch" aria-label="Schakel donkere modus">🌙</button>
+    </nav>
     <main>
-        <h1>Login</h1>
-        <form action="/login" method="POST" aria-label="Login Form">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required aria-required="true">
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required aria-required="true">
-            
-            <button type="submit">Login</button>
-        </form>
-        <div class="features">
-            <button id="wishlist">Add to Wishlist</button>
-            <button id="quickview">Quick View</button>
+      <section class="hero">
+        <h1 class="hero-title">Bold Choices, <span>Endless Style.</span></h1>
+        <p class="hero-desc">Welkom bij <strong>BOLDYASE.com</strong> – het premium fashion platform waar minimalisme en luxe elkaar ontmoeten. Ontdek stijlvolle, unieke kleding die jouw karakter versterkt.</p>
+        <button class="hero-btn" aria-label="Bekijk de nieuwste collectie">Bekijk collectie</button>
+      </section>
+      <section class="products-section" data-section-id="products">
+        <h2 class="products-title">Nieuw binnen</h2>
+        <div class="products-grid">
+          <div class="product-card">
+            <img class="product-img" loading="lazy" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80" alt="Luxe Trui">
+            <h3 class="product-title">Luxe Trui</h3>
+            <p>€79</p>
+            <button class="btn add-to-cart" data-product="Luxe Trui" data-price="79">Toevoegen</button>
+            <button class="wishlist-btn" aria-label="Toevoegen aan wishlist">❤️</button>
+            <button class="quickview-btn" onclick="document.querySelector('.quickview-modal').style.display='block';">Quickview</button>
+          </div>
+          <!-- Meer producten kunnen hier worden toegevoegd -->
         </div>
+        <div class="quickview-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--white); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); z-index: 100;">
+          <h2>Luxe Trui</h2>
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80" alt="Luxe Trui" width="200">
+          <p>€79</p>
+          <button onclick="document.querySelector('.quickview-modal').style.display='none';">Sluiten</button>
+        </div>
+      </section>
+      <div class="dynamic-section" data-section-type="customizable">
+        <!-- Dynamische content hier -->
+      </div>
+      <div class="mobile-only" style="display: none;">
+        <p>Speciale aanbieding alleen op mobiel!</p>
+      </div>
     </main>
-    
-    <!-- Multi-Language Switcher -->
-    <div id="language-switcher">
-        <button>EN</button>
-        <button>ES</button>
-    </div>
-
-    <!-- Scripts -->
-    <script src="scripts.min.js"></script>
+    <footer class="footer">&copy; 2025 BOLDYASE. Alle rechten voorbehouden. | Premium E-Commerce.</footer>
     <script>
-        // Lazy loading images
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img[data-src]');
-            images.forEach(img => {
-                img.src = img.getAttribute('data-src');
-                img.onload = () => img.removeAttribute('data-src');
-            });
+      // Taalswitcher
+      const translations = {
+        nl: {
+          heroTitle: "Bold Choices, <span>Endless Style.</span>",
+          heroDesc: "Welkom bij <strong>BOLDYASE.com</strong> – het premium fashion platform waar minimalisme en luxe elkaar ontmoeten. Ontdek stijlvolle, unieke kleding die jouw karakter versterkt.",
+          heroBtn: "Bekijk collectie",
+          productsTitle: "Nieuw binnen",
+          footer: "&copy; 2025 BOLDYASE. Alle rechten voorbehouden. | Premium E-Commerce."
+        },
+        en: {
+          heroTitle: "Bold Choices, <span>Endless Style.</span>",
+          heroDesc: "Welcome to <strong>BOLDYASE.com</strong> – the premium fashion platform where minimalism meets luxury. Discover stylish, unique clothing that enhances your character.",
+          heroBtn: "View Collection",
+          productsTitle: "New Arrivals",
+          footer: "&copy; 2025 BOLDYASE. All rights reserved. | Premium E-Commerce."
+        }
+      };
+      document.getElementById('language-switch').addEventListener('change', (e) => {
+        const lang = e.target.value;
+        document.querySelector('.hero-title').innerHTML = translations[lang].heroTitle;
+        document.querySelector('.hero-desc').innerHTML = translations[lang].heroDesc;
+        document.querySelector('.hero-btn').textContent = translations[lang].heroBtn;
+        document.querySelector('.products-title').textContent = translations[lang].productsTitle;
+        document.querySelector('.footer').innerHTML = translations[lang].footer;
+      });
+      // Thema Schakelaar (Dark Mode)
+      document.getElementById('theme-switch').addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+      });
+      // Winkelwagen
+      let cartCount = 0;
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+          cartCount++;
+          document.getElementById('cart-count').textContent = cartCount;
+          alert(`Toegevoegd: ${button.dataset.product}`);
         });
+      });
+      // Zoekfunctionaliteit
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        document.querySelectorAll('.product-card').forEach(card => {
+          const title = card.querySelector('.product-title').textContent.toLowerCase();
+          card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+        });
+      });
     </script>
 </body>
 </html>
