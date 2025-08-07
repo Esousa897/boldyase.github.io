@@ -1,55 +1,71 @@
-<style>
-.dark-mode {
-  --light: #1F2937;
-  --dark: #F9FAFB;
-  --white: #2D3748;
-}
-</style>
-<script>
-  // Winkelwagen
-  let cartCount = 0;
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
-      cartCount++;
-      document.getElementById('cart-count').textContent = cartCount;
-      alert(`Toegevoegd: ${button.dataset.product}`);
-    });
-  });
-
-  // Zoeken
-  document.getElementById('search-input').addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    document.querySelectorAll('.product-card').forEach(card => {
-      const title = card.querySelector('.product-title').textContent.toLowerCase();
-      card.style.display = title.includes(searchTerm) ? 'block' : 'none';
-    });
-  });
-
-  // Taalswitcher
-  const translations = {
-    nl: {
-      heroTitle: "Bold Choices, <span>Endless Style.</span>",
-      heroDesc: "Welkom bij <strong>BOLDYASE.com</strong> – het premium fashion platform waar minimalisme en luxe elkaar ontmoeten. Ontdek stijlvolle, unieke kleding die jouw karakter versterkt.",
-      heroBtn: "Bekijk collectie",
-      productsTitle: "Nieuw binnen"
-    },
-    en: {
-      heroTitle: "Bold Choices, <span>Endless Style.</span>",
-      heroDesc: "Welcome to <strong>BOLDYASE.com</strong> – the premium fashion platform where minimalism meets luxury. Discover stylish, unique clothing that enhances your character.",
-      heroBtn: "View Collection",
-      productsTitle: "New Arrivals"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully optimized login page with lazy loading for images, minimized CSS and JS, and various functionalities.">
+    <meta name="theme-color" content="#ffffff">
+    <title>Login</title>
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Login Page",
+      "description": "User login page with enhanced features"
     }
-  };
-  document.getElementById('language-switch').addEventListener('change', (e) => {
-    const lang = e.target.value;
-    document.querySelector('.hero-title').innerHTML = translations[lang].heroTitle;
-    document.querySelector('.hero-desc').innerHTML = translations[lang].heroDesc;
-    document.querySelector('.hero-btn').textContent = translations[lang].heroBtn;
-    document.querySelector('.products-title').textContent = translations[lang].productsTitle;
-  });
+    </script>
+    
+    <!-- Minimized CSS -->
+    <link rel="stylesheet" href="styles.min.css">
+    <!-- Dark Mode Styles -->
+    <link rel="stylesheet" href="dark-mode.css">
+    
+    <!-- Analytics Tracking Code (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_GA4_ID');
+    </script>
+</head>
+<body>
+    <main>
+        <h1>Login</h1>
+        <form action="/login" method="POST" aria-label="Login Form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required aria-required="true">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required aria-required="true">
+            
+            <button type="submit">Login</button>
+        </form>
+        <div class="features">
+            <button id="wishlist">Add to Wishlist</button>
+            <button id="quickview">Quick View</button>
+        </div>
+    </main>
+    
+    <!-- Multi-Language Switcher -->
+    <div id="language-switcher">
+        <button>EN</button>
+        <button>ES</button>
+    </div>
 
-  // Thema schakelaar
-  document.getElementById('theme-switch').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
-</script>
+    <!-- Scripts -->
+    <script src="scripts.min.js"></script>
+    <script>
+        // Lazy loading images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            images.forEach(img => {
+                img.src = img.getAttribute('data-src');
+                img.onload = () => img.removeAttribute('data-src');
+            });
+        });
+    </script>
+</body>
+</html>
