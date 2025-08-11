@@ -1,753 +1,355 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOLDYASE - Modern E-commerce Theme Preview</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-:root {
-    /* Neutrale kleuren */
-    --color-primary: #4B5563;
-    --color-secondary: #6B7280; 
-    --color-accent: #9CA3AF;
-    --color-text: #1F2937;
-    --color-text-light: #6B7280;
-    --color-background: #F9FAFB;
-    --color-surface: #F3F4F6;
-    --color-border: #E5E7EB;
-    --color-success: #059669;
-    --color-error: #DC2626;
-
-    /* 4K optimalisaties */
-    --container-width: 1920px;
-    --border-radius: 16px;
-    --shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
-    
-    /* Robuustere componenten */
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --spacing-unit: 24px;
-}
-
-/* Extra HD optimalisaties */
-.hero-image {
-    height: 600px;
-    background-size: cover;
-    background-position: center;
-}
-
-.product-image {
-    height: 400px;
-}
-
-/* Gevaceerde layout */
-.section {
-    padding: var(--spacing-unit) * 4 0;
-}
-
-.product-grid {
-    gap: var(--spacing-unit) * 2;
-}
-
-/* Robuustere hover effecten */
-.product-card {
-    transition: var(--transition);
-}
-
-.product-card:hover {
-    transform: translateY(-12px);
-    box-shadow: var(--shadow);
-}
-
-        :root {
-            --color-primary: #2563EB;
-            --color-secondary: #7C3AED;
-            --color-accent: #F59E0B;
-            --color-text: #1F2937;
-            --color-text-light: #6B7280;
-            --color-background: #FFFFFF;
-            --color-surface: #F9FAFB;
-            --color-border: #E5E7EB;
-            --color-success: #10B981;
-            --color-error: #EF4444;
-            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --container-width: 1200px;
-            --border-radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        body {
-            font-family: var(--font-family);
-            color: var(--color-text);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        .header {
-            background: white;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .announcement-bar {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: white;
-            padding: 8px 0;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        .nav {
-            display: flex;
-            list-style: none;
-            gap: 32px;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: var(--color-text);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav a:hover {
-            color: var(--color-primary);
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1D4ED8;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--color-surface) 0%, rgba(37, 99, 235, 0.1) 100%);
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: var(--color-text-light);
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-bottom: 60px;
-        }
-
-        .hero-image {
-            max-width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        /* Featured Collection */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .section-description {
-            font-size: 18px;
-            color: var(--color-text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-top: 40px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-light);
-            font-size: 16px;
-        }
-
-        .product-info {
-            padding: 20px;
-        }
-
-        .product-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: 16px;
-        }
-
-        .product-price .original {
-            color: var(--color-text-light);
-            text-decoration: line-through;
-            margin-right: 8px;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: var(--color-surface);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--color-primary);
-            margin-bottom: 8px;
-        }
-
-        .stat-item p {
-            color: var(--color-text-light);
-            font-weight: 500;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: white;
-            text-align: center;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 400px;
-            margin: 0 auto;
-            gap: 16px;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-        }
-
-        .newsletter-btn {
-            background: var(--color-accent);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--color-text);
-            color: white;
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-section a {
-            color: #D1D5DB;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 20px;
-            text-align: center;
-            color: #9CA3AF;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .nav {
-                gap: 20px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        /* Shopping Cart Icon */
-        .cart-icon {
-            position: relative;
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 20px;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--color-accent);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge {
-            background: var(--color-success);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 16px;
-            font-size: 12px;
-            font-weight: 600;
-            position: absolute;
-            top: 16px;
-            left: 16px;
-        }
-
-        .sale-badge {
-            background: var(--color-error);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BOLDYASE — Minimal Luxury E-commerce</title>
+
+  <!-- Fonts: luxe serif voor headings + Inter voor body -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       BOLDYASE LIGHT THEME
+       ========================= */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+
+    :root{
+      /* Brand & Neutrals (geen blauw/geel) */
+      --by-text: #222222;
+      --by-text-2: #666666;
+      --by-bg: #FFFFFF;
+      --by-bg-light: #FAFAFA;
+      --by-accent-beige: #E8DDD3;   /* subtiel, geen fel geel */
+      --by-accent-light: #F8F5F2;   /* zachte tint voor hero/strips */
+      --by-border: #EAEAEA;
+
+      /* Feedback */
+      --by-success:#10B981;
+      --by-error:#EF4444;
+
+      /* Tokens */
+      --by-container: 1440px;
+      --by-radius: 12px;
+      --by-shadow: 0 10px 30px rgba(0,0,0,.06);
+      --by-shadow-soft: 0 4px 16px rgba(0,0,0,.06);
+      --by-timing: cubic-bezier(.2,.7,.2,1);
+      --by-dur: .25s;
+      --space: 24px;
+    }
+
+    body{
+      color:var(--by-text);
+      background:var(--by-bg);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.6;
+    }
+    .container{
+      max-width:var(--by-container);
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:100;background:var(--by-bg);border-bottom:1px solid var(--by-border);backdrop-filter:saturate(140%) blur(6px)}
+    .header__bar{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .logo{font-family:"Playfair Display",serif;font-weight:800;font-size:26px;letter-spacing:.02em;color:var(--by-text);text-decoration:none}
+    .nav{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+    .nav a{color:var(--by-text);text-decoration:none;font-weight:500;letter-spacing:.02em}
+    .nav a:hover{text-decoration:underline}
+    .actions{display:flex;gap:14px;align-items:center}
+    .iconbtn{height:40px;min-width:40px;display:inline-grid;place-items:center;border:1px solid var(--by-border);border-radius:999px;background:#fff;color:var(--by-text)}
+    .cart{position:relative}
+    .cart__count{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:var(--by-text);color:#fff;font-size:12px;display:grid;place-items:center}
+
+    /* Announcement (subtiel, geen felle gradient) */
+    .announce{background:var(--by-accent-light);color:var(--by-text);text-align:center;font-size:14px;padding:8px 12px;border-bottom:1px solid var(--by-border)}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:var(--by-radius);border:1px solid #111;background:#111;color:#fff;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:transform var(--by-dur) var(--by-timing), box-shadow var(--by-dur) var(--by-timing), background var(--by-dur) var(--by-timing), color var(--by-dur) var(--by-timing)}
+    .btn:hover{box-shadow:var(--by-shadow-soft);transform:translateY(-1px)}
+    .btn:active{transform:scale(.98)}
+    .btn--ghost{background:transparent;color:#111;border:1px solid #111}
+    .btn--ghost:hover{background:#111;color:#fff}
+
+    /* Sections */
+    .section{padding:calc(var(--space)*4) 0}
+    .section--tight{padding:calc(var(--space)*2) 0}
+
+    /* Hero (licht, editorial) */
+    .hero{padding:calc(var(--space)*4) 0;background:linear-gradient(to bottom, var(--by-accent-light), #fff)}
+    .hero h1{font-family:"Playfair Display",serif;font-weight:800;letter-spacing:.0em;font-size:clamp(36px,5vw,56px);line-height:1.1;margin:0 0 12px}
+    .hero p{max-width:720px;margin:0 auto 24px;color:var(--by-text-2);font-size:18px}
+    .hero__actions{display:flex;gap:12px;justify-content:center;margin:24px 0 48px}
+    .hero__image{height:420px;border-radius:16px;background:
+      radial-gradient(80% 60% at 50% 40%, #fff 0%, var(--by-accent-light) 60%, #fff 100%),
+      url('https://images.unsplash.com/photo-1520975922284-9bcd8b85efbe?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      box-shadow:var(--by-shadow);
+    }
+
+    /* Section header */
+    .title{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(28px,3vw,40px);text-align:center;margin:0 0 10px}
+    .subtitle{color:var(--by-text-2);text-align:center;max-width:720px;margin:0 auto}
+
+    /* Products */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:32px}
+    .card{background:#fff;border:1px solid var(--by-border);border-radius:var(--by-radius);overflow:hidden;box-shadow:var(--by-shadow-soft);transition:transform var(--by-dur) var(--by-timing), box-shadow var(--by-dur) var(--by-timing)}
+    .card:hover{transform:translateY(-6px);box-shadow:var(--by-shadow)}
+    .card__media{position:relative;height:340px;background:#f3f3f3;display:grid;place-items:center;color:#8a8a8a}
+    .badge{position:absolute;top:12px;left:12px;background:var(--by-text);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600}
+    .badge--sale{background:#b00020}
+    .card__body{padding:16px 16px 18px}
+    .card__brand{font-size:12px;color:var(--by-text-2);letter-spacing:.06em;margin-bottom:4px}
+    .card__title{font-weight:600;margin:0 0 6px}
+    .price{display:flex;align-items:center;gap:10px;font-weight:700}
+    .price s{color:#9b9b9b;font-weight:500}
+
+    /* Stats */
+    .stats{background:var(--by-bg-light);border-top:1px solid var(--by-border);border-bottom:1px solid var(--by-border)}
+    .stats__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;text-align:center}
+    .stat h3{font-family:"Playfair Display",serif;font-size:36px;margin:0 0 6px}
+    .stat p{color:var(--by-text-2);margin:0}
+
+    /* Newsletter (licht) */
+    .newsletter{background:var(--by-accent-light)}
+    .nl__form{display:flex;gap:10px;max-width:520px;margin:18px auto 0}
+    .nl__input{flex:1;height:48px;border:1px solid var(--by-border);border-radius:10px;padding:0 14px;font-size:16px;background:#fff}
+    .nl__btn{height:48px}
+
+    /* Footer (refined) */
+    .footer{background:#111;color:#fff;padding:64px 0 24px;margin-top:calc(var(--space)*2)}
+    .f__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;margin-bottom:28px}
+    .f__title{font-weight:700;margin:0 0 12px}
+    .f__muted{color:#cfcfcf}
+    .f__links{list-style:none;padding:0;margin:0}
+    .f__links a{color:#e7e7e7;text-decoration:none}
+    .f__links a:hover{text-decoration:underline}
+    .f__bottom{border-top:1px solid #2a2a2a;margin-top:22px;padding-top:16px;color:#aaa;text-align:center;font-size:14px}
+
+    /* Motion prefs */
+    @media (prefers-reduced-motion: reduce){
+      .btn,.card{transition:none}
+      html{scroll-behavior:auto}
+    }
+
+    /* Mobile tweaks */
+    @media (max-width:768px){
+      .header__bar{flex-direction:column;gap:12px;height:auto;padding:12px 0}
+      .hero__actions{flex-direction:column}
+      .stats__grid{gap:20px}
+    }
+
+    /* Simple fade */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    .fade-in{animation:fadeUp .6s var(--by-timing)}
+  </style>
 </head>
 <body>
-    <!-- Announcement Bar -->
-    <div class="announcement-bar">
-        ✨ Free shipping on orders over $75! Limited time offer 🚚
+
+  <!-- Announcement -->
+  <div class="announce">Gratis verzending boven €75 • Snelle levering</div>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="container header__bar">
+      <a class="logo" href="#home" aria-label="BOLDYASE Home">BOLDYASE</a>
+
+      <nav aria-label="Hoofdmenu">
+        <ul class="nav">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#collections">Collecties</a></li>
+          <li><a href="#about">Over ons</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <button class="iconbtn" aria-label="Zoeken">🔍</button>
+        <a class="iconbtn" href="#account" aria-label="Account">👤</a>
+        <a class="iconbtn" href="#wishlist" aria-label="Wishlist">♡</a>
+        <a class="iconbtn cart" href="#cart" aria-label="Winkelwagen">
+          🛒 <span class="cart__count" aria-live="polite">3</span>
+        </a>
+      </div>
     </div>
+  </header>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">BOLDYASE</a>
-                
-                <nav>
-                    <ul class="nav">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#shop">Shop</a></li>
-                        <li><a href="#collections">Collections</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container fade-in">
+      <h1>Minimal Luxury Shopping</h1>
+      <p>Een kalme, high-end winkelervaring met editoriale uitstraling. Ontdek zorgvuldig samengestelde items met een tijdloze stijl.</p>
+      <div class="hero__actions">
+        <a href="#shop" class="btn">Shop nu</a>
+        <a href="#collections" class="btn btn--ghost">Bekijk collecties</a>
+      </div>
+      <div class="hero__image" role="img" aria-label="Sfeervolle hero-afbeelding met minimalistische fashion"></div>
+    </div>
+  </section>
 
-                <div class="header-actions">
-                    <a href="#search" style="color: var(--color-text); font-size: 20px;">🔍</a>
-                    <a href="#account" style="color: var(--color-text); font-size: 20px;">👤</a>
-                    <a href="#wishlist" style="color: var(--color-text); font-size: 20px;">❤️</a>
-                    <a href="#cart" class="cart-icon">
-                        🛒
-                        <span class="cart-count">3</span>
-                    </a>
-                </div>
-            </div>
+  <!-- Featured Products -->
+  <section class="section" id="shop">
+    <div class="container">
+      <h2 class="title">Uitgelicht</h2>
+      <p class="subtitle">Een selectie van premium items — modern, rustig en verfijnd.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card__media" aria-label="Product visueel">
+            <span class="badge">Nieuw</span>
+            3:4 Visual
+          </div>
+          <div class="card__body">
+            <div class="card__brand">BOLDYASE</div>
+            <h3 class="card__title">Minimal Leather Tote</h3>
+            <div class="price"><s>€249</s> €199</div>
+            <button class="btn" data-add>Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media" aria-label="Product visueel">
+            <span class="badge badge--sale">Sale</span>
+            3:4 Visual
+          </div>
+          <div class="card__body">
+            <div class="card__brand">BOLDYASE</div>
+            <h3 class="card__title">Wool Crew Knit</h3>
+            <div class="price"><s>€129</s> €99</div>
+            <button class="btn" data-add>Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media" aria-label="Product visueel">3:4 Visual</div>
+          <div class="card__body">
+            <div class="card__brand">BOLDYASE</div>
+            <h3 class="card__title">Tailored Pant</h3>
+            <div class="price">€139</div>
+            <button class="btn" data-add>Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__media" aria-label="Product visueel">
+            <span class="badge">Favoriet</span>
+            3:4 Visual
+          </div>
+          <div class="card__body">
+            <div class="card__brand">BOLDYASE</div>
+            <h3 class="card__title">Classic Oxford Shirt</h3>
+            <div class="price">€89</div>
+            <button class="btn" data-add>Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section--tight stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat"><h3>50K+</h3><p>Tevreden klanten</p></div>
+        <div class="stat"><h3>1.000+</h3><p>Producten</p></div>
+        <div class="stat"><h3>99%</h3><p>Beoordeling</p></div>
+        <div class="stat"><h3>24/7</h3><p>Support</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section newsletter" id="collections">
+    <div class="container">
+      <h2 class="title">Blijf op de hoogte</h2>
+      <p class="subtitle">Nieuws, drops en exclusieve toegang — direct in je inbox.</p>
+      <form class="nl__form" novalidate>
+        <input class="nl__input" type="email" placeholder="E-mailadres" aria-label="E-mailadres" required>
+        <button class="btn nl__btn" type="submit">Inschrijven</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="f__grid">
+        <div>
+          <h4 class="f__title">BOLDYASE</h4>
+          <p class="f__muted">Premium e-commerce met een kalme, editoriale uitstraling. Tijdloze kwaliteit, moderne service.</p>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="animate-fade-in">
-                <h1>Modern E-commerce Experience</h1>
-                <p>Discover amazing products with our sleek, fast, and user-friendly shopping platform. Built for the modern consumer.</p>
-                
-                <div class="hero-actions">
-                    <a href="#shop" class="btn btn-primary">Shop Now</a>
-                    <a href="#collections" class="btn btn-secondary">Browse Collections</a>
-                </div>
-
-                <div class="hero-image">
-                    🎨 Beautiful Product Showcase
-                </div>
-            </div>
+        <div>
+          <h4 class="f__title">Snel naar</h4>
+          <ul class="f__links">
+            <li><a href="#about">Over ons</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#shipping">Verzending</a></li>
+            <li><a href="#returns">Retourneren</a></li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Featured Collection -->
-    <section class="section" id="shop">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Products</h2>
-                <p class="section-description">Discover our carefully curated selection of premium products</p>
-            </div>
-
-            <div class="product-grid">
-                <article class="product-card">
-                    <div class="product-image">
-                        <span class="badge">New</span>
-                        📱 Product Image
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Premium Wireless Headphones</h3>
-                        <div class="product-price">
-                            <span class="original">$199.99</span>
-                            $149.99
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">
-                        <span class="badge sale-badge">Sale</span>
-                        💻 Product Image
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Minimalist Laptop Stand</h3>
-                        <div class="product-price">
-                            <span class="original">$89.99</span>
-                            $69.99
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">
-                        ⌚ Product Image
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Smart Fitness Tracker</h3>
-                        <div class="product-price">$129.99</div>
-                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
-                    </div>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-image">
-                        <span class="badge">Popular</span>
-                        📷 Product Image
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Professional Camera Lens</h3>
-                        <div class="product-price">$299.99</div>
-                        <button class="btn btn-primary" style="width: 100%;">Add to Cart</button>
-                    </div>
-                </article>
-            </div>
+        <div>
+          <h4 class="f__title">Categorieën</h4>
+          <ul class="f__links">
+            <li><a href="#women">Dames</a></li>
+            <li><a href="#men">Heren</a></li>
+            <li><a href="#accessories">Accessoires</a></li>
+            <li><a href="#sale">Sale</a></li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="section stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>50K+</h3>
-                    <p>Happy Customers</p>
-                </div>
-                <div class="stat-item">
-                    <h3>1000+</h3>
-                    <p>Products</p>
-                </div>
-                <div class="stat-item">
-                    <h3>99%</h3>
-                    <p>Satisfaction Rate</p>
-                </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>Customer Support</p>
-                </div>
-            </div>
+        <div>
+          <h4 class="f__title">Volg ons</h4>
+          <ul class="f__links">
+            <li><a href="#instagram">Instagram</a></li>
+            <li><a href="#tiktok">TikTok</a></li>
+            <li><a href="#pinterest">Pinterest</a></li>
+            <li><a href="#newsletter">Newsletter</a></li>
+          </ul>
         </div>
-    </section>
+      </div>
+      <div class="f__bottom">© 2024 BOLDYASE — Privacy • Voorwaarden</div>
+    </div>
+  </footer>
 
-    <!-- Newsletter -->
-    <section class="section newsletter">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Stay Updated</h2>
-                <p class="section-description">Get the latest news about new products and special offers</p>
-            </div>
-            
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
-        </div>
-    </section>
+  <script>
+    // Smooth scroll (alleen interne anchors)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href');
+        if(id.length>1){
+          const target=document.querySelector(id);
+          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+        }
+      });
+    });
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>BOLDYASE</h4>
-                    <p>Your trusted partner for premium e-commerce experiences. Quality products, exceptional service.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#shipping">Shipping Info</a></li>
-                        <li><a href="#returns">Returns</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#electronics">Electronics</a></li>
-                        <li><a href="#fashion">Fashion</a></li>
-                        <li><a href="#home">Home & Garden</a></li>
-                        <li><a href="#sports">Sports</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="#facebook">Facebook</a></li>
-                        <li><a href="#instagram">Instagram</a></li>
-                        <li><a href="#twitter">Twitter</a></li>
-                        <li><a href="#pinterest">Pinterest</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 BOLDYASE. All rights reserved. | Privacy Policy | Terms of Service</p>
-            </div>
-        </div>
-    </footer>
+    // Add-to-cart simulatie + cart badge update
+    document.querySelectorAll('[data-add]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const label=btn.textContent;
+        btn.textContent='Toegevoegd ✓';
+        btn.style.background='var(--by-success)';
+        const badge=document.querySelector('.cart__count');
+        if(badge){ badge.textContent = String((parseInt(badge.textContent)||0)+1); }
+        setTimeout(()=>{ btn.textContent=label; btn.style.background='#111'; },1600);
+      });
+    });
 
-    <script>
-        // Simple interactive features
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Add to cart simulation
-            document.querySelectorAll('.btn-primary').forEach(btn => {
-                if (btn.textContent === 'Add to Cart') {
-                    btn.addEventListener('click', function() {
-                        this.textContent = 'Added! ✓';
-                        this.style.background = 'var(--color-success)';
-                        
-                        // Update cart count
-                        const cartCount = document.querySelector('.cart-count');
-                        const currentCount = parseInt(cartCount.textContent);
-                        cartCount.textContent = currentCount + 1;
-                        
-                        setTimeout(() => {
-                            this.textContent = 'Add to Cart';
-                            this.style.background = 'var(--color-primary)';
-                        }, 2000);
-                    });
-                }
-            });
-
-            // Newsletter form
-            const newsletterForm = document.querySelector('.newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const btn = this.querySelector('.newsletter-btn');
-                    const input = this.querySelector('.newsletter-input');
-                    
-                    btn.textContent = 'Subscribed! ✓';
-                    btn.style.background = 'var(--color-success)';
-                    input.value = '';
-                    
-                    setTimeout(() => {
-                        btn.textContent = 'Subscribe';
-                        btn.style.background = 'var(--color-accent)';
-                    }, 3000);
-                });
-            }
-        });
-    </script>
+    // Newsletter fake submit
+    const nl=document.querySelector('.nl__form');
+    if(nl){
+      nl.addEventListener('submit',e=>{
+        e.preventDefault();
+        const input=nl.querySelector('.nl__input');
+        const btn=nl.querySelector('.nl__btn');
+        if(!input.value) return;
+        btn.textContent='Ingeschreven ✓';
+        btn.style.background='var(--by-success)';
+        input.value='';
+        setTimeout(()=>{ btn.textContent='Inschrijven'; btn.style.background='#111'; },2000);
+      });
+    }
+  </script>
 </body>
 </html>
